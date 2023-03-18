@@ -28,9 +28,9 @@ void tela_principal(void) {
     printf(" ||        ====== Sistema de Controle de Funcionarios ======       ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||         [ 1 ] Funcionarios                                     ||\n");
-    printf(" ||         [ 2 ] Ponto                                            ||\n");
-    printf(" ||         [ 3 ] Folha de Pagamento                               ||\n");
-    printf(" ||         [ 4 ]                                                  ||\n");
+    printf(" ||         [ 2 ] Serviços                                         ||\n");
+    printf(" ||         [ 3 ] Pagamentos                                       ||\n");
+    printf(" ||         [ 4 ] Relatorios                                       ||\n");
     printf(" ||         [ 0 ] Sair                                             ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||         Digite sua escolha: ");
@@ -86,8 +86,8 @@ void tela_equipe(void) {
     printf(" ||                                                                ||\n");
     printf(" ||                        Matheus Quirino                         ||\n");
     printf(" ||                                                                ||\n");
-    printf(" ||         * Email: matheusquinoff@gmail.com                      ||\n");
-    printf(" ||         * Git: https://github.com/quirinof                     ||\n");
+    printf(" ||           * Email: matheusquinoff@gmail.com                    ||\n");
+    printf(" ||           * Git: https://github.com/quirinof                   ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf("\n");

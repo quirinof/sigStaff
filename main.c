@@ -124,31 +124,44 @@ void tela_funcionario(void) {
 }
 
 void tela_cadastrar_funcionario(void) {
+    char nome[51], cpf[12], email[51];
     system("cls");
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                            CADASTRO                            ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
-    printf(" ||      Nome:                                                     ||\n");
-    printf(" ||      CPF:                                                      ||\n");
-    printf(" ||      Email:                                                    ||\n");
-    printf(" ||      Cargo/Funcao:                                             ||\n");
+    printf(" ||      Nome: ");
+    scanf("%[ A-Za-zç]", nome);
+    getchar();
+    printf(" ||      CPF: ");
+    scanf("%s", cpf);
+    getchar();
+    printf(" ||      Email: ");
+    scanf("%[a-z0-9ç@._]", email);
+    getchar();
+    printf(" ||      Cargo/Funcao: ");
+    scanf("%[ A-Za-zç]");
+    getchar();
     printf(" ||                                                                ||\n");
     printf(" ||                     Funcionario cadastrado!                    ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf("\n");
     getchar();
 }
 
 void tela_pesquisar_funcionario(void) {
+    char cpf[12];
     system("cls");  
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                            PESQUISA                            ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
-    printf(" ||      Digite o CPF do funcionario:                              ||\n");
+    printf(" ||      Digite o CPF do funcionario: ");
+    scanf("%s", cpf);
+    getchar();
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -156,13 +169,16 @@ void tela_pesquisar_funcionario(void) {
 }
 
 void tela_atualizar_funcionario(void) {
+    char cpf[12];
     system("cls");
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                           ATUALIZACAO                          ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
-    printf(" ||      Digite o CPF do funcionario:                              ||\n");
+    printf(" ||      Digite o CPF do funcionario: ");
+    scanf("%s", cpf);
+    getchar();
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                      Atualizacao efetuada!                     ||\n");
@@ -172,13 +188,16 @@ void tela_atualizar_funcionario(void) {
 }
 
 void tela_excluir_funcionario(void) {
+    char cpf[12];
     system("cls");
     printf(" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                             EXCLUSAO                           ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
-    printf(" ||      Digite o CPF do funcionario:                              ||\n");
+    printf(" ||      Digite o CPF do funcionario: ");
+    scanf("%s", cpf);
+    getchar();
     printf(" ||                                                                ||\n");
     printf(" ||                                                                ||\n");
     printf(" ||                         Acao realizada!                        ||\n");

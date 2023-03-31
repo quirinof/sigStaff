@@ -1,4 +1,5 @@
 #include <stdio.h> 
+#include <stdlib.h>
 
 void tela_principal(void);
 void tela_sobre(void);
@@ -10,9 +11,9 @@ void tela_atualizar_funcionario(void);
 void tela_excluir_funcionario(void);
 
 int main(void) {
-    tela_principal();
     tela_sobre();
     tela_equipe();
+    tela_principal();
     tela_funcionario();
     tela_cadastrar_funcionario();
     tela_pesquisar_funcionario();
@@ -21,39 +22,8 @@ int main(void) {
     return 0;
 }
 
-void tela_principal(void) {
-    char escolha;
-    system("cls");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||           Universidade Federal do Rio Grande do Norte           ||\n");
-    printf(" ||               Centro de Ensino Superior do Serido               ||\n");
-    printf(" ||            Departamento de Computacao e Tecnologia              ||\n");
-    printf(" ||                   Disciplina -- Programacao                     ||\n");
-    printf(" ||          Projeto de Sistema de Controle de Funcionarios         ||\n");
-    printf(" ||         Desenvolvido por @quirinof -- desde marco, 2023         ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||        ====== Sistema de Controle de Funcionarios ======        ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Funcionarios                                      ||\n");
-    printf(" ||         [ 2 ] Identificacoes                                    ||\n");
-    printf(" ||         [ 3 ] Atividades                                        ||\n");
-    printf(" ||         [ 4 ] Tarefas                                           ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||         [ 0 ] Sair                                              ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||         Digite o numero da sua escolha: ");
-    scanf("%c", &escolha);
-    getchar();
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
-}
-
 void tela_sobre(void) {
-    system("cls");
+
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||           Universidade Federal do Rio Grande do Norte           ||\n");
@@ -103,6 +73,36 @@ void tela_equipe(void) {
     getchar();
 }
 
+void tela_principal(void) {
+    char escolha;
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||           Universidade Federal do Rio Grande do Norte           ||\n");
+    printf(" ||               Centro de Ensino Superior do Serido               ||\n");
+    printf(" ||            Departamento de Computacao e Tecnologia              ||\n");
+    printf(" ||                   Disciplina -- Programacao                     ||\n");
+    printf(" ||          Projeto de Sistema de Controle de Funcionarios         ||\n");
+    printf(" ||         Desenvolvido por @quirinof -- desde marco, 2023         ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||        ====== Sistema de Controle de Funcionarios ======        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 1 ] Funcionarios                                      ||\n");
+    printf(" ||         [ 2 ] Identificacoes                                    ||\n");
+    printf(" ||         [ 3 ] Atividades                                        ||\n");
+    printf(" ||         [ 4 ] Tarefas                                           ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 0 ] Sair                                              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf("       Digite o numero da sua escolha: ");
+    scanf("%c", &escolha);
+    getchar();
+}
+
 void tela_funcionario(void) {
     char escolha;
     system("cls");
@@ -123,11 +123,10 @@ void tela_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 0 ] Voltar ao Menu Principal                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||        Digite o numero da sua escolha: ");
-    scanf("%c", &escolha);
-    getchar();
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf("       Digite o numero da sua escolha: ");
+    scanf("%c", &escolha);
     getchar();
 }
 
@@ -144,24 +143,31 @@ void tela_cadastrar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                            CADASTRO                             ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||      Digite o Nome: ");
-    scanf("%[ A-Za-zÇç]", nome);
+    printf(" ||      Digite seu nome completo:                                  ||\n");
+    printf("         => ");
+    scanf("%[ ^A-Za-zÇ-ç]", nome);
     getchar();
-    printf(" ||      Digite o CPF: ");
+    printf(" ||                                                                 ||\n");
+    printf(" ||      Digite o CPF (apenas digitos):                             ||\n");
+    printf("         => ");
     scanf("%s", cpf);
     getchar();
-    printf(" ||      Digite o Email: ");
-    scanf("%[A-Za-zÇç0-9@._]", email);
+    printf(" ||                                                                 ||\n");
+    printf(" ||      Digite o Email:                                            ||\n");
+    printf("         => ");
+    scanf("%[A-Za-zÇ-ç0-9@._]", email);
     getchar();
-    printf(" ||      Digite o Cargo/Funcao: ");
-    scanf("%[ A-Za-zÇç]", cargo);
+    printf(" ||                                                                 ||\n");
+    printf(" ||      Digite o Cargo/Funcao:                                     ||\n");
+    printf("         => ");
+    scanf("%[ ^A-Za-zÇ-ç]", cargo);
     getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                     Funcionario cadastrado!                     ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf("\n");
     getchar();
 }
 
@@ -179,9 +185,12 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||                             PESQUISA                            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      Digite o CPF: ");
+    printf(" ||      Digite o CPF (apenas digitos):                                              ||\n");
+    printf("         => ");
     scanf("%s", cpf);
     getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      Funcionario Encontrado!                    ||\n");
     printf(" ||                                                                 ||\n");
@@ -203,10 +212,12 @@ void tela_atualizar_funcionario(void) {
     printf(" ||                           ATUALIZACAO                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      Digite o CPF: ");
+    printf(" ||      Digite o CPF (apenas digitos):                             ||\n");
+    printf("         =>");
     scanf("%s", cpf);
     getchar();
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      Atualizacao efetuada!                      ||\n");
     printf(" ||                                                                 ||\n");
@@ -228,10 +239,12 @@ void tela_excluir_funcionario(void) {
     printf(" ||                             EXCLUSAO                            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      Digite o CPF: ");
+    printf(" ||      Digite o CPF:                                              ||\n");
+    printf("         => ");
     scanf("%s", cpf);
     getchar();
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                         Acao realizada!                         ||\n");
     printf(" ||                                                                 ||\n");

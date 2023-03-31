@@ -185,7 +185,7 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||                             PESQUISA                            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      Digite o CPF (apenas digitos):                                              ||\n");
+    printf(" ||      Digite o CPF (apenas digitos):                             ||\n");
     printf("         => ");
     scanf("%s", cpf);
     getchar();

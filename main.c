@@ -90,9 +90,9 @@ void tela_principal(void) {
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
     printf(" ||         [ 2 ] Atividades                                        ||\n");
     printf(" ||         [ 3 ] Tarefas                                           ||\n");
-    printf(" ||         [ 3 ] Desempenho                                        ||\n");
-    printf(" ||         [ 4 ] Ponto                                             ||\n");
-    printf(" ||         [ 5 ] Folha de Pagamento                                ||\n");
+    printf(" ||         [ 4 ] Desempenho                                        ||\n");
+    printf(" ||         [ 5 ] Ponto                                             ||\n");
+    printf(" ||         [ 6 ] Folha de Pagamento                                ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Sair                                              ||\n");
     printf(" ||                                                                 ||\n");
@@ -116,7 +116,6 @@ void tela_funcionario(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                           FUNCIONARIOS                          ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 1 ] Cadastrar                                          ||\n");
     printf(" ||        [ 2 ] Pesquisar                                          ||\n");
@@ -145,7 +144,6 @@ void tela_cadastrar_funcionario(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                            CADASTRO                             ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 1 ] Continuar                                          ||\n");
     printf(" ||        [ 0 ] Voltar ao Menu Funcionarios                        ||\n");
@@ -189,7 +187,6 @@ void tela_cadastrar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                     Funcionario cadastrado!                     ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||     Nome: %s    \n", nome);
     printf(" ||     Cargo: %s   \n", cargo);
     printf(" ||     CPF: %s     \n", cpf);
@@ -213,7 +210,6 @@ void tela_pesquisar_funcionario(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                             PESQUISA                            ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 1 ] Continuar                                          ||\n");
     printf(" ||        [ 0 ] Voltar ao Menu Funcionarios                        ||\n");
@@ -244,7 +240,7 @@ void tela_pesquisar_funcionario(void) {
 }
 
 void tela_atualizar_funcionario(void) {
-    char escolha, escolha_up, cpf[12], nome[51];
+    char escolha, escolha_up, cpf[12], nome_up[51];
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -255,7 +251,6 @@ void tela_atualizar_funcionario(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                           ATUALIZACAO                           ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 1 ] Continuar                                          ||\n");
     printf(" ||        [ 0 ] Voltar ao Menu Funcionarios                        ||\n");
@@ -286,7 +281,7 @@ void tela_atualizar_funcionario(void) {
     // exemplo de escolha para nome 
     printf(" ||      Novo Nome:                                                 ||\n");
     printf("         => ");
-    scanf("%[^\n]", nome);
+    scanf("%[^\n]", nome_up);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||     >>> TECLE ENTER PARA CONFIRMAR...                           ||\n");

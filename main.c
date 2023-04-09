@@ -40,6 +40,7 @@ int main(void) {
     tela_adicionar_tarefa();
     tela_pesquisar_tarefa();
     tela_atualizar_tarefa();
+    tela_excluir_tarefa();
 
     return 0;
 }
@@ -501,6 +502,36 @@ void tela_atualizar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+}
+
+
+void tela_excluir_tarefa(void) {
+
+    char id_tarefa[5];
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                             EXCLUIR                             ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite o ID da tarefa: \n");
+    printf("           => ");
+    scanf("%[0-9]", id_tarefa);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                         Tarefa excluida!                        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
 }
 
 

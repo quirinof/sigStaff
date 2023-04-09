@@ -38,8 +38,11 @@ int main(void) {
 
     tela_tarefa();
     tela_adicionar_tarefa();
+    tela_pesquisar_tarefa();
+
     return 0;
 }
+
 
 void tela_sobre(void) {
 
@@ -66,7 +69,9 @@ void tela_sobre(void) {
     getchar();
 }
 
+
 void tela_equipe(void) {
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -92,8 +97,11 @@ void tela_equipe(void) {
     getchar();
 }
 
+
 void tela_principal(void) {
+
     char escolha;
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -118,8 +126,11 @@ void tela_principal(void) {
     getchar();
 }
 
+
 void tela_funcionario(void) {
+
     char escolha;
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -145,12 +156,15 @@ void tela_funcionario(void) {
     getchar();
 }
 
+
 void tela_adicionar_funcionario(void) {
+
     char nome[51];
     char cpf[12];
     char celular[12];
     char email[51];
     char cargo[51];
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -188,9 +202,7 @@ void tela_adicionar_funcionario(void) {
     printf("         => ");
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", cargo);
     getchar();
-    printf("\n");
-    printf(" ||     >>> TECLE ENTER PRA CONFIRMAR...                            ||\n");
-    getchar();
+    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -207,8 +219,11 @@ void tela_adicionar_funcionario(void) {
     getchar();
 }
 
+
 void tela_pesquisar_funcionario(void) {
+
     char cpf[12];
+
     system("cls");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -225,8 +240,6 @@ void tela_pesquisar_funcionario(void) {
     scanf("%s", cpf);
     getchar();
     printf(" ||                                                                 ||\n");
-    printf(" ||     >>> TECLE ENTER PARA CONFIRMAR...                           ||\n");
-    getchar();
     printf(" ||                                                                 ||\n");
     // exemplo de como pode ficar apos a busca realizada
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -241,10 +254,13 @@ void tela_pesquisar_funcionario(void) {
     getchar();
 }
 
+
 void tela_atualizar_funcionario(void) {
+    
     char editar;
     char cpf[12];
     char nome_novo[51];
+    
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -280,9 +296,7 @@ void tela_atualizar_funcionario(void) {
     printf("         => ");
     scanf("%[^\n]", nome_novo);
     getchar();
-    printf("\n");
-    printf(" ||     >>> TECLE ENTER PARA CONFIRMAR...                           ||\n");
-    getchar();
+    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -292,8 +306,11 @@ void tela_atualizar_funcionario(void) {
     getchar();  
 }
 
+
 void tela_excluir_funcionario(void) {
+    
     char cpf[12];
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -310,8 +327,6 @@ void tela_excluir_funcionario(void) {
     scanf("%s", cpf);
     getchar();
     printf(" ||                                                                 ||\n");
-    printf(" ||     >>> TECLE ENTER PARA CONFIRMAR...                           ||\n");
-    getchar();
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -321,8 +336,11 @@ void tela_excluir_funcionario(void) {
     getchar();
 }
 
+
 void tela_tarefa(void) {
+
     char escolha;
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -348,12 +366,15 @@ void tela_tarefa(void) {
     getchar();
 }
 
+
 void tela_adicionar_tarefa(void) {
+
     char titulo[51];
     char id_tarefa[5];
     char descricao[201];
     char funcionario[51];
     char data_tarefa[9];
+
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -365,10 +386,9 @@ void tela_adicionar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                           ADICIONAR                             ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf("            Titulo: \n");
     printf("            => ");
-    scanf("%s[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo);
     getchar();
     printf("\n"); 
     printf("            ID da Tarefa: \n");
@@ -390,9 +410,7 @@ void tela_adicionar_tarefa(void) {
     printf("            => ");
     scanf("%[0-9/]", data_tarefa);
     getchar();
-    printf("\n");
-    printf(" ||     >>> TECLE ENTER PRA CONFIRMAR...                            ||\n");
-    getchar();
+    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -401,4 +419,36 @@ void tela_adicionar_tarefa(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
+
+
+void tela_pesquisar_tarefa(void) {
+
+    char id_tarefa[5];
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                            PESQUISAR                            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite o ID da tarefa: \n");
+    printf("           => ");
+    scanf("%[0-9]", id_tarefa);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Tarefa Encontrada!                        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+    
 

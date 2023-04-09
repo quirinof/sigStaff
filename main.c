@@ -42,6 +42,8 @@ int main(void) {
     tela_atualizar_tarefa();
     tela_excluir_tarefa();
 
+    tela_atividade();
+
     return 0;
 }
 
@@ -375,7 +377,7 @@ void tela_adicionar_tarefa(void) {
     char id_tarefa[5];
     char descricao[201];
     char funcionario[51];
-    char data_tarefa[9];
+    char data_tarefa[11];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -408,7 +410,7 @@ void tela_adicionar_tarefa(void) {
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", funcionario);
     getchar();
     printf("\n");
-    printf("            Data de Inicio (DD/MM/AA): \n");
+    printf("            Data limite para entrega (DD/MM/AAAA): \n");
     printf("            => ");
     scanf("%[0-9/]", data_tarefa);
     getchar();
@@ -483,7 +485,7 @@ void tela_atualizar_tarefa(void) {
     printf(" ||         [ 2 ] ID                                                ||\n");
     printf(" ||         [ 3 ] Descricao                                         ||\n");
     printf(" ||         [ 4 ] Funcionario atribuido                             ||\n");
-    printf(" ||         [ 5 ] Data de Inicio                                    ||\n");
+    printf(" ||         [ 5 ] Data Limite para entrega                          ||\n");
     printf(" ||                                                                 ||\n");
     printf("           Digite sua escolha: ");
     scanf("%c", &editar);
@@ -535,4 +537,31 @@ void tela_excluir_tarefa(void) {
 }
 
 
+void tela_atividade(void) {
 
+    char escolha;
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           ATIVIDADES                            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 1 ] Adicionar nova atividade                          ||\n");
+    printf(" ||         [ 2 ] Pesquisar atividade existente                     ||\n");
+    printf(" ||         [ 3 ] Atualizar uma atividade nao concluida             ||\n");
+    printf(" ||         [ 4 ] Excluir atividade                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"); 
+    printf(" ||                                                                 ||\n");
+    printf("       Digite sua escolha: ");
+    scanf("%c", &escolha);
+    getchar();
+}

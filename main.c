@@ -43,6 +43,7 @@ int main(void) {
     tela_excluir_tarefa();
 
     tela_atividade();
+    tela_adicionar_atividade();
 
     return 0;
 }
@@ -164,7 +165,7 @@ void tela_funcionario(void) {
 void tela_adicionar_funcionario(void) {
 
     char nome[51];
-    char cpf[12];
+    char cpf_funcionario[12];
     char celular[12];
     char email[51];
     char cargo[51];
@@ -189,7 +190,7 @@ void tela_adicionar_funcionario(void) {
     printf("\n");
     printf("         CPF (apenas digitos): \n");
     printf("         => ");
-    scanf("%[0-9]", cpf);
+    scanf("%[0-9]", cpf_funcionario);
     getchar();
     printf("\n");
     printf("         Numero de celular: \n");
@@ -214,7 +215,7 @@ void tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||     Nome: %s    \t                                                \n", nome);
     printf(" ||     Cargo: %s   \t                                                \n", cargo);
-    printf(" ||     CPF: %s     \t                                                \n", cpf);
+    printf(" ||     CPF: %s     \t                                                \n", cpf_funcionario);
     printf(" ||     Email: %s   \t                                                \n", email);
     printf(" ||     Celular: %s \t                                                \n", celular);
     printf(" ||                                                                 ||\n");
@@ -226,7 +227,7 @@ void tela_adicionar_funcionario(void) {
 
 void tela_pesquisar_funcionario(void) {
 
-    char cpf[12];
+    char cpf_funcionario[12];
 
     system("cls");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -241,7 +242,7 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf("         CPF do Funcionario (apenas digitos): \n");
     printf("         => ");
-    scanf("%s", cpf);
+    scanf("%s", cpf_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -262,7 +263,7 @@ void tela_pesquisar_funcionario(void) {
 void tela_atualizar_funcionario(void) {
     
     char editar;
-    char cpf[12];
+    char cpf_funcionario[12];
     char nome_novo_funcionario[51];
     
     system("cls");
@@ -278,7 +279,7 @@ void tela_atualizar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf("         CPF do Funcionario (apenas digitos): \n");
     printf("         => ");
-    scanf("%s", cpf);
+    scanf("%s", cpf_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -313,7 +314,7 @@ void tela_atualizar_funcionario(void) {
 
 void tela_excluir_funcionario(void) {
     
-    char cpf[12];
+    char cpf_funcionario[12];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -328,7 +329,7 @@ void tela_excluir_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf("         CPF do Funcionario (apenas digitos): \n");
     printf("         => ");
-    scanf("%s", cpf);
+    scanf("%s", cpf_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -373,11 +374,11 @@ void tela_tarefa(void) {
 
 void tela_adicionar_tarefa(void) {
 
-    char titulo[51];
+    char titulo_tarefa[51];
     char id_tarefa[5];
-    char descricao[201];
-    char funcionario[51];
-    char data_tarefa[11];
+    char cpf_funcionario[12];
+    char data_limite_tarefa[11];
+    char status_tarefa[27];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -392,7 +393,7 @@ void tela_adicionar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf("            Titulo: \n");
     printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_tarefa);
     getchar();
     printf("\n"); 
     printf("            ID da Tarefa: \n");
@@ -400,19 +401,19 @@ void tela_adicionar_tarefa(void) {
     scanf("%[0-9]", id_tarefa);
     getchar();
     printf("\n");
-    printf("            Descricao: \n");
+    printf("            CPF do funcionario atribuido: \n");
     printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", descricao);
-    getchar();
-    printf("\n");
-    printf("            Funcionario atribuido: \n");
-    printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", funcionario);
+    scanf("%[0-9]", cpf_funcionario);
     getchar();
     printf("\n");
     printf("            Data limite para entrega (DD/MM/AAAA): \n");
     printf("            => ");
-    scanf("%[0-9/]", data_tarefa);
+    scanf("%[0-9/]", data_limite_tarefa);
+    getchar();
+    printf("\n");
+    printf("            Status da Tarefa: \n");
+    printf("            => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", status_tarefa);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -482,10 +483,10 @@ void tela_atualizar_tarefa(void) {
     printf(" ||                             EDITAR                              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Titulo                                            ||\n");
-    printf(" ||         [ 2 ] ID                                                ||\n");
-    printf(" ||         [ 3 ] Descricao                                         ||\n");
-    printf(" ||         [ 4 ] Funcionario atribuido                             ||\n");
-    printf(" ||         [ 5 ] Data Limite para entrega                          ||\n");
+    printf(" ||         [ 2 ] ID da Tarefa                                      ||\n");
+    printf(" ||         [ 3 ] Funcionario atribuido                             ||\n");
+    printf(" ||         [ 4 ] Data Limite para entrega                          ||\n");
+    printf(" ||         [ 5 ] Status da Tarefa                                  ||\n");
     printf(" ||                                                                 ||\n");
     printf("           Digite sua escolha: ");
     scanf("%c", &editar);
@@ -554,7 +555,7 @@ void tela_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Adicionar nova atividade                          ||\n");
     printf(" ||         [ 2 ] Pesquisar atividade existente                     ||\n");
-    printf(" ||         [ 3 ] Atualizar uma atividade nao concluida             ||\n");
+    printf(" ||         [ 3 ] Atualizar uma atividade em andamento              ||\n");
     printf(" ||         [ 4 ] Excluir atividade                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
@@ -565,3 +566,70 @@ void tela_atividade(void) {
     scanf("%c", &escolha);
     getchar();
 }
+
+
+void tela_adicionar_atividade(void) {
+
+    char titulo_atividade[51];
+    char id_atividade[5];
+    char id_tarefa[5];
+    char descricao_atividade[301];
+    char cpf_funcionario[12];
+    char data_inicio_atividade[11];
+    char status_atividade[27];
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           ADICIONAR                             ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("            Titulo da atividade: \n");
+    printf("            => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_atividade);
+    getchar();
+    printf("\n");
+    printf("            ID da atividade: \n");
+    printf("            => ");
+    scanf("%[0-9]", id_atividade);
+    getchar();
+    printf("\n");
+    printf("            Descricao: \n");
+    printf("            => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", descricao_atividade);
+    getchar();
+    printf("\n");
+    printf("            ID da tarefa relacionada: \n");
+    printf("            => ");
+    scanf("%[0-9]", id_tarefa);
+    getchar();
+    printf("\n");
+    printf("            CPF do funcionario encarregado: \n");
+    printf("            => ");
+    scanf("%[0-9]", cpf_funcionario);
+    getchar();         
+    printf("\n");
+    printf("            Data de inicio (DD/MM/AAAA): \n");
+    printf("            => ");
+    scanf("%[0-9/]", data_inicio_atividade);
+    getchar();
+    printf("\n");
+    printf("            Status da atividade: \n");
+    printf("            => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", status_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Atividade incluida!                       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+

@@ -44,6 +44,7 @@ int main(void) {
 
     tela_atividade();
     tela_adicionar_atividade();
+    tela_pesquisar_atividade();
 
     return 0;
 }
@@ -633,3 +634,32 @@ void tela_adicionar_atividade(void) {
     getchar();
 }
 
+
+void tela_pesquisar_atividade(void) {
+
+    char id_atividade[5];
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                            PESQUISAR                            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite o ID da atividade: \n");
+    printf("           => ");
+    scanf("%[0-9]", id_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Atividade encontrada!                     ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}

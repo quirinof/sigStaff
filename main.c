@@ -46,6 +46,7 @@ int main(void) {
     tela_adicionar_atividade();
     tela_pesquisar_atividade();
     tela_atualizar_atividade();
+    tela_excluir_atividade();
 
     return 0;
 }
@@ -573,7 +574,7 @@ void tela_atividade(void) {
 void tela_adicionar_atividade(void) {
 
     char titulo_atividade[51];
-    char id_atividade[5];
+    char id_atividade[6];
     char id_tarefa[5];
     char descricao_atividade[301];
     char cpf_funcionario[12];
@@ -638,7 +639,7 @@ void tela_adicionar_atividade(void) {
 
 void tela_pesquisar_atividade(void) {
 
-    char id_atividade[5];
+    char id_atividade[6];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -668,7 +669,7 @@ void tela_pesquisar_atividade(void) {
 
 void tela_atualizar_atividade(void) {
 
-    char id_atividade[5];
+    char id_atividade[6];
     char editar; 
     char titulo_novo_atividade[51];
 
@@ -717,4 +718,34 @@ void tela_atualizar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+}
+
+
+void tela_excluir_atividade(void) {
+
+    char id_atividade[6];
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                             EXCLUIR                             ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite o ID da Atividade: \n");
+    printf("           => ");
+    scanf("%[0-9]", id_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                         Atividade deletada!                     ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
 }

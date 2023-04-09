@@ -39,6 +39,7 @@ int main(void) {
     tela_tarefa();
     tela_adicionar_tarefa();
     tela_pesquisar_tarefa();
+    tela_atualizar_tarefa();
 
     return 0;
 }
@@ -259,7 +260,7 @@ void tela_atualizar_funcionario(void) {
     
     char editar;
     char cpf[12];
-    char nome_novo[51];
+    char nome_novo_funcionario[51];
     
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -292,9 +293,9 @@ void tela_atualizar_funcionario(void) {
     getchar();
     printf("\n");
     // exemplo de escolha para nome 
-    printf("         Novo Nome: \n");
+    printf("         Novo nome do funcionario: \n");
     printf("         => ");
-    scanf("%[^\n]", nome_novo);
+    scanf("%[^\n]", nome_novo_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -450,5 +451,57 @@ void tela_pesquisar_tarefa(void) {
     getchar();
 }
 
-    
+
+void tela_atualizar_tarefa(void) {
+
+    char id_tarefa[5];
+    char titulo_novo_tarefa[51];
+    char editar;
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                            ATUALIZAR                            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite o ID da tarefa: \n");
+    printf("           => ");
+    scanf("%[0-9]", id_tarefa);
+    getchar();
+    printf("\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                             EDITAR                              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 1 ] Titulo                                            ||\n");
+    printf(" ||         [ 2 ] ID                                                ||\n");
+    printf(" ||         [ 3 ] Descricao                                         ||\n");
+    printf(" ||         [ 4 ] Funcionario atribuido                             ||\n");
+    printf(" ||         [ 5 ] Data de Inicio                                    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite sua escolha: ");
+    scanf("%c", &editar);
+    getchar();
+    printf("\n");
+    // exemplo de escolha para nome da tarefa
+    printf("         Novo titulo de tarefa: \n");
+    printf("         => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_novo_tarefa);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Tarefa atualizada!                        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+
 

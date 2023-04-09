@@ -45,6 +45,7 @@ int main(void) {
     tela_atividade();
     tela_adicionar_atividade();
     tela_pesquisar_atividade();
+    tela_atualizar_atividade();
 
     return 0;
 }
@@ -483,9 +484,9 @@ void tela_atualizar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                             EDITAR                              ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Titulo                                            ||\n");
+    printf(" ||         [ 1 ] Titulo da Tarefa                                  ||\n");
     printf(" ||         [ 2 ] ID da Tarefa                                      ||\n");
-    printf(" ||         [ 3 ] Funcionario atribuido                             ||\n");
+    printf(" ||         [ 3 ] CPF do funcionario atribuido                      ||\n");
     printf(" ||         [ 4 ] Data Limite para entrega                          ||\n");
     printf(" ||         [ 5 ] Status da Tarefa                                  ||\n");
     printf(" ||                                                                 ||\n");
@@ -502,7 +503,7 @@ void tela_atualizar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                       Tarefa atualizada!                        ||\n");
+    printf(" ||                       Informacao atualizada!                    ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
@@ -662,4 +663,58 @@ void tela_pesquisar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+}
+
+
+void tela_atualizar_atividade(void) {
+
+    char id_atividade[5];
+    char editar; 
+    char titulo_novo_atividade[51];
+
+    system("cls");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                            ATUALIZAR                            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite o ID da Atividade: \n");
+    printf("           => ");
+    scanf("%[0-9]", id_atividade);
+    getchar();
+    printf("\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                             EDITAR                              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 1 ] Titulo da Atividade                               ||\n");
+    printf(" ||         [ 2 ] Descricao                                         ||\n");
+    printf(" ||         [ 3 ] CPF do funcionario encarregado                    ||\n");
+    printf(" ||         [ 4 ] Data de Inicio                                    ||\n");
+    printf(" ||         [ 5 ] Status da Atividade                               ||\n");
+    printf(" ||         [ 6 ] ID da Tarefa                                      ||\n");
+    printf(" ||         [ 7 ] ID da Atividade                                   ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("           Digite sua escolha: ");
+    scanf("%c", &editar);
+    getchar();
+    printf("\n");
+    // exemplo de escolha para titulo da atividade
+    printf("         Novo titulo de atividade: \n");
+    printf("         => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_novo_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
 }

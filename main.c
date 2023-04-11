@@ -1,7 +1,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
 
-void tela_principal(void);
+char tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
@@ -28,32 +28,21 @@ void tela_excluir_atividade(void);
 
 
 int main(void) {
-
-    tela_sobre();
-    tela_equipe();
-    tela_principal();
-
-    modulo_funcionario();
-    tela_funcionario();
-    tela_adicionar_funcionario();
-    tela_pesquisar_funcionario();
-    tela_atualizar_funcionario();
-    tela_excluir_funcionario();
-
-    modulo_tarefa();
-    tela_tarefa();
-    tela_adicionar_tarefa();
-    tela_pesquisar_tarefa();
-    tela_atualizar_tarefa();
-    tela_excluir_tarefa();
-
-    modulo_atividade();
-    tela_atividade();
-    tela_adicionar_atividade();
-    tela_pesquisar_atividade();
-    tela_atualizar_atividade();
-    tela_excluir_atividade();
-
+    char opcao;
+    do {
+        opcao = tela_principal();
+        switch(opcao) {
+            case '1': tela_funcionario();
+                      break;
+            case '2': tela_tarefa();
+                      break;
+            case '3': tela_atividade();
+                      break;
+            case '4': tela_sobre();
+                      tela_equipe();
+                      break;
+        }
+    } while (opcao != '0');
     return 0;
 }
 
@@ -112,7 +101,7 @@ void tela_equipe(void) {
 }
 
 
-void tela_principal(void) {
+char tela_principal(void) {
 
     char escolha;
 
@@ -130,6 +119,7 @@ void tela_principal(void) {
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
     printf(" ||         [ 2 ] Tarefas                                           ||\n");
     printf(" ||         [ 3 ] Atividades                                        ||\n");
+    printf(" ||         [ 4 ] Sobre                                             ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Sair                                              ||\n");
     printf(" ||                                                                 ||\n");
@@ -138,6 +128,7 @@ void tela_principal(void) {
     printf("       Digite o numero da sua escolha: ");
     scanf("%c", &escolha);
     getchar();
+    return escolha;
 }
 
 

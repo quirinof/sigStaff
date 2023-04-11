@@ -32,11 +32,11 @@ int main(void) {
     do {
         opcao = tela_principal();
         switch(opcao) {
-            case '1': tela_funcionario();
+            case '1': modulo_funcionario();
                       break;
-            case '2': tela_tarefa();
+            case '2': modulo_tarefa();
                       break;
-            case '3': tela_atividade();
+            case '3': modulo_atividade();
                       break;
             case '4': tela_sobre();
                       tela_equipe();
@@ -49,6 +49,7 @@ int main(void) {
 
 void tela_sobre(void) {
 
+    system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||           Universidade Federal do Rio Grande do Norte           ||\n");

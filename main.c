@@ -5,22 +5,22 @@ char tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
-void modulo_funcionario(void);
-char tela_funcionario(void);
+void modulo_funcionarios(void);
+char tela_funcionarios(void);
 void tela_adicionar_funcionario(void);
 void tela_pesquisar_funcionario(void);
 void tela_atualizar_funcionario(void);
 void tela_excluir_funcionario(void);
 
-void modulo_tarefa(void);
-char tela_tarefa(void);
-void tela_adicionar_tarefa(void);
-void tela_pesquisar_tarefa(void);
-void tela_atualizar_tarefa(void);
-void tela_excluir_tarefa(void);
+void modulo_projetos(void);
+char tela_projetos(void);
+void tela_adicionar_projeto(void);
+void tela_pesquisar_projeto(void);
+void tela_atualizar_projeto(void);
+void tela_excluir_projeto(void);
 
-void modulo_atividade(void);
-char tela_atividade(void);
+void modulo_atividades(void);
+char tela_atividades(void);
 void tela_adicionar_atividade(void);
 void tela_pesquisar_atividade(void);
 void tela_atualizar_atividade(void);
@@ -32,11 +32,11 @@ int main(void) {
     do {
         opcao = tela_principal();
         switch(opcao) {
-            case '1': modulo_funcionario();
+            case '1': modulo_funcionarios();
                       break;
-            case '2': modulo_tarefa();
+            case '2': modulo_projetos();
                       break;
-            case '3': modulo_atividade();
+            case '3': modulo_atividades();
                       break;
             case '4': tela_sobre();
                       tela_equipe();
@@ -66,8 +66,9 @@ void tela_sobre(void) {
     printf(" ||  Temos aqui um projeto da disciplina de programacao, que serve  ||\n");
     printf(" ||  para nos(alunos) sermos avaliados mediante os conhecimentos    ||\n");
     printf(" ||  adquiridos durante o periodo. Contem um sistema para controle  ||\n");
-    printf(" ||  de funcionarios, simulando as funcionalides necessarias para   ||\n");
-    printf(" ||  tal sistema. Criado apenas para fins didaticos.                ||\n");
+    printf(" ||  de funcionarios de uma software house, simulando as            ||\n");
+    printf(" ||  funcionalides necessarias para tal sistema. Criado apenas      ||\n");
+    printf(" ||  para fins didaticos.                                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -118,7 +119,7 @@ char tela_principal(void) {
     printf(" ||                  >>>>>>  MENU PRINCIPAL  <<<<<<                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
-    printf(" ||         [ 2 ] Tarefas                                           ||\n");
+    printf(" ||         [ 2 ] Projetos                                          ||\n");
     printf(" ||         [ 3 ] Atividades                                        ||\n");
     printf(" ||         [ 4 ] Sobre                                             ||\n");
     printf(" ||                                                                 ||\n");
@@ -133,10 +134,10 @@ char tela_principal(void) {
 }
 
 
-void modulo_funcionario(void) {
+void modulo_funcionarios(void) {
     char opcao;
     do {
-        opcao = tela_funcionario();
+        opcao = tela_funcionarios();
         switch (opcao) {
             case '1': tela_adicionar_funcionario();
                     break;
@@ -151,7 +152,7 @@ void modulo_funcionario(void) {
 }
 
 
-char tela_funcionario(void) {
+char tela_funcionarios(void) {
 
     char escolha;
 
@@ -166,7 +167,7 @@ char tela_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                   >>>>>>  FUNCIONARIOS  <<<<<<                  ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||        [ 1 ] Adicionar um funcionario novo                      ||\n");
+    printf(" ||        [ 1 ] Adicionar um novo funcionario                      ||\n");
     printf(" ||        [ 2 ] Pesquisar funcionario ja cadastrado                ||\n");
     printf(" ||        [ 3 ] Atualizar os dados de um funcionario               ||\n");
     printf(" ||        [ 4 ] Excluir funcionario do sistema                     ||\n");
@@ -292,7 +293,7 @@ void tela_atualizar_funcionario(void) {
     
     char editar;
     char cpf_funcionario[12];
-    char nome_novo_funcionario[51];
+    char novo_nome_funcionario[51];
     
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -331,7 +332,7 @@ void tela_atualizar_funcionario(void) {
     // exemplo de escolha para nome 
     printf("         Novo nome do funcionario: \n");
     printf("         => ");
-    scanf("%[^\n]", nome_novo_funcionario);
+    scanf("%[^\n]", novo_nome_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -378,24 +379,24 @@ void tela_excluir_funcionario(void) {
 }
 
 
-void modulo_tarefa(void) {
+void modulo_projetos(void) {
     char opcao;
     do {
-        opcao = tela_tarefa();
+        opcao = tela_projetos();
         switch (opcao) {
-            case '1': tela_adicionar_tarefa();
+            case '1': tela_adicionar_projeto();
                       break;
-            case '2': tela_pesquisar_tarefa();
+            case '2': tela_pesquisar_projeto();
                       break;
-            case '3': tela_atualizar_tarefa();
+            case '3': tela_atualizar_projeto();
                       break;
-            case '4': tela_excluir_tarefa();
+            case '4': tela_excluir_projeto();
                       break;
         }
     } while (opcao != '0');
 }
 
-char tela_tarefa(void) {
+char tela_projetos(void) {
 
     char escolha;
 
@@ -408,12 +409,12 @@ char tela_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                     >>>>>>  TAREFAS  <<<<<<                     ||\n");
+    printf(" ||                     >>>>>>  PROJETOS  <<<<<<                    ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Adicionar nova tarefa                             ||\n");
-    printf(" ||         [ 2 ] Pesquisar tarefa existente                        ||\n");
-    printf(" ||         [ 3 ] Atualizar uma tarefa em andamento                 ||\n");
-    printf(" ||         [ 4 ] Excluir uma tarefa                                ||\n");
+    printf(" ||         [ 1 ] Adicionar novo projeto                            ||\n");
+    printf(" ||         [ 2 ] Pesquisar por projeto existente                   ||\n");
+    printf(" ||         [ 3 ] Atualizar um projeto em andamento                 ||\n");
+    printf(" ||         [ 4 ] Excluir projeto                                   ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -422,17 +423,18 @@ char tela_tarefa(void) {
     printf("       Digite sua escolha: ");
     scanf("%c", &escolha);
     getchar();
+    
     return escolha;
 }
 
 
-void tela_adicionar_tarefa(void) {
+void tela_adicionar_projeto(void) {
 
-    char titulo_tarefa[51];
-    char id_tarefa[5];
+    char titulo_projeto[51];
+    char id_projeto[5];
     char cpf_funcionario[12];
-    char data_limite_tarefa[11];
-    char status_tarefa[27];
+    char data_limite_projeto[11];
+    char status_projeto[27];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -443,20 +445,20 @@ void tela_adicionar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                   >>>>>     TAREFAS     <<<<<                   ||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("            Titulo: \n");
+    printf("            Titulo/Nome: \n");
     printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_tarefa);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_projeto);
     getchar();
     printf("\n"); 
-    printf("            ID da Tarefa: \n");
+    printf("            ID do Projeto: \n");
     printf("            => ");
-    scanf("%[0-9]", id_tarefa);
+    scanf("%[0-9]", id_projeto);
     getchar();
     printf("\n");
     printf("            CPF do funcionario atribuido: \n");
@@ -466,27 +468,27 @@ void tela_adicionar_tarefa(void) {
     printf("\n");
     printf("            Data limite para entrega (DD/MM/AAAA): \n");
     printf("            => ");
-    scanf("%[0-9/]", data_limite_tarefa);
+    scanf("%[0-9/]", data_limite_projeto);
     getchar();
     printf("\n");
-    printf("            Status da Tarefa: \n");
+    printf("            Status do Projeto: \n");
     printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", status_tarefa);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", status_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Tarefa cadastrada ......                  ||\n");
+    printf(" ||                ...... Projeto cadastrado ......                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
 
-void tela_pesquisar_tarefa(void) {
+void tela_pesquisar_projeto(void) {
 
-    char id_tarefa[5];
+    char id_projeto[5];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -497,31 +499,31 @@ void tela_pesquisar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                   >>>>>     TAREFAS     <<<<<                   ||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite o ID da tarefa: \n");
+    printf("           Digite o ID da Projeto: \n");
     printf("           => ");
-    scanf("%[0-9]", id_tarefa);
+    scanf("%[0-9]", id_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Tarefa Encontrada ......                  ||\n");
+    printf(" ||                ...... Projeto Encontrado ......                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
 
-void tela_atualizar_tarefa(void) {
+void tela_atualizar_projeto(void) {
 
-    char id_tarefa[5];
-    char titulo_novo_tarefa[51];
+    char id_projeto[5];
+    char nome_novo_projeto[51];
     char editar;
 
     system("cls");
@@ -533,35 +535,35 @@ void tela_atualizar_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                   >>>>>     TAREFAS     <<<<<                   ||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ATUALIZAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite o ID da tarefa: \n");
+    printf("           Digite o ID do Projeto: \n");
     printf("           => ");
-    scanf("%[0-9]", id_tarefa);
+    scanf("%[0-9]", id_projeto);
     getchar();
     printf("\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Titulo da Tarefa                                  ||\n");
-    printf(" ||         [ 2 ] ID da Tarefa                                      ||\n");
+    printf(" ||         [ 1 ] Titulo do Projeto                                 ||\n");
+    printf(" ||         [ 2 ] ID do Projeto                                     ||\n");
     printf(" ||         [ 3 ] CPF do funcionario atribuido                      ||\n");
     printf(" ||         [ 4 ] Data Limite para entrega                          ||\n");
-    printf(" ||         [ 5 ] Status da Tarefa                                  ||\n");
+    printf(" ||         [ 5 ] Status do Projeto                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf("           Digite sua escolha: ");
     scanf("%c", &editar);
     getchar();
     printf("\n");
-    // exemplo de escolha para nome da tarefa
-    printf("         Novo titulo de tarefa: \n");
+    // exemplo de escolha para nome do projeto
+    printf("         Novo titulo de projeto: \n");
     printf("         => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_novo_tarefa);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", nome_novo_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -574,9 +576,9 @@ void tela_atualizar_tarefa(void) {
 }
 
 
-void tela_excluir_tarefa(void) {
+void tela_excluir_projeto(void) {
 
-    char id_tarefa[5];
+    char id_projeto[5];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -587,31 +589,31 @@ void tela_excluir_tarefa(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                   >>>>>     TAREFAS     <<<<<                   ||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite o ID da tarefa: \n");
+    printf("           Digite o ID do Projeto: \n");
     printf("           => ");
-    scanf("%[0-9]", id_tarefa);
+    scanf("%[0-9]", id_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                  ...... Tarefa excluida ......                  ||\n");
+    printf(" ||                  ...... Projeto excluido ......                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
 
-void modulo_atividade(void) {
+void modulo_atividades(void) {
     char opcao;
     do {
-        opcao = tela_atividade();
+        opcao = tela_atividades();
         switch (opcao) {
             case '1': tela_adicionar_atividade();
                       break;
@@ -625,7 +627,7 @@ void modulo_atividade(void) {
     } while (opcao != '0');
 }
 
-char tela_atividade(void) {
+char tela_atividades(void) {
 
     char escolha;
 
@@ -652,6 +654,7 @@ char tela_atividade(void) {
     printf("       Digite sua escolha: ");
     scanf("%c", &escolha);
     getchar();
+
     return escolha;
 }
 
@@ -660,7 +663,7 @@ void tela_adicionar_atividade(void) {
 
     char titulo_atividade[51];
     char id_atividade[6];
-    char id_tarefa[5];
+    char id_projeto[5];
     char descricao_atividade[301];
     char cpf_funcionario[12];
     char data_inicio_atividade[11];
@@ -696,9 +699,9 @@ void tela_adicionar_atividade(void) {
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", descricao_atividade);
     getchar();
     printf("\n");
-    printf("            ID da tarefa relacionada: \n");
+    printf("            ID do projeto relacionada: \n");
     printf("            => ");
-    scanf("%[0-9]", id_tarefa);
+    scanf("%[0-9]", id_projeto);
     getchar();
     printf("\n");
     printf("            CPF do funcionario encarregado: \n");
@@ -795,7 +798,7 @@ void tela_atualizar_atividade(void) {
     printf(" ||         [ 3 ] CPF do funcionario encarregado                    ||\n");
     printf(" ||         [ 4 ] Data de Inicio                                    ||\n");
     printf(" ||         [ 5 ] Status da Atividade                               ||\n");
-    printf(" ||         [ 6 ] ID da Tarefa                                      ||\n");
+    printf(" ||         [ 6 ] ID do Projeto                                     ||\n");
     printf(" ||         [ 7 ] ID da Atividade                                   ||\n");
     printf(" ||                                                                 ||\n");
     printf("           Digite sua escolha: ");

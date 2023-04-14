@@ -110,9 +110,7 @@ char tela_principal(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -140,13 +138,13 @@ void modulo_funcionarios(void) {
         opcao = tela_funcionarios();
         switch (opcao) {
             case '1': tela_adicionar_funcionario();
-                    break;
+                      break;
             case '2': tela_pesquisar_funcionario();
-                    break;
+                      break;
             case '3': tela_atualizar_funcionario();
-                    break;
+                      break;
             case '4': tela_excluir_funcionario();
-                    break;
+                      break;
         }
     } while (opcao != '0');
 }
@@ -159,9 +157,7 @@ char tela_funcionarios(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -179,29 +175,26 @@ char tela_funcionarios(void) {
     printf("       Digite o numero da sua escolha: ");
     scanf("%c", &escolha);
     getchar();
+
     return escolha;
 }
 
 
 void tela_adicionar_funcionario(void) {
 
-    char nome[51];
+    char nome_funcionario[51];
     char cpf_funcionario[12];
-    char celular[12];
-    char email[51];
-    char cargo[51];
+    char cel_funcionario[12];
+    char email_funcionario[51];
+    char cargo_funcionario[51];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
@@ -210,7 +203,7 @@ void tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf("         Nome completo: \n");
     printf("         => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", nome);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", nome_funcionario);
     getchar();
     printf("\n");
     printf("         CPF (apenas digitos): \n");
@@ -220,30 +213,23 @@ void tela_adicionar_funcionario(void) {
     printf("\n");
     printf("         Numero de celular: \n");
     printf("         => ");
-    scanf("%[0-9]", celular);
+    scanf("%[0-9]", cel_funcionario);
     getchar();
     printf("\n");
     printf("         Email:  \n");
     printf("         => ");
-    scanf("%[A-Za-z0-9@._]", email);
+    scanf("%[A-Za-z0-9@._]", email_funcionario);
     getchar();
     printf(" \n");
     printf("         Cargo/Funcao: \n");
     printf("         => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", cargo);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", cargo_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                     Funcionario cadastrado!                     ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||     Nome: %s    \t                                                \n", nome);
-    printf(" ||     Cargo: %s   \t                                                \n", cargo);
-    printf(" ||     CPF: %s     \t                                                \n", cpf_funcionario);
-    printf(" ||     Email: %s   \t                                                \n", email);
-    printf(" ||     Celular: %s \t                                                \n", celular);
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -257,14 +243,10 @@ void tela_pesquisar_funcionario(void) {
     system("cls");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
@@ -290,22 +272,18 @@ void tela_pesquisar_funcionario(void) {
 
 
 void tela_atualizar_funcionario(void) {
-    
-    char editar;
+
     char cpf_funcionario[12];
-    char novo_nome_funcionario[51];
+    char editar;
+    char nome_funcionario[51];
     
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                     ----- ATUALIZACAO -----                     ||\n");
@@ -314,25 +292,26 @@ void tela_atualizar_funcionario(void) {
     printf("         => ");
     scanf("%s", cpf_funcionario);
     getchar();
-    printf(" ||                                                                 ||\n");
+    printf("\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Nome                                              ||\n");
-    printf(" ||         [ 2 ] Cargo                                             ||\n");
-    printf(" ||         [ 3 ] CPF                                               ||\n");
-    printf(" ||         [ 4 ] Email                                             ||\n");
-    printf(" ||         [ 5 ] Celular                                           ||\n");
+    printf(" ||         [ 2 ] CPF                                               ||\n");
+    printf(" ||         [ 3 ] Email                                             ||\n");
+    printf(" ||         [ 4 ] Celular                                           ||\n");
+    printf(" ||         [ 5 ] Cargo                                             ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf("           Digite sua escolha: ");
     scanf("%c", &editar);
     getchar();
     printf("\n");
-    // exemplo de escolha para nome 
     printf("         Novo nome do funcionario: \n");
     printf("         => ");
-    scanf("%[^\n]", novo_nome_funcionario);
+    scanf("%[^\n]", nome_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -341,7 +320,7 @@ void tela_atualizar_funcionario(void) {
     printf(" ||               ...... Atualizacao efetuada ......                ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();  
+    getchar(); 
 }
 
 
@@ -352,14 +331,10 @@ void tela_excluir_funcionario(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
@@ -403,9 +378,7 @@ char tela_projetos(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -439,14 +412,10 @@ void tela_adicionar_projeto(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
@@ -493,14 +462,10 @@ void tela_pesquisar_projeto(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
-    printf(" ||                                                                 ||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");;
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
@@ -529,14 +494,10 @@ void tela_atualizar_projeto(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ATUALIZAR -----                      ||\n");
@@ -583,14 +544,10 @@ void tela_excluir_projeto(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
@@ -634,9 +591,7 @@ char tela_atividades(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -672,14 +627,10 @@ void tela_adicionar_atividade(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
@@ -736,14 +687,10 @@ void tela_pesquisar_atividade(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
@@ -772,14 +719,10 @@ void tela_atualizar_atividade(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ATUALIZAR -----                      ||\n");
@@ -828,14 +771,10 @@ void tela_excluir_atividade(void) {
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");

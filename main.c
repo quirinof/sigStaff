@@ -405,9 +405,8 @@ void tela_adicionar_projeto(void) {
 
     char titulo_projeto[51];
     char id_projeto[5];
-    char cpf_funcionario[12];
     char data_limite_projeto[11];
-    char status_projeto[27];
+    char status_projeto[5];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -430,11 +429,6 @@ void tela_adicionar_projeto(void) {
     scanf("%[0-9]", id_projeto);
     getchar();
     printf("\n");
-    printf("            CPF do funcionario atribuido: \n");
-    printf("            => ");
-    scanf("%[0-9]", cpf_funcionario);
-    getchar();
-    printf("\n");
     printf("            Data limite para entrega (DD/MM/AAAA): \n");
     printf("            => ");
     scanf("%[0-9/]", data_limite_projeto);
@@ -442,7 +436,7 @@ void tela_adicionar_projeto(void) {
     printf("\n");
     printf("            Status do Projeto: \n");
     printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", status_projeto);
+    scanf("%[^\n]", status_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -513,7 +507,6 @@ void tela_atualizar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Titulo do Projeto                                 ||\n");
     printf(" ||         [ 2 ] ID do Projeto                                     ||\n");
-    printf(" ||         [ 3 ] CPF do funcionario atribuido                      ||\n");
     printf(" ||         [ 4 ] Data Limite para entrega                          ||\n");
     printf(" ||         [ 5 ] Status do Projeto                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -619,10 +612,8 @@ void tela_adicionar_atividade(void) {
     char titulo_atividade[51];
     char id_atividade[6];
     char id_projeto[5];
-    char descricao_atividade[301];
     char cpf_funcionario[12];
-    char data_inicio_atividade[11];
-    char status_atividade[27];
+    char status_atividade[5];
 
     system("cls");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -635,7 +626,7 @@ void tela_adicionar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("            Titulo da atividade: \n");
+    printf("            Titulo/Nome da atividade: \n");
     printf("            => ");
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_atividade);
     getchar();
@@ -643,11 +634,6 @@ void tela_adicionar_atividade(void) {
     printf("            ID da atividade: \n");
     printf("            => ");
     scanf("%[0-9]", id_atividade);
-    getchar();
-    printf("\n");
-    printf("            Descricao: \n");
-    printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", descricao_atividade);
     getchar();
     printf("\n");
     printf("            ID do projeto relacionada: \n");
@@ -660,14 +646,9 @@ void tela_adicionar_atividade(void) {
     scanf("%[0-9]", cpf_funcionario);
     getchar();         
     printf("\n");
-    printf("            Data de inicio (DD/MM/AAAA): \n");
-    printf("            => ");
-    scanf("%[0-9/]", data_inicio_atividade);
-    getchar();
-    printf("\n");
     printf("            Status da atividade: \n");
     printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", status_atividade);
+    scanf("%[^\n]", status_atividade);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -737,9 +718,7 @@ void tela_atualizar_atividade(void) {
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Titulo da Atividade                               ||\n");
-    printf(" ||         [ 2 ] Descricao                                         ||\n");
     printf(" ||         [ 3 ] CPF do funcionario encarregado                    ||\n");
-    printf(" ||         [ 4 ] Data de Inicio                                    ||\n");
     printf(" ||         [ 5 ] Status da Atividade                               ||\n");
     printf(" ||         [ 6 ] ID do Projeto                                     ||\n");
     printf(" ||         [ 7 ] ID da Atividade                                   ||\n");

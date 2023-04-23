@@ -10,6 +10,11 @@ char tela_funcionarios(void);
 void tela_adicionar_funcionario(void);
 void tela_pesquisar_funcionario(void);
 void tela_atualizar_funcionario(void);
+void tela_editar_nome(void);
+void tela_editar_cpf(void);
+void tela_editar_cel(void);
+void tela_editar_email(void);
+void tela_editar_cargo(void);
 void tela_excluir_funcionario(void);
 
 void modulo_projetos(void);
@@ -49,7 +54,7 @@ int main(void) {
 
 void tela_sobre(void) {
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||           Universidade Federal do Rio Grande do Norte           ||\n");
@@ -77,7 +82,7 @@ void tela_sobre(void) {
 
 void tela_equipe(void) {
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||           Universidade Federal do Rio Grande do Norte           ||\n");
@@ -107,7 +112,7 @@ char tela_principal(void) {
 
     char escolha;
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -154,7 +159,7 @@ char tela_funcionarios(void) {
 
     char escolha;
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -188,7 +193,7 @@ void tela_adicionar_funcionario(void) {
     char email_funcionario[51];
     char cargo_funcionario[51];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -240,7 +245,7 @@ void tela_pesquisar_funcionario(void) {
 
     char cpf_funcionario[12];
 
-    system("cls");  
+    system("cls||clear");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -275,9 +280,8 @@ void tela_atualizar_funcionario(void) {
 
     char cpf_funcionario[12];
     char editar;
-    char nome_funcionario[51];
     
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -293,25 +297,68 @@ void tela_atualizar_funcionario(void) {
     scanf("%s", cpf_funcionario);
     getchar();
     printf("\n");
+
+    do {
+        system("cls||clear");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                        ----- EDITAR -----                       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 1 ] Nome                                              ||\n");
+        printf(" ||         [ 2 ] CPF                                               ||\n");
+        printf(" ||         [ 3 ] Email                                             ||\n");
+        printf(" ||         [ 4 ] Celular                                           ||\n");
+        printf(" ||         [ 5 ] Cargo                                             ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 0 ] Sair                                              ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf("           Digite sua escolha: ");
+        scanf("%c", &editar);
+        getchar();
+        printf("\n");
+        switch (editar) {
+            case '1': tela_editar_nome();
+                      break;
+            case '2': tela_editar_cpf();
+                      break;
+            case '3': tela_editar_email();
+                      break;
+            case '4': tela_editar_cel();
+                      break;
+            case '5': tela_editar_cargo();
+                      break;
+        }
+    } while (editar != '0');
+}
+
+
+void tela_editar_nome(void) {
+
+    char nome_funcionario[51];
+
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                          __ EDITAR __                           ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Nome                                              ||\n");
-    printf(" ||         [ 2 ] CPF                                               ||\n");
-    printf(" ||         [ 3 ] Email                                             ||\n");
-    printf(" ||         [ 4 ] Celular                                           ||\n");
-    printf(" ||         [ 5 ] Cargo                                             ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite sua escolha: ");
-    scanf("%c", &editar);
-    getchar();
-    printf("\n");
+    printf(" ||                        ----- EDITAR -----                       ||\n");
+    printf(" ||                                                                 ||\n");
     printf("         Novo nome do funcionario: \n");
     printf("         => ");
-    scanf("%[^\n]", nome_funcionario);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", nome_funcionario);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -324,11 +371,127 @@ void tela_atualizar_funcionario(void) {
 }
 
 
+void tela_editar_cpf(void) {
+
+    char cpf_funcionario[12];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                        ----- EDITAR -----                       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo CPF do funcionario: \n");
+    printf("         => ");
+    scanf("%[0-9]", cpf_funcionario);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_cel(void) {
+
+    char cel_funcionario[12];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                        ----- EDITAR -----                       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo numero de celular do funcionario: \n");
+    printf("         => ");
+    scanf("%[0-9]", cel_funcionario);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_email(void) {
+
+    char email_funcionario[51];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                        ----- EDITAR -----                       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo email do funcionario: \n");
+    printf("         => ");
+    scanf("%[A-Za-z0-9@._]", email_funcionario);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_cargo(void) {
+
+    char cargo_funcionario[51];
+    
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                        ----- EDITAR -----                       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo cargo do funcionario: \n");
+    printf("         => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", cargo_funcionario);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
 void tela_excluir_funcionario(void) {
     
     char cpf_funcionario[12];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -375,7 +538,7 @@ char tela_projetos(void) {
 
     char escolha;
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -408,7 +571,7 @@ void tela_adicionar_projeto(void) {
     char data_limite_projeto[11];
     char status_projeto[5];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -453,7 +616,7 @@ void tela_pesquisar_projeto(void) {
 
     char id_projeto[5];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -485,7 +648,7 @@ void tela_atualizar_projeto(void) {
     char nome_novo_projeto[51];
     char editar;
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -534,7 +697,7 @@ void tela_excluir_projeto(void) {
 
     char id_projeto[5];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -581,7 +744,7 @@ char tela_atividades(void) {
 
     char escolha;
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -613,9 +776,9 @@ void tela_adicionar_atividade(void) {
     char id_atividade[6];
     char id_projeto[5];
     char cpf_funcionario[12];
-    char status_atividade[5];
+    char data_atividade[11];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -646,9 +809,9 @@ void tela_adicionar_atividade(void) {
     scanf("%[0-9]", cpf_funcionario);
     getchar();         
     printf("\n");
-    printf("            Status da atividade: \n");
+    printf("            Data de entrega da atividade (dd/mm/aaaa): \n");
     printf("            => ");
-    scanf("%[^\n]", status_atividade);
+    scanf("%[^\n]", data_atividade);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -665,7 +828,7 @@ void tela_pesquisar_atividade(void) {
 
     char id_atividade[6];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -697,7 +860,7 @@ void tela_atualizar_atividade(void) {
     char editar; 
     char titulo_novo_atividade[51];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -719,7 +882,7 @@ void tela_atualizar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Titulo da Atividade                               ||\n");
     printf(" ||         [ 3 ] CPF do funcionario encarregado                    ||\n");
-    printf(" ||         [ 5 ] Status da Atividade                               ||\n");
+    printf(" ||         [ 5 ] Data de entrega da Atividade                      ||\n");
     printf(" ||         [ 6 ] ID do Projeto                                     ||\n");
     printf(" ||         [ 7 ] ID da Atividade                                   ||\n");
     printf(" ||                                                                 ||\n");
@@ -747,7 +910,7 @@ void tela_excluir_atividade(void) {
 
     char id_atividade[6];
 
-    system("cls");
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");

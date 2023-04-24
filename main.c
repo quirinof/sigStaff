@@ -6,12 +6,10 @@
 #include "sobre.h"
 
 char tela_principal(void);
-void tela_sobre(void);
-void tela_equipe(void);
-
 
 int main(void) {
     char opcao;
+
     do {
         opcao = tela_principal();
         switch(opcao) {
@@ -26,6 +24,7 @@ int main(void) {
                       break;
         }
     } while (opcao != '0');
+    
     return 0;
 }
 

@@ -1,21 +1,10 @@
 #include <stdio.h> 
 #include <stdlib.h>
+#include "funcionarios.h"
 
 char tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
-
-void modulo_funcionarios(void);
-char tela_funcionarios(void);
-void tela_adicionar_funcionario(void);
-void tela_pesquisar_funcionario(void);
-void tela_atualizar_funcionario(void);
-void tela_editar_nome(void);
-void tela_editar_cpf(void);
-void tela_editar_cel(void);
-void tela_editar_email(void);
-void tela_editar_cargo(void);
-void tela_excluir_funcionario(void);
 
 void modulo_projetos(void);
 char tela_projetos(void);

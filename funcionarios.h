@@ -1,0 +1,11 @@
+void modulo_funcionarios(void);
+char tela_funcionarios(void);
+void tela_adicionar_funcionario(void);
+void tela_pesquisar_funcionario(void);
+void tela_atualizar_funcionario(void);
+void tela_editar_nome(void);
+void tela_editar_cpf(void);
+void tela_editar_cel(void);
+void tela_editar_email(void);
+void tela_editar_cargo(void);
+void tela_excluir_funcionario(void);

@@ -53,8 +53,7 @@ void tela_adicionar_projeto(void) {
 
     char titulo_projeto[51];
     char id_projeto[5];
-    char data_limite_projeto[11];
-    char status_projeto[5];
+    char data_projeto[11];
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -79,12 +78,7 @@ void tela_adicionar_projeto(void) {
     printf("\n");
     printf("            Data limite para entrega (DD/MM/AAAA): \n");
     printf("            => ");
-    scanf("%[0-9/]", data_limite_projeto);
-    getchar();
-    printf("\n");
-    printf("            Status do Projeto: \n");
-    printf("            => ");
-    scanf("%[^\n]", status_projeto);
+    scanf("%[0-9/]", data_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -130,7 +124,6 @@ void tela_pesquisar_projeto(void) {
 void tela_atualizar_projeto(void) {
 
     char id_projeto[5];
-    char nome_novo_projeto[51];
     char editar;
 
     system("cls||clear");
@@ -149,23 +142,62 @@ void tela_atualizar_projeto(void) {
     scanf("%[0-9]", id_projeto);
     getchar();
     printf("\n");
+    do {
+        system("cls||clear");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                           __ EDITAR __                          ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 1 ] Titulo                                            ||\n");
+        printf(" ||         [ 2 ] ID                                                ||\n");
+        printf(" ||         [ 3 ] Data para entrega                                 ||\n");
+        printf(" ||         [ 4 ] Status                                            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 0 ] Sair                                              ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf("           Digite sua escolha: ");
+        scanf("%c", &editar);
+        getchar();
+        printf("\n");
+        switch (editar) {
+            case '1': tela_editar_titulo_projeto();
+                      break;
+            case '2': tela_editar_id_projeto();
+                      break;
+            case '3': tela_editar_data_projeto();
+                      break;
+            case '4': tela_editar_status_projeto();
+                      break;
+        }
+    } while (editar != '0');
+    
+}
+
+void tela_editar_titulo_projeto(void) {
+    char titulo_projeto[51];
+
+    system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                          __ EDITAR __                           ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Titulo do Projeto                                 ||\n");
-    printf(" ||         [ 2 ] ID do Projeto                                     ||\n");
-    printf(" ||         [ 4 ] Data Limite para entrega                          ||\n");
-    printf(" ||         [ 5 ] Status do Projeto                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite sua escolha: ");
-    scanf("%c", &editar);
-    getchar();
-    printf("\n");
-    // exemplo de escolha para nome do projeto
-    printf("         Novo titulo de projeto: \n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo titulo do projeto: \n");
     printf("         => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", nome_novo_projeto);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_projeto);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -177,6 +209,89 @@ void tela_atualizar_projeto(void) {
     getchar(); 
 }
 
+void tela_editar_id_projeto(void) {
+    char id_projeto[5];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo ID do projeto: \n");
+    printf("         => ");
+    scanf("%[0-9]", id_projeto);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_data_projeto(void) {
+    char data_projeto[11];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Nova data de entrega do projeto (dd/mm/aaaa): \n");
+    printf("         => ");
+    scanf("%[0-9/]", data_projeto);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_status_projeto(void) {
+    char status_projeto[4];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Status do projeto (xxx): \n");
+    printf("         => ");
+    scanf("%[0-9]", status_projeto);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
 
 void tela_excluir_projeto(void) {
 

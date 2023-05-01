@@ -178,7 +178,6 @@ void tela_atualizar_projeto(void) {
                       break;
         }
     } while (editar != '0');
-    
 }
 
 void tela_editar_titulo_projeto(void) {

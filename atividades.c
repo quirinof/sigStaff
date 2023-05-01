@@ -138,7 +138,6 @@ void tela_atualizar_atividade(void) {
 
     char id_atividade[6];
     char editar; 
-    char titulo_novo_atividade[51];
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -156,24 +155,64 @@ void tela_atualizar_atividade(void) {
     scanf("%[0-9]", id_atividade);
     getchar();
     printf("\n");
+    do {
+        system("cls || clear");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                          __ EDITAR __                           ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 1 ] Titulo da Atividade                               ||\n");
+        printf(" ||         [ 2 ] CPF do funcionario encarregado                    ||\n");
+        printf(" ||         [ 3 ] Data de entrega da Atividade                      ||\n");
+        printf(" ||         [ 4 ] ID do Projeto atribuido                           ||\n");
+        printf(" ||         [ 5 ] ID da Atividade                                   ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 0 ] Sair                                              ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf("           Digite sua escolha: ");
+        scanf("%c", &editar);
+        getchar();
+        printf("\n");
+        switch (editar) {
+            case '1': tela_editar_titulo_atividade();
+                      break;
+            case '2': tela_editar_cpf_atividade();
+                      break;
+            case '3': tela_editar_data_atividade();
+                      break;
+            case '4': tela_editar_id_atribuido();
+                      break;
+            case '5': tela_editar_id_atividade();
+                      break;
+        }          
+    } while (editar != '0');
+}
+
+void tela_editar_titulo_atividade(void) {
+    char titulo_atividade[51];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 1 ] Titulo da Atividade                               ||\n");
-    printf(" ||         [ 3 ] CPF do funcionario encarregado                    ||\n");
-    printf(" ||         [ 5 ] Data de entrega da Atividade                      ||\n");
-    printf(" ||         [ 6 ] ID do Projeto                                     ||\n");
-    printf(" ||         [ 7 ] ID da Atividade                                   ||\n");
-    printf(" ||                                                                 ||\n");
-    printf("           Digite sua escolha: ");
-    scanf("%c", &editar);
-    getchar();
-    printf("\n");
-    // exemplo de escolha para titulo da atividade
     printf("         Novo titulo de atividade: \n");
     printf("         => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_novo_atividade);
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_atividade);
     getchar();
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -185,12 +224,123 @@ void tela_atualizar_atividade(void) {
     getchar(); 
 }
 
+void tela_editar_cpf_atividade(void) {
+    char cpf_atividade[12];
+
+    system("cls || clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                          __ EDITAR __                           ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo CPF do Funcionario atribuido a atividade: \n");
+    printf("         => ");
+    scanf("%[0-9]", cpf_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_data_atividade(void) {
+    char data_atividade[11];
+
+    system("cls || clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                          __ EDITAR __                           ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Nova Data de entrega da atividade (dd/mm/aaaa): \n");
+    printf("         => ");
+    scanf("%[0-9/]", data_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_id_atribuido(void) {
+    char id_projeto[5];
+
+    system("cls || clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                          __ EDITAR __                           ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo ID do projeto atribuido a atividade: \n");
+    printf("         => ");
+    scanf("%[0-9]", id_projeto);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+
+void tela_editar_id_atividade(void) {
+    char id_atividade[6];
+
+    system("cls || clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                          __ EDITAR __                           ||\n");
+    printf(" ||                                                                 ||\n");
+    printf("         Novo ID da atividade: \n");
+    printf("         => ");
+    scanf("%[0-9]", id_atividade);
+    getchar();
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
 
 void tela_excluir_atividade(void) {
 
     char id_atividade[6];
 
-    system("cls||clear");
+    system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");

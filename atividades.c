@@ -167,9 +167,9 @@ void tela_atualizar_atividade(void) {
         printf(" ||                                                                 ||\n");
         printf(" ||                          __ EDITAR __                           ||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||         [ 1 ] Titulo da Atividade                               ||\n");
-        printf(" ||         [ 2 ] CPF do funcionario encarregado                    ||\n");
-        printf(" ||         [ 3 ] Data de entrega da Atividade                      ||\n");
+        printf(" ||         [ 1 ] Titulo                                            ||\n");
+        printf(" ||         [ 2 ] CPF do funcionario                                ||\n");
+        printf(" ||         [ 3 ] Data de entrega                                   ||\n");
         printf(" ||         [ 4 ] ID do Projeto atribuido                           ||\n");
         printf(" ||         [ 5 ] ID da Atividade                                   ||\n");
         printf(" ||                                                                 ||\n");

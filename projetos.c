@@ -20,7 +20,6 @@ void modulo_projetos(void) {
 }
 
 char tela_projetos(void) {
-
     char escolha;
 
     system("cls||clear");
@@ -50,7 +49,6 @@ char tela_projetos(void) {
 
 
 void tela_adicionar_projeto(void) {
-
     char titulo_projeto[51];
     char id_projeto[5];
     char data_projeto[11];
@@ -92,7 +90,6 @@ void tela_adicionar_projeto(void) {
 
 
 void tela_pesquisar_projeto(void) {
-
     char id_projeto[5];
 
     system("cls||clear");
@@ -122,7 +119,6 @@ void tela_pesquisar_projeto(void) {
 
 
 void tela_atualizar_projeto(void) {
-
     char id_projeto[5];
     char editar;
 
@@ -293,7 +289,6 @@ void tela_editar_status_projeto(void) {
 }
 
 void tela_excluir_projeto(void) {
-
     char id_projeto[5];
 
     system("cls||clear");

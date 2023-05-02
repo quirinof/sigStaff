@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/mathe/OneDrive/Área de Trabalho/Sig-Staff",
-      "program": "c:/Users/mathe/OneDrive/Área de Trabalho/Sig-Staff/build/Debug/outDebug",
+      "cwd": "c:/Users/Administrador/Desktop/Sig-Staff",
+      "program": "c:/Users/Administrador/Desktop/Sig-Staff/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

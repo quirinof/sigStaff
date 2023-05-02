@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "sobre.h"
 
-void tela_sobre(void) {
 
+void tela_sobre(void) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -30,7 +30,6 @@ void tela_sobre(void) {
 }
 
 void tela_equipe(void) {
-
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");

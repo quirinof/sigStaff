@@ -5,7 +5,9 @@
 #include "atividades.h"
 #include "sobre.h"
 
+
 char tela_principal(void);
+
 
 int main(void) {
     char opcao;
@@ -29,7 +31,6 @@ int main(void) {
 }
 
 char tela_principal(void) {
-
     char escolha;
 
     system("cls||clear");

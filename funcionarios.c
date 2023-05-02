@@ -21,7 +21,6 @@ void modulo_funcionarios(void) {
 
 
 char tela_funcionarios(void) {
-
     char escolha;
 
     system("cls||clear");
@@ -51,7 +50,6 @@ char tela_funcionarios(void) {
 
 
 void tela_adicionar_funcionario(void) {
-
     char nome_funcionario[51];
     char cpf_funcionario[12];
     char cel_funcionario[12];
@@ -107,7 +105,6 @@ void tela_adicionar_funcionario(void) {
 
 
 void tela_pesquisar_funcionario(void) {
-
     char cpf_funcionario[12];
 
     system("cls||clear");  
@@ -142,7 +139,6 @@ void tela_pesquisar_funcionario(void) {
 
 
 void tela_atualizar_funcionario(void) {
-
     char cpf_funcionario[12];
     char editar;
     
@@ -175,7 +171,6 @@ void tela_atualizar_funcionario(void) {
         printf(" ||                                                                 ||\n");
         printf(" ||                        ----- EDITAR -----                       ||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||                                                                 ||\n");
         printf(" ||         [ 1 ] Nome                                              ||\n");
         printf(" ||         [ 2 ] CPF                                               ||\n");
         printf(" ||         [ 3 ] Email                                             ||\n");
@@ -207,7 +202,6 @@ void tela_atualizar_funcionario(void) {
 
 
 void tela_editar_nome(void) {
-
     char nome_funcionario[51];
 
     system("cls||clear");
@@ -237,7 +231,6 @@ void tela_editar_nome(void) {
 
 
 void tela_editar_cpf(void) {
-
     char cpf_funcionario[12];
 
     system("cls||clear");
@@ -266,7 +259,6 @@ void tela_editar_cpf(void) {
 }
 
 void tela_editar_cel(void) {
-
     char cel_funcionario[12];
 
     system("cls||clear");
@@ -295,7 +287,6 @@ void tela_editar_cel(void) {
 }
 
 void tela_editar_email(void) {
-
     char email_funcionario[51];
 
     system("cls||clear");
@@ -324,7 +315,6 @@ void tela_editar_email(void) {
 }
 
 void tela_editar_cargo(void) {
-
     char cargo_funcionario[51];
     
     system("cls||clear");
@@ -353,7 +343,6 @@ void tela_editar_cargo(void) {
 }
 
 void tela_excluir_funcionario(void) {
-    
     char cpf_funcionario[12];
 
     system("cls||clear");

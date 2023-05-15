@@ -54,7 +54,7 @@ void tela_adicionar_atividade(void) {
 
     char titulo_atividade[51];
     char id_atividade[6];
-    char id_projeto[5];
+    char id_projeto[6];
     char cpf_funcionario[12];
     char data_atividade[11];
 
@@ -281,7 +281,7 @@ void tela_editar_data_atividade(void) {
 }
 
 void tela_editar_id_atribuido(void) {
-    char id_projeto[5];
+    char id_projeto[6];
 
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

@@ -79,7 +79,7 @@ void tela_adicionar_funcionario(void) {
     scanf("%[0-9]", cpf_funcionario);
     getchar();
     printf("\n");
-    printf("         Numero de celular: \n");
+    printf("         Numero de celular (apenas digitos): \n");
     printf("         => ");
     scanf("%[0-9]", cel_funcionario);
     getchar();

@@ -5,7 +5,6 @@
 #include "atividades.h"
 #include "sobre.h"
 
-
 char tela_principal(void);
 
 

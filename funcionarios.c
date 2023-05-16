@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funcionarios.h"
+#include "validacoes.h"
 
 void modulo_funcionarios(void) {
     char opcao;
@@ -74,10 +75,13 @@ void tela_adicionar_funcionario(void) {
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", nome_funcionario);
     getchar();
     printf("\n");
-    printf("         CPF (apenas digitos): \n");
-    printf("         => ");
-    scanf("%[0-9]", cpf_funcionario);
-    getchar();
+    while (!valida_cpf(cpf_funcionario)) {
+        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_funcionario);
+        getchar();
+        valida_cpf(cpf_funcionario);
+    }
     printf("\n");
     printf("         Numero de celular (apenas digitos): \n");
     printf("         => ");
@@ -118,10 +122,13 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         CPF do Funcionario (apenas digitos): \n");
-    printf("         => ");
-    scanf("%[0-9]", cpf_funcionario);
-    getchar();
+    while (!valida_cpf(cpf_funcionario)) {
+        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_funcionario);
+        getchar();
+        valida_cpf(cpf_funcionario);
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     // exemplo de como pode ficar apos a busca realizada
@@ -153,10 +160,13 @@ void tela_atualizar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                     ----- ATUALIZACAO -----                     ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         CPF do Funcionario (apenas digitos): \n");
-    printf("         => ");
-    scanf("%s", cpf_funcionario);
-    getchar();
+    while (!valida_cpf(cpf_funcionario)) {
+        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_funcionario);
+        getchar();
+        valida_cpf(cpf_funcionario);
+    }
     printf("\n");
 
     do {
@@ -244,10 +254,13 @@ void tela_editar_cpf(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                        ----- EDITAR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Novo CPF do funcionario: \n");
-    printf("         => ");
-    scanf("%[0-9]", cpf_funcionario);
-    getchar();
+    while (!valida_cpf(cpf_funcionario)) {
+        printf("         Novo CPF do Funcionario (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_funcionario);
+        getchar();
+        valida_cpf(cpf_funcionario);
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -356,10 +369,13 @@ void tela_excluir_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         CPF do Funcionario (apenas digitos): \n");
-    printf("         => ");
-    scanf("%s", cpf_funcionario);
-    getchar();
+    while (!valida_cpf(cpf_funcionario)) {
+        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_funcionario);
+        getchar();
+        valida_cpf(cpf_funcionario);
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

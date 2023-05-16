@@ -186,6 +186,7 @@ void tela_atualizar_projeto(void) {
     } while (editar != '0');
 }
 
+
 void tela_editar_titulo_projeto(void) {
     char titulo_projeto[51];
 
@@ -213,6 +214,7 @@ void tela_editar_titulo_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
+
 
 void tela_editar_id_projeto(void) {
     char id_projeto[6];
@@ -244,6 +246,7 @@ void tela_editar_id_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
+
 
 void tela_editar_data_projeto(void) {
     char data_projeto[11];
@@ -300,6 +303,7 @@ void tela_editar_status_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
+
 
 void tela_excluir_projeto(void) {
     char id_projeto[6];

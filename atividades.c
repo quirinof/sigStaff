@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "atividades.h"
+#include "validacoes.h"
 
 
 void modulo_atividades(void) {
@@ -55,7 +56,7 @@ void tela_adicionar_atividade(void) {
     char titulo_atividade[51];
     char id_atividade[6];
     char id_projeto[6];
-    char cpf_funcionario[12];
+    char cpf_atividade[12];
     char data_atividade[11];
 
     system("cls||clear");
@@ -74,20 +75,29 @@ void tela_adicionar_atividade(void) {
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_atividade);
     getchar();
     printf("\n");
-    printf("            ID da atividade: \n");
-    printf("            => ");
-    scanf("%[0-9]", id_atividade);
-    getchar();
+    while (!valida_id(id_atividade)) {
+        printf("            ID da Atividade: \n");
+        printf("            => ");
+        scanf("%s", id_atividade);
+        valida_id(id_atividade);
+        getchar();
+    }
     printf("\n");
-    printf("            ID do projeto relacionada: \n");
-    printf("            => ");
-    scanf("%[0-9]", id_projeto);
-    getchar();
+    while (!valida_id(id_projeto)) {
+        printf("            ID do Projeto relacionado: \n");
+        printf("            => ");
+        scanf("%s", id_projeto);
+        valida_id(id_projeto);
+        getchar();
+    }
     printf("\n");
-    printf("            CPF do funcionario encarregado: \n");
-    printf("            => ");
-    scanf("%[0-9]", cpf_funcionario);
-    getchar();         
+    while (!valida_cpf(cpf_atividade)) {
+        printf("         CPF do Funcionario atribuido (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_atividade);
+        getchar();
+        valida_cpf(cpf_atividade);
+    }       
     printf("\n");
     printf("            Data de entrega da atividade (dd/mm/aaaa): \n");
     printf("            => ");
@@ -119,10 +129,13 @@ void tela_pesquisar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite o ID da atividade: \n");
-    printf("           => ");
-    scanf("%[0-9]", id_atividade);
-    getchar();
+    while (!valida_id(id_atividade)) {
+        printf("            Digite o ID da Atividade: \n");
+        printf("            => ");
+        scanf("%s", id_atividade);
+        valida_id(id_atividade);
+        getchar();
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -150,10 +163,13 @@ void tela_atualizar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ATUALIZAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite o ID da Atividade: \n");
-    printf("           => ");
-    scanf("%[0-9]", id_atividade);
-    getchar();
+    while (!valida_id(id_atividade)) {
+        printf("            Digite o ID da Atividade: \n");
+        printf("            => ");
+        scanf("%s", id_atividade);
+        valida_id(id_atividade);
+        getchar();
+    }
     printf("\n");
     do {
         system("cls || clear");
@@ -238,10 +254,13 @@ void tela_editar_cpf_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Novo CPF do Funcionario atribuido a atividade: \n");
-    printf("         => ");
-    scanf("%[0-9]", cpf_atividade);
-    getchar();
+    while (!valida_cpf(cpf_atividade)) {
+        printf("         Novo CPF do Funcionario atribuido a Atividade (apenas digitos): \n");
+        printf("         => ");
+        scanf("%s", cpf_atividade);
+        getchar();
+        valida_cpf(cpf_atividade);
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -294,10 +313,13 @@ void tela_editar_id_atribuido(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Novo ID do projeto atribuido a atividade: \n");
-    printf("         => ");
-    scanf("%[0-9]", id_projeto);
-    getchar();
+    while (!valida_id(id_projeto)) {
+        printf("            Novo ID do projeto atribuido a Atividade: \n");
+        printf("            => ");
+        scanf("%s", id_projeto);
+        valida_id(id_projeto);
+        getchar();
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -322,10 +344,13 @@ void tela_editar_id_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Novo ID da atividade: \n");
-    printf("         => ");
-    scanf("%[0-9]", id_atividade);
-    getchar();
+    while (!valida_id(id_atividade)) {
+        printf("            Novo ID da Atividade: \n");
+        printf("            => ");
+        scanf("%s", id_atividade);
+        valida_id(id_atividade);
+        getchar();
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -351,10 +376,13 @@ void tela_excluir_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    printf("           Digite o ID da Atividade: \n");
-    printf("           => ");
-    scanf("%[0-9]", id_atividade);
-    getchar();
+    while (!valida_id(id_atividade)) {
+        printf("            Digite o ID da Atividade: \n");
+        printf("            => ");
+        scanf("%s", id_atividade);
+        valida_id(id_atividade);
+        getchar();
+    }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

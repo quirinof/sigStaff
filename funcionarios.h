@@ -1,3 +1,12 @@
+typedef struct funcionario Funcionario;
+struct funcionario {
+    char nome[71];
+    char cpf[12];
+    char celular[12];
+    char email[41];
+    char cargo[51];
+};
+
 void modulo_funcionarios(void);
 char tela_funcionarios(void);
 void tela_adicionar_funcionario(void);

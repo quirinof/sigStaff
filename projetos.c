@@ -70,11 +70,11 @@ void tela_adicionar_projeto(void) {
     scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_projeto);
     getchar();
     printf("\n");
-    while (!valida_id(id_projeto)) {
+    while (!valida_id(id_projeto, 5)) {
         printf("            ID do Projeto: \n");
         printf("            => ");
         scanf("%s", id_projeto);
-        valida_id(id_projeto);
+        valida_id(id_projeto, 5);
         getchar();
     }
     printf("\n");
@@ -107,11 +107,11 @@ void tela_pesquisar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto)) {
+    while (!valida_id(id_projeto, 5)) {
         printf("            Digite o ID do Projeto: \n");
         printf("            => ");
         scanf("%s", id_projeto);
-        valida_id(id_projeto);
+        valida_id(id_projeto, 5);
         getchar();
     }
     printf(" ||                                                                 ||\n");
@@ -140,11 +140,11 @@ void tela_atualizar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ATUALIZAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto)) {
+    while (!valida_id(id_projeto, 5)) {
         printf("            Digite o ID do Projeto: \n");
         printf("            => ");
         scanf("%s", id_projeto);
-        valida_id(id_projeto);
+        valida_id(id_projeto, 5);
         getchar();
     }
     printf("\n");
@@ -230,11 +230,11 @@ void tela_editar_id_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                           __ EDITAR __                          ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto)) {
+    while (!valida_id(id_projeto, 5)) {
         printf("            Novo ID do Projeto: \n");
         printf("            => ");
         scanf("%s", id_projeto);
-        valida_id(id_projeto);
+        valida_id(id_projeto, 5);
         getchar();
     }
     printf(" ||                                                                 ||\n");
@@ -319,11 +319,11 @@ void tela_excluir_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto)) {
+    while (!valida_id(id_projeto, 5)) {
         printf("            Digite o ID do Projeto: \n");
         printf("            => ");
         scanf("%s", id_projeto);
-        valida_id(id_projeto);
+        valida_id(id_projeto, 5);
         getchar();
     }
     printf(" ||                                                                 ||\n");

@@ -4,20 +4,32 @@
 #include "validacoes.h"
 
 
-int valida_id(char *id) {
+int numero(char n) {
+    if (n >= '0' && n <= '9') {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+int valida_id(char* id, int tam) {
+    //       o id em si, o tamanho do id para tornar uma função genérica
     int i;
 
     // quantidade de digitos
-    for (i = 0; i < 5; i++) {
-        if (id[i] == '\0')
+    for (i = 0; i < tam; i++) {
+        if (id[i] == '\0') {
             return 0;
+        }
     }
     if (id[i] != '\0') {
         return 0;
     }
+    
     // apenas digitos numericos
-    for (i = 0; i < 5; i++) {
-        if (id[i] < '0' || id[i] > '9') {
+    for (i = 0; i < tam; i++) {
+        if (!numero(id[i])) {
             return 0;
         }
     }
@@ -43,7 +55,7 @@ int valida_cpf(char *cpf) {
     } 
     // verificação da existencia de apenas digitos numericos 
     for (i = 0; i < 11; i++) {
-        if (cpf[i] < '0' || cpf[i] > '9') {
+        if (!numero(cpf[i])) {
             return 0;
         }
     }
@@ -69,7 +81,6 @@ int valida_cpf(char *cpf) {
 }
 
 
-
 int valida_data(char *data) {
     int i;
     
@@ -89,10 +100,10 @@ int valida_data(char *data) {
 }
 
 int letra(char l) {
-    if (l>='A' && l<='Z') {
+    if (l >= 'A' && l <= 'Z') {
         return 1;
     }
-    else if (l>='a' && l<='z') {
+    else if (l >= 'a' && l <= 'z') {
         return 1;
     }
     else {

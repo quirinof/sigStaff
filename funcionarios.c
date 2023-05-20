@@ -51,11 +51,7 @@ char tela_funcionarios(void) {
 
 
 void tela_adicionar_funcionario(void) {
-    char nome[71];
-    char cpf[12];
-    char celular[12];
-    char email[41];
-    char cargo[51];
+    Funcionario fnc;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -70,41 +66,36 @@ void tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||           Obs.: Digite as informacoes com atencao               ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_nome(nome)) {
+    do {
         printf("         Nome completo: \n");
         printf("         => ");
-        scanf("%s", nome);
-        getchar();
-        valida_nome(nome);
-    }
-    
+        scanf("%70[^\n]", fnc.nome);
+        valida_nome(fnc.nome);
+    } while (!valida_nome(fnc.nome));
     printf("\n");
-    while (!valida_cpf(cpf)) {
+    while (!valida_cpf(fnc.cpf)) {
         printf("         CPF do Funcionario (apenas digitos): \n");
         printf("         => ");
-        scanf("%s", cpf);
+        scanf("%s", fnc.cpf);
         getchar();
-        valida_cpf(cpf);
+        valida_cpf(fnc.cpf);
     }
     printf("\n");
     printf("         Numero de celular (apenas digitos): \n");
     printf("         => ");
-    scanf("%[0-9]", celular);
+    scanf("%[0-9]", fnc.celular);
     getchar();
     printf("\n");
     printf("         Email:  \n");
     printf("         => ");
-    scanf("%[A-Za-z0-9@._]", email);
+    scanf("%[A-Za-z0-9@._]", fnc.email);
     getchar();
     printf(" \n");
-    while (!valida_nome(cargo)) {
-        printf("         Cargo/Funcao: \n");
-        printf("         => ");
-        scanf("%s", cargo);
-        getchar();
-        valida_nome(cargo);
-    }
-    
+    printf("         Cargo/Funcao: \n");
+    printf("         => ");
+    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", fnc.cargo);
+    getchar();
+    printf("\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -116,7 +107,7 @@ void tela_adicionar_funcionario(void) {
 }
 
 void tela_pesquisar_funcionario(void) {
-    char cpf[12];
+    Funcionario fnc;
 
     system("cls||clear");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -129,12 +120,12 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_cpf(cpf)) {
+    while (!valida_cpf(fnc.cpf)) {
         printf("         CPF do Funcionario (apenas digitos): \n");
         printf("         => ");
-        scanf("%s", cpf);
+        scanf("%s", fnc.cpf);
         getchar();
-        valida_cpf(cpf);
+        valida_cpf(fnc.cpf);
     }
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -144,8 +135,8 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||               ...... Funcionario Encontrado ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      Nome:                                                      ||\n");
-    printf(" ||      Cargo:                                                     ||\n");
-    printf(" ||      Contato:                                                   ||\n");
+    printf(" ||      Email:                                                     ||\n");
+    printf(" ||      Celular:                                                   ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();

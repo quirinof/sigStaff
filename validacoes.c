@@ -3,8 +3,6 @@
 #include <string.h>
 #include "validacoes.h"
 
-
-
 int numero(char n) {
     if (n >= '0' && n <= '9') {
         return 1;
@@ -97,7 +95,7 @@ int bissexto(int ano) {
     }
 }
 
-int ehdata(int dd, int mm, int aaaa) {
+int ehdata(int dd, int mm, int aa) {
     int max;
     if (aa < 0 || mm < 1 || mm > 12 ) {
         return 0;
@@ -123,8 +121,10 @@ int ehdata(int dd, int mm, int aaaa) {
 
 int valida_data(char* data) {
     int i, dia, mes, ano;
+
     // eliminar as barras ou pontos que separam os dias, meses e anos
     limpa_caracteres(data);
+
     // verifica quantidade de digitos 
     if (!quantidade_digitos(data, 8)) {
         return 0;
@@ -142,16 +142,14 @@ int valida_data(char* data) {
     if (!ehdata(dia, mes, ano)) {
         return 0;
     }
+    // data valida
     return 1;
 }
 
 int letra(char l) {
-    if (l >= 'A' && l <= 'Z') {
+    if ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z') || (l == ' ')) {
         return 1;
-    }
-    else if (l >= 'a' && l <= 'z') {
-        return 1;
-    }
+    } 
     else {
         return 0;
     }
@@ -176,4 +174,18 @@ void limpa_caracteres(char* str) {
         }
     }
     str[j] = '\0';
+}
+
+int valida_cel(char* cel) {
+    int i;
+    limpa_caracteres(cel);
+    if (!quantidade_digitos(cel, 11)) {
+        return 0;
+    }
+    for (i = 0; i < 11; i++) {
+        if (!numero(cel[i])) {
+            return 0;
+        }
+    }
+    return 1; 
 }

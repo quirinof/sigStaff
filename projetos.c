@@ -65,23 +65,31 @@ void tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    printf("            Titulo/Nome: \n");
-    printf("            => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_projeto);
-    getchar();
+    do {
+        printf("            Titulo/Nome: \n");
+        printf("            => ");
+        scanf("%[^\n]", titulo_projeto);
+        getchar();
+        valida_nome(titulo_projeto);
+    } while (!valida_nome(titulo_projeto));
     printf("\n");
-    while (!valida_id(id_projeto, 5)) {
+
+    do {
         printf("            ID do Projeto: \n");
         printf("            => ");
-        scanf("%s", id_projeto);
-        valida_id(id_projeto, 5);
+        scanf("%[^\n]", id_projeto);
         getchar();
-    }
+        valida_id(id_projeto, 5);
+    } while (!valida_id(id_projeto, 5));
     printf("\n");
-    printf("            Data limite para entrega (DD/MM/AAAA): \n");
-    printf("            => ");
-    scanf("%[0-9/]", data_projeto);
-    getchar();
+
+    do {
+        printf("            Data limite para entrega (DD/MM/AAAA): \n");
+        printf("            => ");
+        scanf("%[^\n]", data_projeto);
+        getchar();
+        valida_data(data_projeto);
+    } while (!valida_data(data_projeto));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -107,13 +115,13 @@ void tela_pesquisar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto, 5)) {
+    do {
         printf("            Digite o ID do Projeto: \n");
         printf("            => ");
-        scanf("%s", id_projeto);
-        valida_id(id_projeto, 5);
+        scanf("%[^\n]", id_projeto);
         getchar();
-    }
+        valida_id(id_projeto, 5);
+    } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -140,14 +148,15 @@ void tela_atualizar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ATUALIZAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto, 5)) {
+    do {
         printf("            Digite o ID do Projeto: \n");
         printf("            => ");
-        scanf("%s", id_projeto);
-        valida_id(id_projeto, 5);
+        scanf("%[^\n]", id_projeto);
         getchar();
-    }
+        valida_id(id_projeto, 5);
+    } while (!valida_id(id_projeto, 5));
     printf("\n");
+
     do {
         system("cls||clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -201,10 +210,13 @@ void tela_editar_titulo_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                           __ EDITAR __                          ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Novo titulo do projeto: \n");
-    printf("         => ");
-    scanf("%[A-ZÁÀÃÂÉÈÊÍÌÎÓÒÕÔÚÙÛ a-záàãâéèêíìîóòõôúùûÇç]", titulo_projeto);
-    getchar();
+    do {
+        printf("         Novo titulo do projeto: \n");
+        printf("         => ");
+        scanf("%[^\n]", titulo_projeto);
+        getchar();
+        valida_nome(titulo_projeto);
+    } while (!valida_nome(titulo_projeto));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -230,13 +242,13 @@ void tela_editar_id_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                           __ EDITAR __                          ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto, 5)) {
+    do {
         printf("            Novo ID do Projeto: \n");
         printf("            => ");
-        scanf("%s", id_projeto);
-        valida_id(id_projeto, 5);
+        scanf("%[^\n]", id_projeto);
         getchar();
-    }
+        valida_id(id_projeto, 5);
+    } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -262,10 +274,13 @@ void tela_editar_data_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                           __ EDITAR __                          ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Nova data de entrega do projeto (dd/mm/aaaa): \n");
-    printf("         => ");
-    scanf("%[0-9/]", data_projeto);
-    getchar();
+    do {
+        printf("         Nova data de entrega do projeto (dd/mm/aaaa): \n");
+        printf("         => ");
+        scanf("%[^\n]", data_projeto);
+        getchar();
+        valida_data(data_projeto);
+    } while (!valida_data(data_projeto));    
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -319,13 +334,13 @@ void tela_excluir_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_id(id_projeto, 5)) {
+    do {
         printf("            Digite o ID do Projeto: \n");
         printf("            => ");
-        scanf("%s", id_projeto);
-        valida_id(id_projeto, 5);
+        scanf("%[^\n]", id_projeto);
         getchar();
-    }
+        valida_id(id_projeto, 5);
+    } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

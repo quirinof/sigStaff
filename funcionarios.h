@@ -7,6 +7,11 @@ struct funcionario {
     char cargo[61];
 };
 
+void adicionar_funcionario(void);
+void pesquisar_funcionario(void);
+void atualizar_funcionario(void);
+void excluir_funcionario(void);
+
 void modulo_funcionarios(void);
 char tela_funcionarios(void);
 void tela_adicionar_funcionario(void);

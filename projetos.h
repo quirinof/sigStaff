@@ -1,3 +1,15 @@
+typedef struct projeto Projeto;
+struct projeto {
+    char titulo_projeto[51];
+    char id_projeto[6];
+    char data_projeto[11];
+};
+
+void adicionar_projeto(void)
+void pesquisar_projeto(void);
+void atualizar_projeto(void);
+void excluir_projeto(void);
+
 void modulo_projetos(void);
 char tela_projetos(void);
 void tela_adicionar_projeto(void);

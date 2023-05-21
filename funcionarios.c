@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
 #include "funcionarios.h"
 #include "validacoes.h"
 
@@ -8,18 +9,33 @@ void modulo_funcionarios(void) {
     do {
         opcao = tela_funcionarios();
         switch (opcao) {
-            case '1': tela_adicionar_funcionario();
+            case '1': adicionar_funcionario();
                       break;
-            case '2': tela_pesquisar_funcionario();
+            case '2': pesquisar_funcionario();
                       break;
-            case '3': tela_atualizar_funcionario();
+            case '3': atualizar_funcionario();
                       break;
-            case '4': tela_excluir_funcionario();
+            case '4': excluir_funcionario();
                       break;
         }
     } while (opcao != '0');
 }
 
+void adicionar_funcionario(void) {
+    tela_adicionar_funcionario();
+}
+
+void pesquisar_funcionario(void) {
+    tela_pesquisar_funcionario();
+}
+
+void atualizar_funcionario(void) {
+    tela_atualizar_funcionario();
+}
+
+void excluir_funcionario(void) {
+    tela_excluir_funcionario();
+}
 
 char tela_funcionarios(void) {
     char escolha;
@@ -49,7 +65,6 @@ char tela_funcionarios(void) {
     return escolha;
 }
 
-
 void tela_adicionar_funcionario(void) {
     Funcionario fnc;
 
@@ -71,7 +86,6 @@ void tela_adicionar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", fnc.nome);
         getchar();
-        valida_nome(fnc.nome);
     } while (!valida_nome(fnc.nome));
     printf("\n");
     do {
@@ -79,7 +93,6 @@ void tela_adicionar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", fnc.cpf);
         getchar();
-        valida_cpf(fnc.cpf);
     } while (!valida_cpf(fnc.cpf));
     printf("\n");
     do {
@@ -87,7 +100,6 @@ void tela_adicionar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", fnc.celular);
         getchar();
-        valida_cel(fnc.celular);
     } while(!valida_cel(fnc.celular));
     printf("\n");
     do {
@@ -95,7 +107,6 @@ void tela_adicionar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", fnc.email);
         getchar();
-        valida_email(fnc.email);
     } while (!valida_email(fnc.email));
     printf("\n");
     do {
@@ -103,7 +114,6 @@ void tela_adicionar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", fnc.cargo);
         getchar();
-        valida_nome(fnc.cargo);
     } while (!valida_nome(fnc.cargo));
     printf("\n");
     printf(" ||                                                                 ||\n");
@@ -135,7 +145,6 @@ void tela_pesquisar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", fnc.cpf);
         getchar();
-        valida_cpf(fnc.cpf);
     } while (!valida_cpf(fnc.cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -173,7 +182,6 @@ void tela_atualizar_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
-        valida_cpf(cpf);
     } while (!valida_cpf(cpf));
     printf("\n");
     do {
@@ -237,7 +245,6 @@ void tela_editar_nome(void) {
         printf("         => ");
         scanf("%[^\n]", nome);
         getchar();
-        valida_nome(nome);
     } while(!valida_nome(nome));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -264,13 +271,12 @@ void tela_editar_cpf(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                        ----- EDITAR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    while (!valida_cpf(cpf)) {
+    do {
         printf("         Novo CPF do Funcionario: \n");
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
-        valida_cpf(cpf);
-    }
+    } while (!valida_cpf(cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -300,7 +306,6 @@ void tela_editar_cel(void) {
         printf("         => ");
         scanf("%[^\n]", celular);
         getchar();
-        valida_cel(celular);
     } while(!valida_cel(celular));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -331,7 +336,6 @@ void tela_editar_email(void) {
         printf("         => ");
         scanf("%[^\n]", email);
         getchar();
-        valida_email(email);
     } while (!valida_email(email));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -362,7 +366,6 @@ void tela_editar_cargo(void) {
         printf("         => ");
         scanf("%[^\n]", cargo);
         getchar();
-        valida_nome(cargo);
     }  while(!valida_nome(cargo));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -393,7 +396,6 @@ void tela_excluir_funcionario(void) {
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
-        valida_cpf(cpf);
     } while (!valida_cpf(cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");

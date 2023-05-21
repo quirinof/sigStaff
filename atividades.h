@@ -1,3 +1,17 @@
+typedef struct atividade Atividade;
+struct atividade {
+    char titulo_atividade[51];
+    char id_atividade[6];
+    char id_projeto[6];
+    char cpf[12];
+    char data_atividade[11];
+};
+
+void adicionar_atividade(void);
+void pesquisar_atividade(void);
+void atualizar_atividade(void);
+void excluir_atividade(void);
+
 void modulo_atividades(void);
 char tela_atividades(void);
 void tela_adicionar_atividade(void);

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
 #include "atividades.h"
 #include "validacoes.h"
 
@@ -9,16 +10,32 @@ void modulo_atividades(void) {
     do {
         opcao = tela_atividades();
         switch (opcao) {
-            case '1': tela_adicionar_atividade();
+            case '1': adicionar_atividade();
                       break;
-            case '2': tela_pesquisar_atividade();
+            case '2': pesquisar_atividade();
                       break;
-            case '3': tela_atualizar_atividade();
+            case '3': atualizar_atividade();
                       break;
-            case '4': tela_excluir_atividade();
+            case '4': excluir_atividade();
                       break;
         }
     } while (opcao != '0');
+}
+
+void adicionar_atividade(void) {
+    tela_adicionar_atividade();
+}
+
+void pesquisar_atividade(void) {
+    tela_pesquisar_atividade();
+}
+
+void atualizar_atividade(void) {
+    tela_atualizar_atividade();
+}
+
+void excluir_atividade(void) {
+    tela_excluir_atividade();
 }
 
 char tela_atividades(void) {
@@ -55,7 +72,7 @@ void tela_adicionar_atividade(void) {
     char titulo_atividade[51];
     char id_atividade[6];
     char id_projeto[6];
-    char cpf_atividade[12];
+    char cpf[12];
     char data_atividade[11];
 
     system("cls||clear");
@@ -74,7 +91,6 @@ void tela_adicionar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", titulo_atividade);
         getchar();
-        valida_nome(titulo_atividade);
     } while(!valida_nome(titulo_atividade));
     printf("\n");
 
@@ -83,7 +99,6 @@ void tela_adicionar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", id_atividade);
         getchar();
-        valida_id(id_atividade, 5);
     } while (!valida_id(id_atividade, 5));
     printf("\n");
 
@@ -92,17 +107,15 @@ void tela_adicionar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf("\n");
 
     do {
         printf("         CPF do Funcionario atribuido: \n");
         printf("         => ");
-        scanf("%[^\n]", cpf_atividade);
+        scanf("%[^\n]", cpf);
         getchar();
-        valida_cpf(cpf_atividade);
-    } while (!valida_cpf(cpf_atividade));   
+    } while (!valida_cpf(cpf));   
     printf("\n");
 
     do {
@@ -110,7 +123,6 @@ void tela_adicionar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", data_atividade);
         getchar();
-        valida_data(data_atividade);
     } while (!valida_data(data_atividade));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -143,7 +155,6 @@ void tela_pesquisar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", id_atividade);
         getchar();
-        valida_id(id_atividade, 5);
     } while (!valida_id(id_atividade, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -177,7 +188,6 @@ void tela_atualizar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", id_atividade);
         getchar();
-        valida_id(id_atividade, 5);
     } while (!valida_id(id_atividade, 5));
     printf("\n");
 
@@ -241,7 +251,6 @@ void tela_editar_titulo_atividade(void) {
         printf("         => ");
         scanf("%[^\n]", titulo_atividade);
         getchar();
-        valida_nome(titulo_atividade);
     } while (!valida_nome(titulo_atividade));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -272,7 +281,6 @@ void tela_editar_cpf_atividade(void) {
         printf("         => ");
         scanf("%[^\n]", cpf_atividade);
         getchar();
-        valida_cpf(cpf_atividade);
     } while (!valida_cpf(cpf_atividade));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -303,7 +311,6 @@ void tela_editar_data_atividade(void) {
         printf("         => ");
         scanf("%[^\n]", data_atividade);
         getchar();
-        valida_data(data_atividade);
     } while (!valida_data(data_atividade));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -334,7 +341,6 @@ void tela_editar_id_atribuido(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -365,7 +371,6 @@ void tela_editar_id_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", id_atividade);
         getchar();
-        valida_id(id_atividade, 5);
     } while (!valida_id(id_atividade, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -397,7 +402,6 @@ void tela_excluir_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", id_atividade);
         getchar();
-        valida_id(id_atividade, 5);
     } while (!valida_id(id_atividade, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");

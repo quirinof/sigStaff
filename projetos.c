@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
 #include "projetos.h"
 #include "validacoes.h"
 
@@ -8,16 +9,32 @@ void modulo_projetos(void) {
     do {
         opcao = tela_projetos();
         switch (opcao) {
-            case '1': tela_adicionar_projeto();
+            case '1': adicionar_projeto();
                       break;
-            case '2': tela_pesquisar_projeto();
+            case '2': pesquisar_projeto();
                       break;
-            case '3': tela_atualizar_projeto();
+            case '3': atualizar_projeto();
                       break;
-            case '4': tela_excluir_projeto();
+            case '4': excluir_projeto();
                       break;
         }
     } while (opcao != '0');
+}
+
+void adicionar_projeto(void) {
+    tela_adicionar_projeto();
+}
+
+void pesquisar_projeto(void) {
+    tela_pesquisar_projeto();
+}
+
+void atualizar_projeto(void) {
+    tela_atualizar_projeto();
+}
+
+void excluir_projeto(void) {
+    tela_excluir_projeto();
 }
 
 char tela_projetos(void) {
@@ -70,7 +87,6 @@ void tela_adicionar_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", titulo_projeto);
         getchar();
-        valida_nome(titulo_projeto);
     } while (!valida_nome(titulo_projeto));
     printf("\n");
 
@@ -79,7 +95,6 @@ void tela_adicionar_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf("\n");
 
@@ -88,7 +103,6 @@ void tela_adicionar_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", data_projeto);
         getchar();
-        valida_data(data_projeto);
     } while (!valida_data(data_projeto));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -120,7 +134,6 @@ void tela_pesquisar_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -153,7 +166,6 @@ void tela_atualizar_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf("\n");
 
@@ -215,7 +227,6 @@ void tela_editar_titulo_projeto(void) {
         printf("         => ");
         scanf("%[^\n]", titulo_projeto);
         getchar();
-        valida_nome(titulo_projeto);
     } while (!valida_nome(titulo_projeto));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -247,7 +258,6 @@ void tela_editar_id_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -279,7 +289,6 @@ void tela_editar_data_projeto(void) {
         printf("         => ");
         scanf("%[^\n]", data_projeto);
         getchar();
-        valida_data(data_projeto);
     } while (!valida_data(data_projeto));    
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -339,7 +348,6 @@ void tela_excluir_projeto(void) {
         printf("            => ");
         scanf("%[^\n]", id_projeto);
         getchar();
-        valida_id(id_projeto, 5);
     } while (!valida_id(id_projeto, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");

@@ -67,6 +67,7 @@ int valida_id(char* id, int t) {
     return 1;
 }
 
+
 int valida_cpf(char* cpf) {
     int i, j;
     int d1 = 0;
@@ -155,7 +156,7 @@ int valida_data(char* data) {
 }
 
 int letra(char l) {
-    // vai retornar 1 apenas se for letra ou espaço
+    // vai retornar 1 apenas se for letra
     if ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z')) {
         return 1;
     } 

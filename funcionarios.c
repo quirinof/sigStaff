@@ -75,7 +75,7 @@ void tela_adicionar_funcionario(void) {
     } while (!valida_nome(fnc.nome));
     printf("\n");
     do {
-        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         CPF do Funcionario: \n");
         printf("         => ");
         scanf("%[^\n]", fnc.cpf);
         getchar();
@@ -83,17 +83,20 @@ void tela_adicionar_funcionario(void) {
     } while (!valida_cpf(fnc.cpf));
     printf("\n");
     do {
-        printf("         Numero de celular (apenas digitos): \n");
+        printf("         Numero de celular: \n");
         printf("         => ");
         scanf("%[^\n]", fnc.celular);
         getchar();
         valida_cel(fnc.celular);
     } while(!valida_cel(fnc.celular));
     printf("\n");
-    printf("         Email:  \n");
-    printf("         => ");
-    scanf("%[A-Za-z0-9@._]", fnc.email);
-    getchar();
+    do {
+        printf("         Email:  \n");
+        printf("         => ");
+        scanf("%[^\n]", fnc.email);
+        getchar();
+        valida_email(fnc.email);
+    } while (!valida_email(fnc.email));
     printf("\n");
     do {
         printf("         Cargo/Funcao: \n");
@@ -166,7 +169,7 @@ void tela_atualizar_funcionario(void) {
     printf(" ||                     ----- ATUALIZACAO -----                     ||\n");
     printf(" ||                                                                 ||\n");
     do {
-        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         CPF do Funcionario: \n");
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
@@ -262,7 +265,7 @@ void tela_editar_cpf(void) {
     printf(" ||                        ----- EDITAR -----                       ||\n");
     printf(" ||                                                                 ||\n");
     while (!valida_cpf(cpf)) {
-        printf("         Novo CPF do Funcionario (apenas digitos): \n");
+        printf("         Novo CPF do Funcionario: \n");
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
@@ -323,10 +326,13 @@ void tela_editar_email(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                        ----- EDITAR -----                       ||\n");
     printf(" ||                                                                 ||\n");
-    printf("         Novo email do funcionario: \n");
-    printf("         => ");
-    scanf("%[A-Za-z0-9@._]", email);
-    getchar();
+    do {
+        printf("         Novo email do funcionario: \n");
+        printf("         => ");
+        scanf("%[^\n]", email);
+        getchar();
+        valida_email(email);
+    } while (!valida_email(email));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -383,7 +389,7 @@ void tela_excluir_funcionario(void) {
     printf(" ||                       ----- EXCLUIR -----                       ||\n");
     printf(" ||                                                                 ||\n");
     do {
-        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         CPF do Funcionario: \n");
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();

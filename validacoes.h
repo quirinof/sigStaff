@@ -9,5 +9,6 @@ int letra(char);
 int numero(char);
 int digitos(char*, int);
 int bissexto(int);
-int ehdata(int, int, int);
+int verifica_data(int, int, int);
 void limpa_caracteres(char*);
+int caracteres_email(char);

@@ -3,8 +3,8 @@ struct funcionario {
     char nome[71];
     char cpf[12];
     char celular[12];
-    char email[41];
-    char cargo[51];
+    char email[51];
+    char cargo[61];
 };
 
 void modulo_funcionarios(void);

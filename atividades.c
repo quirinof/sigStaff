@@ -97,7 +97,7 @@ void tela_adicionar_atividade(void) {
     printf("\n");
 
     do {
-        printf("         CPF do Funcionario atribuido (apenas digitos): \n");
+        printf("         CPF do Funcionario atribuido: \n");
         printf("         => ");
         scanf("%[^\n]", cpf_atividade);
         getchar();
@@ -268,7 +268,7 @@ void tela_editar_cpf_atividade(void) {
     printf(" ||                          __ EDITAR __                           ||\n");
     printf(" ||                                                                 ||\n");
     do {
-        printf("         Novo CPF do Funcionario atribuido a Atividade (apenas digitos): \n");
+        printf("         Novo CPF do Funcionario atribuido a Atividade: \n");
         printf("         => ");
         scanf("%[^\n]", cpf_atividade);
         getchar();

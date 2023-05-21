@@ -27,6 +27,26 @@ int quantidade_digitos(char* v, int x) {
     }
 }
 
+void limpa_caracteres(char* str) {
+    int i, j = 0;
+    for (i = 0; str[i] != '\0'; i++) {
+        if (numero(str[i])) {
+            str[j] = str[i];
+            j++;
+        }
+    }
+    str[j] = '\0';
+}
+
+int valida_cel(char* cel) {
+    // a função que limpa caracteres ja retorna apenas digitos numericos 
+    limpa_caracteres(cel);
+    if (!quantidade_digitos(cel, 11)) {
+        return 0;
+    }
+    return 1; 
+}
+
 int valida_id(char* id, int t) {
     //       o id em si, o tamanho do id para tornar uma função genérica
     int i;
@@ -47,20 +67,15 @@ int valida_id(char* id, int t) {
     return 1;
 }
 
-
 int valida_cpf(char* cpf) {
     int i, j;
     int d1 = 0;
     int d2 = 0;
+    // a função elimina pontos ou traços, deixando apenas digitos numericos
+    limpa_caracteres(cpf);
     // verificação da quantidade de digitos
     if (!quantidade_digitos(cpf, 11)) {
         return 0;
-    }
-    // verificação da existencia de apenas digitos numericos 
-    for (i = 0; i < 11; i++) {
-        if (!numero(cpf[i])) {
-            return 0;
-        }
     }
     // calculo digito 1 
     for (i = 0, j = 10; i < 9; i++, j--) {
@@ -95,7 +110,7 @@ int bissexto(int ano) {
     }
 }
 
-int ehdata(int dd, int mm, int aa) {
+int verifica_data(int dd, int mm, int aa) {
     int max;
     if (aa < 0 || mm < 1 || mm > 12 ) {
         return 0;
@@ -117,37 +132,31 @@ int ehdata(int dd, int mm, int aa) {
         return 0;
     }
     return 1;
-} 
+} // by: Flavius Gorgonio
 
 int valida_data(char* data) {
-    int i, dia, mes, ano;
+    int dia, mes, ano;
 
-    // eliminar as barras ou pontos que separam os dias, meses e anos
+    // eliminar as barras ou pontos e ja retorna apenas numeros
     limpa_caracteres(data);
-
     // verifica quantidade de digitos 
     if (!quantidade_digitos(data, 8)) {
         return 0;
-    }
-    // se sao apenas numeros
-    for (i = 0; i < 8; i++) {
-        if (!numero(data[i])) {
-            return 0;
-        }
     }
     dia = (data[0] - '0') * 10 + (data[1] - '0');
     mes = (data[2] - '0') * 10 + (data[3] - '0');
     ano = (data[4] - '0') * 1000 + (data[5] - '0') * 100 + (data[6] - '0') * 10 + (data [7] - '0');
     // verifica se é uma data valida
-    if (!ehdata(dia, mes, ano)) {
+    if (!verifica_data(dia, mes, ano)) {
         return 0;
     }
-    // data valida
+    
     return 1;
 }
 
 int letra(char l) {
-    if ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z') || (l == ' ')) {
+    // vai retornar 1 apenas se for letra ou espaço
+    if ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z')) {
         return 1;
     } 
     else {
@@ -158,34 +167,45 @@ int letra(char l) {
 int valida_nome(char* nome) {
     int i;
     for (i = 0; nome[i] != '\0'; i++) {
-        if(!letra(nome[i])) {
+        if(!letra(nome[i]) && nome[i] != ' ') {
             return 0; 
         }
     }
     return 1;
 }
 
-void limpa_caracteres(char* str) {
-    int i, j = 0;
-    for (i = 0; str[i] != '\0'; i++) {
-        if (numero(str[i])) {
-            str[j] = str[i];
-            j++;
-        }
-    }
-    str[j] = '\0';
-}
-
-int valida_cel(char* cel) {
-    int i;
-    limpa_caracteres(cel);
-    if (!quantidade_digitos(cel, 11)) {
+int caracteres_email(char c) {
+    if ((!letra(c)) && (!numero(c)) && (c != '@') && (c != '.') && (c != '_') && (c != '-')) {
         return 0;
     }
-    for (i = 0; i < 11; i++) {
-        if (!numero(cel[i])) {
+    else {
+        return 1;
+    }
+}
+
+int valida_email(char* email) {
+    int i;
+    int a = 0, p = 0;
+    // verifica se o primeiro caracter segue as normas de email
+    if(!letra(email[0]) && !numero(email[0])) {
             return 0;
         }
+    for (i = 0; email[i] != '\0'; i++) {
+        // verifica se o email contem apenas os caracteres validos
+        if (!caracteres_email(email[i])) {
+            return 0;
+        }
+        // verificando quantidade de arroba e ponto
+        if (email[i] == '@') {
+            a++;
+        }
+        if (email[i] == '.') {
+            p++;
+        }
     }
-    return 1; 
+    // valida arroba e ponto
+    if (a != 1 || p != 1) {
+        return 0;
+    }
+    return 1;
 }

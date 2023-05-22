@@ -22,7 +22,9 @@ void modulo_funcionarios(void) {
 }
 
 void adicionar_funcionario(void) {
-    tela_adicionar_funcionario();
+    Funcionario *fnc;
+    fnc = tela_adicionar_funcionario();
+    free(fnc);
 }
 
 void pesquisar_funcionario(void) {
@@ -65,8 +67,8 @@ char tela_funcionarios(void) {
     return escolha;
 }
 
-void tela_adicionar_funcionario(void) {
-    Funcionario fnc;
+Funcionario* tela_adicionar_funcionario(void) {
+    Funcionario *fnc;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -81,40 +83,41 @@ void tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||           Obs.: Digite as informacoes com atencao               ||\n");
     printf(" ||                                                                 ||\n");
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
     do {
         printf("         Nome completo: \n");
         printf("         => ");
-        scanf("%[^\n]", fnc.nome);
+        scanf("%[^\n]", fnc->nome);
         getchar();
-    } while (!valida_nome(fnc.nome));
+    } while (!valida_nome(fnc->nome));
     printf("\n");
     do {
         printf("         CPF do Funcionario: \n");
         printf("         => ");
-        scanf("%[^\n]", fnc.cpf);
+        scanf("%[^\n]", fnc->cpf);
         getchar();
-    } while (!valida_cpf(fnc.cpf));
+    } while (!valida_cpf(fnc->cpf));
     printf("\n");
     do {
         printf("         Numero de celular: \n");
         printf("         => ");
-        scanf("%[^\n]", fnc.celular);
+        scanf("%[^\n]", fnc->celular);
         getchar();
-    } while(!valida_cel(fnc.celular));
+    } while(!valida_cel(fnc->celular));
     printf("\n");
     do {
         printf("         Email:  \n");
         printf("         => ");
-        scanf("%[^\n]", fnc.email);
+        scanf("%[^\n]", fnc->email);
         getchar();
-    } while (!valida_email(fnc.email));
+    } while (!valida_email(fnc->email));
     printf("\n");
     do {
         printf("         Cargo/Funcao: \n");
         printf("         => ");
-        scanf("%[^\n]", fnc.cargo);
+        scanf("%[^\n]", fnc->cargo);
         getchar();
-    } while (!valida_nome(fnc.cargo));
+    } while (!valida_nome(fnc->cargo));
     printf("\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -124,11 +127,11 @@ void tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+    return fnc;
 }
 
 void tela_pesquisar_funcionario(void) {
-    Funcionario fnc;
-
+    char cpf[12];
     system("cls||clear");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -143,9 +146,9 @@ void tela_pesquisar_funcionario(void) {
     do {
         printf("         CPF do Funcionario (apenas digitos): \n");
         printf("         => ");
-        scanf("%[^\n]", fnc.cpf);
+        scanf("%[^\n]", cpf);
         getchar();
-    } while (!valida_cpf(fnc.cpf));
+    } while (!valida_cpf(cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     // exemplo de como pode ficar apos a busca realizada
@@ -227,7 +230,7 @@ void tela_atualizar_funcionario(void) {
 
 
 void tela_editar_nome(void) {
-    char nome[51];
+    char nome[71];
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

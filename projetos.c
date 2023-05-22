@@ -22,7 +22,9 @@ void modulo_projetos(void) {
 }
 
 void adicionar_projeto(void) {
-    tela_adicionar_projeto();
+    Projeto *pjt;
+    pjt = tela_adicionar_projeto();
+    free(pjt);
 }
 
 void pesquisar_projeto(void) {
@@ -65,11 +67,8 @@ char tela_projetos(void) {
     return escolha;
 }
 
-
-void tela_adicionar_projeto(void) {
-    char titulo_projeto[51];
-    char id_projeto[6];
-    char data_projeto[11];
+Projeto* tela_adicionar_projeto(void) {
+    Projeto *pjt;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -82,28 +81,29 @@ void tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
+    pjt = (Projeto*) malloc(sizeof(Projeto));
     do {
         printf("            Titulo/Nome: \n");
         printf("            => ");
-        scanf("%[^\n]", titulo_projeto);
+        scanf("%[^\n]", pjt->titulo_projeto);
         getchar();
-    } while (!valida_nome(titulo_projeto));
+    } while (!valida_nome(pjt->titulo_projeto));
     printf("\n");
 
     do {
         printf("            ID do Projeto: \n");
         printf("            => ");
-        scanf("%[^\n]", id_projeto);
+        scanf("%[^\n]", pjt->id_projeto);
         getchar();
-    } while (!valida_id(id_projeto, 5));
+    } while (!valida_id(pjt->id_projeto, 5));
     printf("\n");
 
     do {
         printf("            Data limite para entrega (DD/MM/AAAA): \n");
         printf("            => ");
-        scanf("%[^\n]", data_projeto);
+        scanf("%[^\n]", pjt->data_projeto);
         getchar();
-    } while (!valida_data(data_projeto));
+    } while (!valida_data(pjt->data_projeto));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -112,8 +112,8 @@ void tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+    return pjt;
 }
-
 
 void tela_pesquisar_projeto(void) {
     char id_projeto[6];
@@ -144,7 +144,6 @@ void tela_pesquisar_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
-
 
 void tela_atualizar_projeto(void) {
     char id_projeto[6];
@@ -207,7 +206,6 @@ void tela_atualizar_projeto(void) {
     } while (editar != '0');
 }
 
-
 void tela_editar_titulo_projeto(void) {
     char titulo_projeto[51];
 
@@ -238,7 +236,6 @@ void tela_editar_titulo_projeto(void) {
     getchar(); 
 }
 
-
 void tela_editar_id_projeto(void) {
     char id_projeto[6];
 
@@ -268,7 +265,6 @@ void tela_editar_id_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
-
 
 void tela_editar_data_projeto(void) {
     char data_projeto[11];
@@ -327,7 +323,6 @@ void tela_editar_status_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
-
 
 void tela_excluir_projeto(void) {
     char id_projeto[6];

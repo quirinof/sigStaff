@@ -23,7 +23,9 @@ void modulo_atividades(void) {
 }
 
 void adicionar_atividade(void) {
-    tela_adicionar_atividade();
+    Atividade *atv;
+    atv = tela_adicionar_atividade();
+    free(atv);
 }
 
 void pesquisar_atividade(void) {
@@ -68,12 +70,8 @@ char tela_atividades(void) {
 }
 
 
-void tela_adicionar_atividade(void) {
-    char titulo_atividade[51];
-    char id_atividade[6];
-    char id_projeto[6];
-    char cpf[12];
-    char data_atividade[11];
+Atividade* tela_adicionar_atividade(void) {
+    Atividade *atv;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -86,44 +84,45 @@ void tela_adicionar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
+    atv = (Atividade*) malloc(sizeof(Atividade));
     do {
         printf("            Nome da atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", titulo_atividade);
+        scanf("%[^\n]", atv->titulo_atividade);
         getchar();
-    } while(!valida_nome(titulo_atividade));
+    } while(!valida_nome(atv->titulo_atividade));
     printf("\n");
 
     do {
         printf("            ID da Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", id_atividade);
+        scanf("%[^\n]", atv->id_atividade);
         getchar();
-    } while (!valida_id(id_atividade, 5));
+    } while (!valida_id(atv->id_atividade, 5));
     printf("\n");
 
     do {
         printf("            ID do Projeto relacionado: \n");
         printf("            => ");
-        scanf("%[^\n]", id_projeto);
+        scanf("%[^\n]", atv->id_projeto);
         getchar();
-    } while (!valida_id(id_projeto, 5));
+    } while (!valida_id(atv->id_projeto, 5));
     printf("\n");
 
     do {
         printf("         CPF do Funcionario atribuido: \n");
         printf("         => ");
-        scanf("%[^\n]", cpf);
+        scanf("%[^\n]", atv->cpf);
         getchar();
-    } while (!valida_cpf(cpf));   
+    } while (!valida_cpf(atv->cpf));   
     printf("\n");
 
     do {
         printf("            Data de entrega da atividade (dd/mm/aaaa): \n");
         printf("            => ");
-        scanf("%[^\n]", data_atividade);
+        scanf("%[^\n]", atv->data_atividade);
         getchar();
-    } while (!valida_data(data_atividade));
+    } while (!valida_data(atv->data_atividade));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -132,11 +131,11 @@ void tela_adicionar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+    return atv;
 }
 
 
 void tela_pesquisar_atividade(void) {
-
     char id_atividade[6];
 
     system("cls||clear");
@@ -168,7 +167,6 @@ void tela_pesquisar_atividade(void) {
 
 
 void tela_atualizar_atividade(void) {
-
     char id_atividade[6];
     char editar; 
 
@@ -383,7 +381,6 @@ void tela_editar_id_atividade(void) {
 }
 
 void tela_excluir_atividade(void) {
-
     char id_atividade[6];
 
     system("cls || clear");

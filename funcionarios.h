@@ -14,7 +14,7 @@ void excluir_funcionario(void);
 
 void modulo_funcionarios(void);
 char tela_funcionarios(void);
-void tela_adicionar_funcionario(void);
+Funcionario* tela_adicionar_funcionario(void);
 void tela_pesquisar_funcionario(void);
 void tela_atualizar_funcionario(void);
 void tela_editar_nome(void);

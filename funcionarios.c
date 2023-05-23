@@ -23,12 +23,23 @@ void modulo_funcionarios(void) {
 
 void adicionar_funcionario(void) {
     Funcionario *fnc;
+
     fnc = tela_adicionar_funcionario();
+    salvar_funcionario(fnc);
+
     free(fnc);
 }
 
 void pesquisar_funcionario(void) {
-    tela_pesquisar_funcionario();
+    Funcionario *fnc;
+    char *cpf;
+
+    cpf = tela_pesquisar_funcionario();
+    fnc = buscar_funcionario(cpf);
+    exibir_funcionario(fnc);
+
+    free(fnc);
+    free(cpf);
 }
 
 void atualizar_funcionario(void) {
@@ -118,6 +129,7 @@ Funcionario* tela_adicionar_funcionario(void) {
         scanf("%[^\n]", fnc->cargo);
         getchar();
     } while (!valida_nome(fnc->cargo));
+    fnc->status = 1;
     printf("\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -130,8 +142,8 @@ Funcionario* tela_adicionar_funcionario(void) {
     return fnc;
 }
 
-void tela_pesquisar_funcionario(void) {
-    char cpf[12];
+char* tela_pesquisar_funcionario(void) {
+    char *cpf;
     system("cls||clear");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -143,25 +155,15 @@ void tela_pesquisar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- PESQUISAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
+    cpf = (char*) malloc(12*sizeof(char));
     do {
         printf("         CPF do Funcionario (apenas digitos): \n");
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
-    printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    // exemplo de como pode ficar apos a busca realizada
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Funcionario Encontrado ......              ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||      Nome:                                                      ||\n");
-    printf(" ||      Email:                                                     ||\n");
-    printf(" ||      Celular:                                                   ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
+
+    return cpf;
 }
 
 
@@ -408,4 +410,73 @@ void tela_excluir_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+}
+
+void tela_erro(void) {
+	system("cls||clear");
+	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+	printf(" ||                                                                 ||\n");
+	printf(" ||                   >>>>>>>>    ERRO    <<<<<<<                   ||\n");
+	printf(" ||                                                                 ||\n");
+    printf(" ||                 Não foi possível acessar o arquivo              ||\n");
+	printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+	printf("     ------- Enter para continuar! --------");
+	getchar();
+}
+
+void salvar_funcionario(Funcionario* fnc) {
+    FILE *fp;
+    fp = fopen("funcionarios.dat", "ab");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    fwrite(fnc, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+}
+
+Funcionario* buscar_funcionario(char* cpf) {
+    FILE *fp;
+    Funcionario* fnc;
+
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+        if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 1)) {
+            fclose(fp);
+            return fnc;
+        }
+    }   
+    fclose(fp);
+    return NULL;
+}
+
+void exibir_funcionario(Funcionario* fnc) {
+	if (fnc == NULL) {
+		printf("\n>>>>> Funcionario Inexistente <<<<<\n");
+	} 
+    else {
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||               >>>>>> Funcionario Encontrado <<<<<<              ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||      Nome: %s         \n", fnc->nome);
+        printf(" ||      Cargo/Funcao: %s \n", fnc->cargo);
+        printf(" ||      Email: %s        \n", fnc->email);
+        printf(" ||      Celular: %s      \n", fnc->celular);
+        printf(" ||      CPF: %s          \n", fnc->cpf);
+        printf(" ||      Status: %d       \n", fnc->status);
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+	}
+	printf("\n      ------- Enter para continuar! --------");
+	getchar();
 }

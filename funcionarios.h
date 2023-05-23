@@ -5,6 +5,7 @@ struct funcionario {
     char celular[12];
     char email[51];
     char cargo[61];
+    int status;
 };
 
 void adicionar_funcionario(void);
@@ -15,7 +16,7 @@ void excluir_funcionario(void);
 void modulo_funcionarios(void);
 char tela_funcionarios(void);
 Funcionario* tela_adicionar_funcionario(void);
-void tela_pesquisar_funcionario(void);
+char* tela_pesquisar_funcionario(void);
 void tela_atualizar_funcionario(void);
 void tela_editar_nome(void);
 void tela_editar_cpf(void);
@@ -23,3 +24,9 @@ void tela_editar_cel(void);
 void tela_editar_email(void);
 void tela_editar_cargo(void);
 void tela_excluir_funcionario(void);
+void tela_erro(void);
+
+void salvar_funcionario(Funcionario*);
+Funcionario* buscar_funcionario(char*);
+void exibir_funcionario(Funcionario*);
+void resalvar_funcionario(Funcionario*);

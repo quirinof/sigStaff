@@ -7,7 +7,7 @@ int valida_cel(char*);
 
 int letra(char);
 int numero(char);
-int digitos(char*, int);
+int quantidade_digitos(char*, int);
 int bissexto(int);
 int verifica_data(int, int, int);
 void limpa_caracteres(char*);

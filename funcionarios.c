@@ -43,12 +43,41 @@ void pesquisar_funcionario(void) {
 }
 
 void atualizar_funcionario(void) {
-    tela_atualizar_funcionario();
+    Funcionario *fnc;
+	char* cpf;
+
+	cpf = tela_atualizar_funcionario();
+	fnc = buscar_funcionario(cpf);
+	if (fnc == NULL) {
+    	printf("\n>>>>> Funcionario não encontrado <<<<<\n");
+  	} 
+    else {
+		  fnc = tela_adicionar_funcionario();
+		  strcpy(fnc->cpf, cpf);
+		  refazer_funcionario(fnc);
+		  free(fnc);
+	}
+	free(cpf);
 }
 
 void excluir_funcionario(void) {
-    tela_excluir_funcionario();
+    Funcionario *fnc;
+	char *cpf;
+
+	cpf = tela_excluir_funcionario();
+	fnc = (Funcionario*) malloc(sizeof(Funcionario));
+	fnc = buscar_funcionario(cpf);
+	if (fnc == NULL) {
+    	printf("\n\nAluno não encontrado!\n\n");
+  	} 
+    else {
+		  fnc->status = 0;
+		  refazer_funcionario(fnc);
+		  free(fnc);
+	}
+	free(cpf);
 }
+
 
 char tela_funcionarios(void) {
     char escolha;
@@ -167,10 +196,10 @@ char* tela_pesquisar_funcionario(void) {
 }
 
 
-void tela_atualizar_funcionario(void) {
-    char cpf[12];
-    char editar;
+char* tela_atualizar_funcionario(void) {
+    char* cpf;
     
+    cpf = (char*) malloc(12*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -188,7 +217,14 @@ void tela_atualizar_funcionario(void) {
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
-    printf("\n");
+    return cpf;
+}
+
+   ////////// esta e as demais funcoes do mesmo tema editar
+   ////////// por enquanto ficaram inutilizaveis e posteriormente
+   ////////// sera encontrada uma forma de reutiliza-las 
+char tela_editar_funcionario(void) {
+    char editar;
     do {
         system("cls||clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -382,9 +418,11 @@ void tela_editar_cargo(void) {
     getchar(); 
 }
 
-void tela_excluir_funcionario(void) {
-    char cpf[12];
 
+char* tela_excluir_funcionario(void) {
+    char* cpf;
+
+    cpf = (char*) malloc(12*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -410,7 +448,9 @@ void tela_excluir_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+    return cpf;
 }
+
 
 void tela_erro(void) {
 	system("cls||clear");
@@ -430,6 +470,8 @@ void tela_erro(void) {
 	getchar();
 }
 
+
+/////////// FUNÇOES DE ARQUIVAMENTO ///////////
 void salvar_funcionario(Funcionario* fnc) {
     FILE *fp;
     fp = fopen("funcionarios.dat", "ab");
@@ -479,4 +521,26 @@ void exibir_funcionario(Funcionario* fnc) {
 	}
 	printf("\n      ------- Enter para continuar! --------");
 	getchar();
+}
+
+void refazer_funcionario(Funcionario* fnc) {
+	int achou;
+	FILE* fp;
+	Funcionario* fnc_lido;
+
+	fnc_lido = (Funcionario*) malloc(sizeof(Funcionario));
+	fp = fopen("funcionarios.dat", "r+b");
+	if (fp == NULL) {
+		tela_erro();
+	}
+	achou = 0;
+	while (fread(fnc_lido, sizeof(Funcionario), 1, fp) && !achou) {
+		if (strcmp(fnc_lido->cpf, fnc->cpf) == 0) {
+			achou = 1;
+			fseek(fp, -1*sizeof(Funcionario), SEEK_CUR);
+        	fwrite(fnc, sizeof(Funcionario), 1, fp);
+		}
+	}
+	fclose(fp);
+	free(fnc_lido);
 }

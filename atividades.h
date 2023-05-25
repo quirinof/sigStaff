@@ -23,3 +23,8 @@ void tela_editar_data_atividade(void);
 void tela_editar_id_atribuido(void);
 void tela_editar_id_atividade(void);
 void tela_excluir_atividade(void);
+
+void salvar_atividade(Atividade*);
+Atividade* buscar_atividade(char*);
+void exibir_atividade(Atividade*);
+void refazer_atividade(Atividade*);

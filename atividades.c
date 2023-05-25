@@ -24,8 +24,23 @@ void modulo_atividades(void) {
 
 void adicionar_atividade(void) {
     Atividade *atv;
+
     atv = tela_adicionar_atividade();
+    salvar_atividade(atv);
+
     free(atv);
+}
+
+void salvar_atividade(Atividade* atv) {
+    FILE *fp;
+
+    fp = fopen("atividades.dat", "ab");
+    if (fp == NULL) {
+        printf("Erro de arquivo");
+    }
+    fwrite(atv, sizeof(Atividade), 1, fp);
+
+    fclose(fp);
 }
 
 void pesquisar_atividade(void) {
@@ -73,6 +88,7 @@ char tela_atividades(void) {
 Atividade* tela_adicionar_atividade(void) {
     Atividade *atv;
 
+    atv = (Atividade*) malloc(sizeof(Atividade));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -84,7 +100,7 @@ Atividade* tela_adicionar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    atv = (Atividade*) malloc(sizeof(Atividade));
+    
     do {
         printf("            Nome da atividade: \n");
         printf("            => ");
@@ -131,6 +147,7 @@ Atividade* tela_adicionar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
     return atv;
 }
 

@@ -18,12 +18,12 @@ char tela_funcionarios(void);
 Funcionario* tela_adicionar_funcionario(void);
 char* tela_pesquisar_funcionario(void);
 char* tela_atualizar_funcionario(void);
-char tela_editar_funcionario(void);
-void tela_editar_nome(void);
-void tela_editar_cpf(void);
-void tela_editar_cel(void);
-void tela_editar_email(void);
-void tela_editar_cargo(void);
+Funcionario* tela_editar_funcionario(void);
+Funcionario* tela_editar_nome(void);
+Funcionario* tela_editar_cpf(void);
+Funcionario* tela_editar_cel(void);
+Funcionario* tela_editar_email(void);
+Funcionario* tela_editar_cargo(void);
 char* tela_excluir_funcionario(void);
 void tela_erro(void);
 

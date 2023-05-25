@@ -44,7 +44,7 @@ void pesquisar_funcionario(void) {
 
 void atualizar_funcionario(void) {
     Funcionario *fnc;
-	char* cpf;
+	char *cpf;
 
 	cpf = tela_atualizar_funcionario();
 	fnc = buscar_funcionario(cpf);
@@ -110,6 +110,7 @@ char tela_funcionarios(void) {
 Funcionario* tela_adicionar_funcionario(void) {
     Funcionario *fnc;
 
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -123,7 +124,6 @@ Funcionario* tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||           Obs.: Digite as informacoes com atencao               ||\n");
     printf(" ||                                                                 ||\n");
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
     do {
         printf("         Nome completo: \n");
         printf("         => ");
@@ -168,11 +168,14 @@ Funcionario* tela_adicionar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
     return fnc;
 }
 
+
 char* tela_pesquisar_funcionario(void) {
     char *cpf;
+
     system("cls||clear");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -217,14 +220,17 @@ char* tela_atualizar_funcionario(void) {
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
+
     return cpf;
 }
 
    ////////// esta e as demais funcoes do mesmo tema editar
    ////////// por enquanto ficaram inutilizaveis e posteriormente
    ////////// sera encontrada uma forma de reutiliza-las 
-char tela_editar_funcionario(void) {
+Funcionario* tela_editar_funcionario(void) {
+    Funcionario *fnc;
     char editar;
+
     do {
         system("cls||clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -252,23 +258,24 @@ char tela_editar_funcionario(void) {
         getchar();
         printf("\n");
         switch (editar) {
-            case '1': tela_editar_nome();
+            case '1': fnc = tela_editar_nome();
                       break;
-            case '2': tela_editar_cpf();
+            case '2': fnc = tela_editar_cpf();
                       break;
-            case '3': tela_editar_email();
+            case '3': fnc = tela_editar_email();
                       break;
-            case '4': tela_editar_cel();
+            case '4': fnc = tela_editar_cel();
                       break;
-            case '5': tela_editar_cargo();
+            case '5': fnc = tela_editar_cargo();
                       break;
         }
     } while (editar != '0');
+    return fnc;
 }
 
 
-void tela_editar_nome(void) {
-    char nome[71];
+Funcionario* tela_editar_nome(void) {
+    Funcionario *fnc;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -284,9 +291,9 @@ void tela_editar_nome(void) {
     do {
         printf("         Novo nome do funcionario: \n");
         printf("         => ");
-        scanf("%[^\n]", nome);
+        scanf("%[^\n]", fnc->nome);
         getchar();
-    } while(!valida_nome(nome));
+    } while(!valida_nome(fnc->nome));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -295,11 +302,13 @@ void tela_editar_nome(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return fnc; 
 }
 
 
-void tela_editar_cpf(void) {
-    char cpf[12];
+Funcionario* tela_editar_cpf(void) {
+    Funcionario *fnc;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -315,9 +324,9 @@ void tela_editar_cpf(void) {
     do {
         printf("         Novo CPF do Funcionario: \n");
         printf("         => ");
-        scanf("%[^\n]", cpf);
+        scanf("%[^\n]", fnc->cpf);
         getchar();
-    } while (!valida_cpf(cpf));
+    } while (!valida_cpf(fnc->cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -326,10 +335,12 @@ void tela_editar_cpf(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return fnc;
 }
 
-void tela_editar_cel(void) {
-    char celular[12];
+Funcionario* tela_editar_cel(void) {
+    Funcionario *fnc;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -345,9 +356,9 @@ void tela_editar_cel(void) {
     do {
         printf("         Novo numero de celular do funcionario: \n");
         printf("         => ");
-        scanf("%[^\n]", celular);
+        scanf("%[^\n]", fnc->celular);
         getchar();
-    } while(!valida_cel(celular));
+    } while(!valida_cel(fnc->celular));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -356,10 +367,12 @@ void tela_editar_cel(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return fnc;
 }
 
-void tela_editar_email(void) {
-    char email[51];
+Funcionario* tela_editar_email(void) {
+    Funcionario *fnc;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -375,9 +388,9 @@ void tela_editar_email(void) {
     do {
         printf("         Novo email do funcionario: \n");
         printf("         => ");
-        scanf("%[^\n]", email);
+        scanf("%[^\n]", fnc->email);
         getchar();
-    } while (!valida_email(email));
+    } while (!valida_email(fnc->email));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -386,10 +399,12 @@ void tela_editar_email(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return fnc;
 }
 
-void tela_editar_cargo(void) {
-    char cargo[51];
+Funcionario* tela_editar_cargo(void) {
+    Funcionario* fnc;
     
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -405,9 +420,9 @@ void tela_editar_cargo(void) {
     do {
         printf("         Novo cargo do funcionario: \n");
         printf("         => ");
-        scanf("%[^\n]", cargo);
+        scanf("%[^\n]", fnc->cargo);
         getchar();
-    }  while(!valida_nome(cargo));
+    }  while(!valida_nome(fnc->cargo));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -416,6 +431,8 @@ void tela_editar_cargo(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return fnc;
 }
 
 
@@ -448,6 +465,7 @@ char* tela_excluir_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
     return cpf;
 }
 

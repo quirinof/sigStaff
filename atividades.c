@@ -22,6 +22,7 @@ void modulo_atividades(void) {
     } while (opcao != '0');
 }
 
+
 void adicionar_atividade(void) {
     Atividade *atv;
 
@@ -29,18 +30,6 @@ void adicionar_atividade(void) {
     salvar_atividade(atv);
 
     free(atv);
-}
-
-void salvar_atividade(Atividade* atv) {
-    FILE *fp;
-
-    fp = fopen("atividades.dat", "ab");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    fwrite(atv, sizeof(Atividade), 1, fp);
-
-    fclose(fp);
 }
 
 void pesquisar_atividade(void) {
@@ -55,54 +44,40 @@ void pesquisar_atividade(void) {
     free(id);
 }
 
-Atividade* buscar_atividade(char* id) {
-    FILE* fp;
-    Atividade* atv; 
-    
-    atv = (Atividade*) malloc(sizeof(Atividade));
-    fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        if ((strcmp(id, atv->id_atv) == 0) && (atv->status == 1)) {
-            fclose(fp);
-            return atv;
-        }
-    }
-    fclose(fp);
-    return NULL;
-}
-
-void exibir_atividade(Atividade* atv) {
-    if (atv == NULL) {
-        printf("Atividade Inexistente");
-    } 
-    else {
-        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-        printf(" ||                                                                 ||\n");
-        printf(" ||                 >>>>>> Atividade Encontrada <<<<<<              ||\n");
-        printf(" ||                                                                 ||\n");
-        printf(" ||      Titulo/Nome: %s                    \n", atv->titulo_atv);
-        printf(" ||      Data de entrega: %s                \n", atv->data_atv);
-        printf(" ||      ID da Atividade: %s                \n", atv->id_atv);
-        printf(" ||      ID do Projeto relacionado: %s      \n", atv->id_pjt);
-        printf(" ||      CPF do Funcionario atribuido: %s   \n", atv->cpf);
-        printf(" ||      Status: %d                         \n", atv->status);
-        printf(" ||                                                                 ||\n");
-        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    }
-    printf("\n      ------- Enter para continuar! --------");
-    getchar();
-}
-
-
 void atualizar_atividade(void) {
-    tela_atualizar_atividade();
+    Atividade *atv;
+	char *id;
+
+	id = tela_atualizar_atividade();
+	atv = buscar_atividade(id);
+	if (atv == NULL) {
+    	printf("\n>>>>> Atividade não encontrada <<<<<\n");
+  	} 
+    else {
+		  atv = tela_adicionar_atividade();
+		  strcpy(atv->id, id);
+		  refazer_atividade(atv);
+		  free(atv);
+	}
+	free(id);
 }
 
 void excluir_atividade(void) {
-    tela_excluir_atividade();
+    Atividade *atv;
+	char *id;
+
+	id = tela_excluir_atividade();
+	atv = (Atividade*) malloc(sizeof(Atividade));
+	atv = buscar_atividade(id);
+	if (atv == NULL) {
+    	printf("\n >>>>> Atividade não encontrado! <<<<< \n");
+  	} 
+    else {
+		  atv->status = 0;
+		  refazer_atividade(atv);
+		  free(atv);
+	}
+	free(id);
 }
 
 
@@ -162,9 +137,9 @@ Atividade* tela_adicionar_atividade(void) {
     do {
         printf("            ID da Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", atv->id_atv);
+        scanf("%[^\n]", atv->id);
         getchar();
-    } while (!valida_id(atv->id_atv, 5));
+    } while (!valida_id(atv->id, 5));
     printf("\n");
 
     do {
@@ -204,9 +179,9 @@ Atividade* tela_adicionar_atividade(void) {
 
 
 char* tela_pesquisar_atividade(void) {
-    char *id_atv;
+    char *id;
 
-    id_atv = (char*) malloc(6*sizeof(char));
+    id = (char*) malloc(6*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -221,26 +196,22 @@ char* tela_pesquisar_atividade(void) {
     do {
         printf("            Digite o ID da Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", id_atv);
+        scanf("%[^\n]", id);
         getchar();
-    } while (!valida_id(id_atv, 5));
+    } while (!valida_id(id, 5));
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Atividade encontrada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 
-    return id_atv;
+    return id;
 }
 
 
-void tela_atualizar_atividade(void) {
-    char id_atv[6];
-    char editar; 
-
+char* tela_atualizar_atividade(void) {
+    char* id;
+     
+    id = (char*) malloc(6*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -255,10 +226,17 @@ void tela_atualizar_atividade(void) {
     do {
         printf("            Digite o ID da Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", id_atv);
+        scanf("%[^\n]", id);
         getchar();
-    } while (!valida_id(id_atv, 5));
+    } while (!valida_id(id, 5));
     printf("\n");
+
+    return id;
+}
+
+Atividade* tela_editar_atividade(void) {
+    Atividade* atv;
+    char editar;
 
     do {
         system("cls || clear");
@@ -287,22 +265,24 @@ void tela_atualizar_atividade(void) {
         getchar();
         printf("\n");
         switch (editar) {
-            case '1': tela_editar_titulo_atividade();
+            case '1': atv = tela_editar_titulo_atividade();
                       break;
-            case '2': tela_editar_cpf_atividade();
+            case '2': atv = tela_editar_cpf_atividade();
                       break;
-            case '3': tela_editar_data_atividade();
+            case '3': atv = tela_editar_data_atividade();
                       break;
-            case '4': tela_editar_id_atribuido();
+            case '4': atv = tela_editar_id_atribuido();
                       break;
-            case '5': tela_editar_id_atividade();
+            case '5': atv = tela_editar_id_atividade();
                       break;
         }          
     } while (editar != '0');
+
+    return atv;
 }
 
-void tela_editar_titulo_atividade(void) {
-    char titulo_atv[51];
+Atividade* tela_editar_titulo_atividade(void) {
+    Atividade* atv;
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -318,9 +298,9 @@ void tela_editar_titulo_atividade(void) {
     do {
         printf("         Novo titulo de atividade: \n");
         printf("         => ");
-        scanf("%[^\n]", titulo_atv);
+        scanf("%[^\n]", atv->titulo_atv);
         getchar();
-    } while (!valida_nome(titulo_atv));
+    } while (!valida_nome(atv->titulo_atv));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -329,10 +309,12 @@ void tela_editar_titulo_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+    
+    return atv;
 }
 
-void tela_editar_cpf_atividade(void) {
-    char cpf_atv[12];
+Atividade* tela_editar_cpf_atividade(void) {
+    Atividade* atv;
 
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -348,9 +330,9 @@ void tela_editar_cpf_atividade(void) {
     do {
         printf("         Novo CPF do Funcionario atribuido a Atividade: \n");
         printf("         => ");
-        scanf("%[^\n]", cpf_atv);
+        scanf("%[^\n]", atv->cpf);
         getchar();
-    } while (!valida_cpf(cpf_atv));
+    } while (!valida_cpf(atv->cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -359,10 +341,12 @@ void tela_editar_cpf_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return atv;
 }
 
-void tela_editar_data_atividade(void) {
-    char data_atv[11];
+Atividade* tela_editar_data_atividade(void) {
+    Atividade* atv;
 
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -378,9 +362,9 @@ void tela_editar_data_atividade(void) {
     do {
         printf("         Nova Data de entrega da atividade (dd/mm/aaaa): \n");
         printf("         => ");
-        scanf("%[^\n]", data_atv);
+        scanf("%[^\n]", atv->data_atv);
         getchar();
-    } while (!valida_data(data_atv));
+    } while (!valida_data(atv->data_atv));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -389,10 +373,12 @@ void tela_editar_data_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return atv;
 }
 
-void tela_editar_id_atribuido(void) {
-    char id_pjt[6];
+Atividade* tela_editar_id_atribuido(void) {
+    Atividade* atv;
 
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -408,9 +394,9 @@ void tela_editar_id_atribuido(void) {
     do {
         printf("            Novo ID do projeto atribuido a Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", id_pjt);
+        scanf("%[^\n]", atv->id_pjt);
         getchar();
-    } while (!valida_id(id_pjt, 5));
+    } while (!valida_id(atv->id_pjt, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -419,10 +405,12 @@ void tela_editar_id_atribuido(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return atv;
 }
 
-void tela_editar_id_atividade(void) {
-    char id_atv[6];
+Atividade* tela_editar_id_atividade(void) {
+    Atividade* atv;
 
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -438,9 +426,9 @@ void tela_editar_id_atividade(void) {
     do {
         printf("            Novo ID da Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", id_atv);
+        scanf("%[^\n]", atv->id);
         getchar();
-    } while (!valida_id(id_atv, 5));
+    } while (!valida_id(atv->id, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -449,11 +437,14 @@ void tela_editar_id_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
+
+    return atv;
 }
 
-void tela_excluir_atividade(void) {
-    char id_atv[6];
+char* tela_excluir_atividade(void) {
+    char* id;
 
+    id = (char*) malloc(6*sizeof(char));
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -468,9 +459,9 @@ void tela_excluir_atividade(void) {
     do {
         printf("            Digite o ID da Atividade: \n");
         printf("            => ");
-        scanf("%[^\n]", id_atv);
+        scanf("%[^\n]", id);
         getchar();
-    } while (!valida_id(id_atv, 5));
+    } while (!valida_id(id, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -479,10 +470,12 @@ void tela_excluir_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
+    return id;
 }
 
 void tela_erro_atv(void) {
-	system("cls||clear");
+	system("cls || clear");
 	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -497,4 +490,82 @@ void tela_erro_atv(void) {
     printf(" ||                                                                 ||\n");
 	printf("     ------- Enter para continuar! --------");
 	getchar();
+}
+
+
+
+void salvar_atividade(Atividade* atv) {
+    FILE *fp;
+
+    fp = fopen("atividades.dat", "ab");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    fwrite(atv, sizeof(Atividade), 1, fp);
+
+    fclose(fp);
+}
+
+Atividade* buscar_atividade(char* id) {
+    FILE* fp;
+    Atividade* atv; 
+    
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    while (fread(atv, sizeof(Atividade), 1, fp)) {
+        if ((strcmp(id, atv->id) == 0) && (atv->status == 1)) {
+            fclose(fp);
+            return atv;
+        }
+    }
+    fclose(fp);
+    return NULL;
+}
+
+void exibir_atividade(Atividade* atv) {
+    if (atv == NULL) {
+        printf("Atividade Inexistente");
+    } 
+    else {
+        system("cls || clear");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                 >>>>>> Atividade Encontrada <<<<<<              ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||      Titulo/Nome: %s                    \n", atv->titulo_atv);
+        printf(" ||      Data de entrega: %s                \n", atv->data_atv);
+        printf(" ||      ID da Atividade: %s                \n", atv->id);
+        printf(" ||      ID do Projeto relacionado: %s      \n", atv->id_pjt);
+        printf(" ||      CPF do Funcionario atribuido: %s   \n", atv->cpf);
+        printf(" ||      Status: %d                         \n", atv->status);
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    }
+    printf("\n      ------- Enter para continuar! --------");
+    getchar();
+}
+
+void refazer_atividade(Atividade* atv) {
+	int achou;
+	FILE* fp;
+	Atividade* atv_lido;
+
+	atv_lido = (Atividade*) malloc(sizeof(Atividade));
+	fp = fopen("atividades.dat", "r+b");
+	if (fp == NULL) {
+		tela_erro_atv();
+	}
+	achou = 0;
+	while (fread(atv_lido, sizeof(Atividade), 1, fp) && !achou) {
+		if (strcmp(atv_lido->id, atv->id) == 0) {
+			achou = 1;
+			fseek(fp, -1*sizeof(Atividade), SEEK_CUR);
+        	fwrite(atv, sizeof(Atividade), 1, fp);
+		}
+	}
+	fclose(fp);
+	free(atv_lido);
 }

@@ -68,7 +68,7 @@ void excluir_funcionario(void) {
 	fnc = (Funcionario*) malloc(sizeof(Funcionario));
 	fnc = buscar_funcionario(cpf);
 	if (fnc == NULL) {
-    	printf("\n\nAluno não encontrado!\n\n");
+    	printf("\n >>>>> Funcionario não encontrado! <<<<< \n");
   	} 
     else {
 		  fnc->status = 0;
@@ -194,6 +194,10 @@ char* tela_pesquisar_funcionario(void) {
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
 
     return cpf;
 }
@@ -524,6 +528,7 @@ void exibir_funcionario(Funcionario* fnc) {
 		printf("\n>>>>> Funcionario Inexistente <<<<<\n");
 	} 
     else {
+        system("cls || clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||               >>>>>> Funcionario Encontrado <<<<<<              ||\n");

@@ -1,6 +1,6 @@
 typedef struct atividade Atividade;
 struct atividade {
-    char titulo_atv[51];
+    char nome_atv[51];
     char id[6];
     char id_pjt[6];
     char cpf[12];

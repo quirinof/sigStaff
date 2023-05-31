@@ -43,11 +43,39 @@ void pesquisar_projeto(void) {
 }
 
 void atualizar_projeto(void) {
-    tela_atualizar_projeto();
+    Projeto *pjt;
+    char *id;
+
+    id = tela_atualizar_projeto();
+    pjt = buscar_projeto(id);
+    if (pjt == NULL) {
+        printf(" >>>>>> Projeto inexistente <<<<<<< ");
+    }
+    else {
+        pjt = tela_adicionar_projeto();
+		strcpy(pjt->id, id);
+		refazer_projeto(pjt);
+		free(pjt);
+    }
+    free(id);
 }
 
 void excluir_projeto(void) {
-    tela_excluir_projeto();
+    Projeto *pjt;
+    char *id;
+
+    id = tela_excluir_projeto();
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    pjt = buscar_projeto(id);
+    if (pjt == NULL) {
+        printf("\n >>>>>> Projeto não encontrado! <<<<<< \n");
+    }
+    else {
+        pjt->status = 0;
+        refazer_projeto(pjt);
+        free(pjt);
+    }
+    free(id);
 }
 
 char tela_projetos(void) {
@@ -162,10 +190,10 @@ char* tela_pesquisar_projeto(void) {
     return id;
 }
 
-void tela_atualizar_projeto(void) {
-    char id[6];
-    char editar;
+char* tela_atualizar_projeto(void) {
+    char *id;
 
+    id = (char*) malloc(6*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -184,6 +212,12 @@ void tela_atualizar_projeto(void) {
         getchar();
     } while (!valida_id(id, 5));
     printf("\n");
+
+    return id;
+}
+
+void tela_editar_projeto(void) {
+    char editar;
 
     do {
         system("cls||clear");
@@ -341,9 +375,10 @@ void tela_editar_status_projeto(void) {
     getchar(); 
 }
 
-void tela_excluir_projeto(void) {
-    char id[6];
+char* tela_excluir_projeto(void) {
+    char *id;
 
+    id = (char*) malloc(6*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -369,6 +404,8 @@ void tela_excluir_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
+    return id;
 }
 
 
@@ -423,4 +460,24 @@ void exibir_projeto(Projeto* pjt) {
 	getchar();
 }
 
-//void refazer_projeto(Projeto* pjt) {}
+void refazer_projeto(Projeto* pjt) {
+    int achou;
+    FILE *fp;
+    Projeto *pjt_lido;
+
+    pjt_lido = (Projeto*) malloc(sizeof(Projeto));
+    fp = fopen("projetos.dat", "r+b");
+    if(fp == NULL) {
+        printf("Erro de arquivo!"); // posteriormente funçao que imprime uma tela de erro
+    }
+    achou = 0;
+    while(fread(pjt_lido, sizeof(Projeto), 1, fp) && !achou) {
+        if (strcmp(pjt_lido->id, pjt->id) == 0) {
+            achou = 1;
+            fseek(fp, -1*sizeof(Projeto), SEEK_CUR);
+            fwrite(pjt, sizeof(Projeto), 1, fp);
+        }
+    }
+    fclose(fp);
+    free(pjt_lido);
+}

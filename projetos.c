@@ -49,7 +49,10 @@ void atualizar_projeto(void) {
     id = tela_atualizar_projeto();
     pjt = buscar_projeto(id);
     if (pjt == NULL) {
-        printf(" >>>>>> Projeto inexistente <<<<<<< ");
+        printf(" ||               >>>>>> Projeto inexistente <<<<<<                 ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
     }
     else {
         pjt = tela_adicionar_projeto();
@@ -68,7 +71,9 @@ void excluir_projeto(void) {
     pjt = (Projeto*) malloc(sizeof(Projeto));
     pjt = buscar_projeto(id);
     if (pjt == NULL) {
-        printf("\n >>>>>> Projeto não encontrado! <<<<<< \n");
+        printf(" ||             >>>>>> Projeto não encontrado! <<<<<<               ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     }
     else {
         pjt->status = 0;
@@ -182,9 +187,6 @@ char* tela_pesquisar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Projeto Encontrado ......                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 
     return id;
@@ -412,6 +414,25 @@ char* tela_excluir_projeto(void) {
     return id;
 }
 
+void tela_erro_pjt(void) {
+
+	system("cls || clear");
+	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+	printf(" ||                                                                 ||\n");
+	printf(" ||                   >>>>>>>>    ERRO    <<<<<<<                   ||\n");
+	printf(" ||                                                                 ||\n");
+    printf(" ||                 Não foi possível acessar o arquivo              ||\n");
+	printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+	printf(" ||                 ------- Enter para continuar! --------          ||\n");
+	getchar();
+}
+
 
 
 //////////// FUNCOES DE ARQUIVAMENTO //////////////
@@ -419,7 +440,7 @@ void salvar_projeto(Projeto* pjt) {
     FILE *fp;
     fp = fopen("projetos.dat", "ab");
     if(fp == NULL) {
-        printf("Erro de arquivo!"); // posteriormente funçao que imprime uma tela de erro
+        tela_erro_pjt(); 
     }
     fwrite(pjt, sizeof(Projeto), 1, fp);
     fclose(fp);
@@ -431,7 +452,7 @@ Projeto* buscar_projeto(char* id) {
     pjt = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "rb");
     if(fp == NULL) {
-        printf("Erro de arquivo!"); // posteriormente funçao que imprime uma tela de erro
+        tela_erro_pjt();
     }
     while (fread(pjt, sizeof(Projeto), 1, fp)) {
         if ((strcmp(id, pjt->id) == 0) && (pjt->status == 1)) {
@@ -445,7 +466,9 @@ Projeto* buscar_projeto(char* id) {
 
 void exibir_projeto(Projeto* pjt) {
     if (pjt == NULL) {
-		printf("\n>>>>>> Projeto Inexistente <<<<<<\n");
+		printf(" ||               >>>>>> Projeto Inexistente <<<<<<                 ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 	} 
     else {
         system("cls || clear");
@@ -465,7 +488,9 @@ void exibir_projeto(Projeto* pjt) {
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
 	}
-	printf(" ||    ------- Enter para continuar! --------");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 	getchar();
 }
 
@@ -477,7 +502,7 @@ void refazer_projeto(Projeto* pjt) {
     pjt_lido = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "r+b");
     if(fp == NULL) {
-        printf("Erro de arquivo!"); // posteriormente funçao que imprime uma tela de erro
+        tela_erro_pjt();
     }
     achou = 0;
     while(fread(pjt_lido, sizeof(Projeto), 1, fp) && !achou) {

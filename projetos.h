@@ -22,7 +22,7 @@ void tela_editar_id_projeto(void);
 void tela_editar_data_projeto(void);
 void tela_editar_status_projeto(void);
 char* tela_excluir_projeto(void);
-
+void tela_erro_pjt(void);
 
 void salvar_projeto(Projeto*);
 Projeto* buscar_projeto(char*);

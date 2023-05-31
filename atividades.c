@@ -539,6 +539,10 @@ void exibir_atividade(Atividade* atv) {
         system("cls || clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
+        printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
         printf(" ||                 >>>>>> Atividade Encontrada <<<<<<              ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||      Titulo/Nome: %s                    \n", atv->nome_atv);
@@ -551,7 +555,7 @@ void exibir_atividade(Atividade* atv) {
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
     }
-    printf("\n      ------- Enter para continuar! --------");
+    printf(" ||    ------- Enter para continuar! --------");
     getchar();
 }
 

@@ -216,6 +216,10 @@ char* tela_atualizar_projeto(void) {
     return id;
 }
 
+
+   ////////// esta e as demais funcoes do mesmo tema editar
+   ////////// por enquanto ficaram inutilizaveis e posteriormente
+   ////////// sera encontrada uma forma de reutiliza-las 
 void tela_editar_projeto(void) {
     char editar;
 
@@ -441,13 +445,17 @@ Projeto* buscar_projeto(char* id) {
 
 void exibir_projeto(Projeto* pjt) {
     if (pjt == NULL) {
-		printf("\n>>>>> Funcionario Inexistente <<<<<\n");
+		printf("\n>>>>>> Projeto Inexistente <<<<<<\n");
 	} 
     else {
         system("cls || clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||               >>>>>> Funcionario Encontrado <<<<<<              ||\n");
+        printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                 >>>>>> Projeto Encontrado <<<<<<                ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||      Nome: %s            \n", pjt->nome);
         printf(" ||      ID: %s              \n", pjt->id);
@@ -455,8 +463,9 @@ void exibir_projeto(Projeto* pjt) {
         printf(" ||      Status: %d          \n", pjt->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
 	}
-	printf("\n      ------- Enter para continuar! --------");
+	printf(" ||    ------- Enter para continuar! --------");
 	getchar();
 }
 

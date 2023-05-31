@@ -525,10 +525,14 @@ Funcionario* buscar_funcionario(char* cpf) {
 
 void exibir_funcionario(Funcionario* fnc) {
 	if (fnc == NULL) {
-		printf("\n>>>>> Funcionario Inexistente <<<<<\n");
+		printf("\n>>>>>> Funcionario Inexistente <<<<<<\n");
 	} 
     else {
         system("cls || clear");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+        printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||               >>>>>> Funcionario Encontrado <<<<<<              ||\n");
@@ -541,8 +545,9 @@ void exibir_funcionario(Funcionario* fnc) {
         printf(" ||      Status: %d       \n", fnc->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
 	}
-	printf("\n      ------- Enter para continuar! --------");
+	printf(" ||    ------- Enter para continuar! --------");
 	getchar();
 }
 

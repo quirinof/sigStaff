@@ -194,10 +194,11 @@ char* tela_pesquisar_funcionario(void) {
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
-    printf(" ||                                                                 ||\n");
+    printf("\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
+	getchar();
 
     return cpf;
 }

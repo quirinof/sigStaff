@@ -183,11 +183,11 @@ char* tela_pesquisar_projeto(void) {
         scanf("%[^\n]", id);
         getchar();
     } while (!valida_id(id, 5));
-    printf(" ||                                                                 ||\n");
+    printf("\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    getchar();
+	getchar();
 
     return id;
 }

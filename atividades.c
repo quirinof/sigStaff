@@ -51,7 +51,10 @@ void atualizar_atividade(void) {
 	id = tela_atualizar_atividade();
 	atv = buscar_atividade(id);
 	if (atv == NULL) {
-    	printf("\n>>>>> Atividade não encontrada <<<<<\n");
+    	printf(" ||               >>>>>> Atividade inexistente <<<<<<               ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
   	} 
     else {
 		  atv = tela_adicionar_atividade();
@@ -70,7 +73,10 @@ void excluir_atividade(void) {
 	atv = (Atividade*) malloc(sizeof(Atividade));
 	atv = buscar_atividade(id);
 	if (atv == NULL) {
-    	printf("\n >>>>> Atividade não encontrado! <<<<< \n");
+    	printf(" ||             >>>>>> Atividade não encontrada! <<<<<<             ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
   	} 
     else {
 		  atv->status = 0;
@@ -169,7 +175,7 @@ Atividade* tela_adicionar_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Atividade incluida ......                 ||\n");
+    printf(" ||                ...... Atividade cadastrada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -471,7 +477,7 @@ char* tela_excluir_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                  ...... Atividade deletada ......               ||\n");
+    printf(" ||                  ...... Atividade excluida ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -493,7 +499,7 @@ void tela_erro_atv(void) {
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-	printf("     ------- Enter para continuar! --------");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
 	getchar();
 }
 
@@ -534,7 +540,9 @@ Atividade* buscar_atividade(char* id) {
 
 void exibir_atividade(Atividade* atv) {
     if (atv == NULL) {
-        printf(" >>>>>> Atividade Inexistente <<<<<<");
+        printf(" ||               >>>>>> Atividade Inexistente <<<<<<               ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     } 
     else {
         system("cls || clear");
@@ -556,8 +564,10 @@ void exibir_atividade(Atividade* atv) {
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
     }
-    printf(" ||    ------- Enter para continuar! --------");
-    getchar();
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+	getchar();
 }
 
 void refazer_atividade(Atividade* atv) {

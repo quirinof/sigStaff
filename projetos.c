@@ -56,6 +56,7 @@ void atualizar_projeto(void) {
     }
     else {
         tela_editar_projeto(pjt);
+        strcpy(pjt->id, id);
         refazer_projeto(pjt);
 		free(pjt);
     }

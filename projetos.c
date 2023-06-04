@@ -73,6 +73,7 @@ void excluir_projeto(void) {
         printf(" ||             >>>>>> Projeto não encontrado! <<<<<<               ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
     }
     else {
         pjt->status = 0;
@@ -217,10 +218,6 @@ char* tela_atualizar_projeto(void) {
     return id;
 }
 
-
-   ////////// esta e as demais funcoes do mesmo tema editar
-   ////////// por enquanto ficaram inutilizaveis e posteriormente
-   ////////// sera encontrada uma forma de reutiliza-las 
 void tela_editar_projeto(Projeto* pjt) {
     char editar;
 
@@ -257,6 +254,7 @@ void tela_editar_projeto(Projeto* pjt) {
                       break;
         }
     } while (editar != '0');
+    pjt->status = 1;
 }
 
 void tela_editar_titulo_projeto(Projeto* pjt) {
@@ -368,7 +366,7 @@ void tela_editar_status_projeto(void) {
     printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
+    getchar();
 }
 
 char* tela_excluir_projeto(void) {
@@ -419,7 +417,9 @@ void tela_erro_pjt(void) {
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-	printf(" ||                 ------- Enter para continuar! --------          ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 	getchar();
 }
 
@@ -459,6 +459,7 @@ void exibir_projeto(Projeto* pjt) {
 		printf(" ||               >>>>>> Projeto Inexistente <<<<<<                 ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
 	} 
     else {
         system("cls || clear");

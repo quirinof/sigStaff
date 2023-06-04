@@ -54,10 +54,14 @@ void atualizar_atividade(void) {
     	printf(" ||               >>>>>> Atividade inexistente <<<<<<               ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
   	} 
     else {
-		  atv = tela_adicionar_atividade();
+		  tela_editar_atividade(atv);
 		  strcpy(atv->id, id);
 		  refazer_atividade(atv);
 		  free(atv);
@@ -157,8 +161,8 @@ Atividade* tela_adicionar_atividade(void) {
     printf("\n");
 
     do {
-        printf("         CPF do Funcionario atribuido: \n");
-        printf("         => ");
+        printf("            CPF do Funcionario atribuido: \n");
+        printf("            => ");
         scanf("%[^\n]", atv->cpf);
         getchar();
     } while (!valida_cpf(atv->cpf));   
@@ -242,11 +246,7 @@ char* tela_atualizar_atividade(void) {
 }
 
 
- ////////// esta e as demais funcoes do mesmo tema editar
-   ////////// por enquanto ficaram inutilizaveis e posteriormente
-   ////////// sera encontrada uma forma de reutiliza-las
-Atividade* tela_editar_atividade(void) {
-    Atividade* atv;
+void tela_editar_atividade(Atividade* atv) {
     char editar;
 
     do {
@@ -276,25 +276,21 @@ Atividade* tela_editar_atividade(void) {
         getchar();
         printf("\n");
         switch (editar) {
-            case '1': atv = tela_editar_titulo_atividade();
+            case '1': tela_editar_titulo_atividade(atv);
                       break;
-            case '2': atv = tela_editar_cpf_atividade();
+            case '2': tela_editar_cpf_atividade(atv);
                       break;
-            case '3': atv = tela_editar_data_atividade();
+            case '3': tela_editar_data_atividade(atv);
                       break;
-            case '4': atv = tela_editar_id_atribuido();
+            case '4': tela_editar_id_atribuido(atv);
                       break;
-            case '5': atv = tela_editar_id_atividade();
+            case '5': tela_editar_id_atividade(atv);
                       break;
         }          
     } while (editar != '0');
-
-    return atv;
 }
 
-Atividade* tela_editar_titulo_atividade(void) {
-    Atividade* atv;
-
+void tela_editar_titulo_atividade(Atividade* atv) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -316,17 +312,13 @@ Atividade* tela_editar_titulo_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-    
-    return atv;
+    getchar();
 }
 
-Atividade* tela_editar_cpf_atividade(void) {
-    Atividade* atv;
-
+void tela_editar_cpf_atividade(Atividade* atv) {
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -348,17 +340,13 @@ Atividade* tela_editar_cpf_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return atv;
+    getchar();
 }
 
-Atividade* tela_editar_data_atividade(void) {
-    Atividade* atv;
-
+void tela_editar_data_atividade(Atividade* atv) {
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -380,17 +368,13 @@ Atividade* tela_editar_data_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return atv;
+    getchar();
 }
 
-Atividade* tela_editar_id_atribuido(void) {
-    Atividade* atv;
-
+void tela_editar_id_atribuido(Atividade* atv) {
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -412,17 +396,13 @@ Atividade* tela_editar_id_atribuido(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return atv;
+    getchar();
 }
 
-Atividade* tela_editar_id_atividade(void) {
-    Atividade* atv;
-
+void tela_editar_id_atividade(Atividade* atv) {
     system("cls || clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -444,13 +424,12 @@ Atividade* tela_editar_id_atividade(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                       Informacao atualizada!                    ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
-
-    return atv;
 }
+
 
 char* tela_excluir_atividade(void) {
     char* id;
@@ -500,6 +479,8 @@ void tela_erro_atv(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
 	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 	getchar();
 }
 
@@ -543,6 +524,7 @@ void exibir_atividade(Atividade* atv) {
         printf(" ||               >>>>>> Atividade Inexistente <<<<<<               ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
     } 
     else {
         system("cls || clear");
@@ -555,11 +537,10 @@ void exibir_atividade(Atividade* atv) {
         printf(" ||                 >>>>>> Atividade Encontrada <<<<<<              ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||      Titulo/Nome: %s                    \n", atv->nome_atv);
-        printf(" ||      Data de entrega: %s                \n", atv->data_atv);
+        printf(" ||      Data de entrega(ddmmaaaa): %s      \n", atv->data_atv);
         printf(" ||      ID da Atividade: %s                \n", atv->id);
         printf(" ||      ID do Projeto relacionado: %s      \n", atv->id_pjt);
         printf(" ||      CPF do Funcionario atribuido: %s   \n", atv->cpf);
-        printf(" ||      Status: %d                         \n", atv->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");

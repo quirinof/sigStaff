@@ -26,11 +26,11 @@ void exibir_atividade(Atividade*);
 void refazer_atividade(Atividade*);
 
 
-Atividade* tela_editar_atividade(void);
-Atividade* tela_editar_titulo_atividade(void);
-Atividade* tela_editar_cpf_atividade(void);
-Atividade* tela_editar_data_atividade(void);
-Atividade* tela_editar_id_atribuido(void);
-Atividade* tela_editar_id_atividade(void);
+void tela_editar_atividade(Atividade*);
+void tela_editar_titulo_atividade(Atividade*);
+void tela_editar_cpf_atividade(Atividade*);
+void tela_editar_data_atividade(Atividade*);
+void tela_editar_id_atribuido(Atividade*);
+void tela_editar_id_atividade(Atividade*);
 
 

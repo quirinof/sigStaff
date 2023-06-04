@@ -68,13 +68,12 @@ int valida_id(char* id, int t) {
 }
 
 
+
 int valida_cpf(char* cpf) {
     int i, j;
     int d1 = 0;
     int d2 = 0;
-    // a função elimina pontos ou traços, deixando apenas digitos numericos
     limpa_caracteres(cpf);
-    // verificação da quantidade de digitos
     if (!quantidade_digitos(cpf, 11)) {
         return 0;
     }
@@ -82,19 +81,35 @@ int valida_cpf(char* cpf) {
     for (i = 0, j = 10; i < 9; i++, j--) {
         d1 += (cpf[i] - '0') * j;
     }
-    d1 = (11 - (d1 % 11)) % 10;
+    d1 = d1 % 11;
     // verifica se o primeiro digito é valido
-    if ((cpf[9] - '0') != d1) {
-        return 0;
+    if (d1 == 0 || d1 == 1) {
+        if (cpf[9] != '0') {
+            return 0;
+        }
+    }
+    else {
+        d1 = 11 - d1;
+        if (cpf[9] - '0' != d1) {
+            return 0;
+        }
     }
     // calculo digito 2
     for (i = 0, j = 11; i < 10; i++, j--) {
         d2 += (cpf[i] - '0') * j;
     }
-    d2 = (11 - (d2 % 11)) % 10;
+    d2 = d2 % 11;
     // verifica se o segundo digito é valido
-    if ((cpf[10] - '0') != d2) {
-        return 0;
+    if (d2 == 0 || d2 == 1) {
+        if (cpf[10] != '0') {
+            return 0;
+        }
+    }
+    else {
+        d2 = 11 - d2;
+        if (cpf[10] - '0' != d2) {
+            return 0;
+        }
     }
     return 1;
 }

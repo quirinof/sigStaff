@@ -52,6 +52,10 @@ void atualizar_funcionario(void) {
     	printf(" ||               >>>>>> Funcionario inexistente <<<<<<             ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
   	} 
     else {
@@ -195,7 +199,7 @@ char* tela_pesquisar_funcionario(void) {
     printf(" ||                                                                 ||\n");
     cpf = (char*) malloc(12*sizeof(char));
     do {
-        printf("         CPF do Funcionario (apenas digitos): \n");
+        printf("         CPF do Funcionario: \n");
         printf("         => ");
         scanf("%[^\n]", cpf);
         getchar();
@@ -530,7 +534,6 @@ void exibir_funcionario(Funcionario* fnc) {
         printf(" ||      Email: %s        \n", fnc->email);
         printf(" ||      Celular: %s      \n", fnc->celular);
         printf(" ||      CPF: %s          \n", fnc->cpf);
-        printf(" ||      Status: %d       \n", fnc->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");

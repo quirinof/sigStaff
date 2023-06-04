@@ -61,10 +61,10 @@ void atualizar_atividade(void) {
         getchar();
   	} 
     else {
-		  tela_editar_atividade(atv);
-		  strcpy(atv->id, id);
-		  refazer_atividade(atv);
-		  free(atv);
+		tela_editar_atividade(atv);
+		strcpy(atv->id, id);
+		refazer_atividade(atv);
+		free(atv);
 	}
 	free(id);
 }

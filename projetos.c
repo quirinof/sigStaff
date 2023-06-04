@@ -52,6 +52,10 @@ void atualizar_projeto(void) {
         printf(" ||               >>>>>> Projeto inexistente <<<<<<                 ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
     }
     else {
@@ -475,7 +479,6 @@ void exibir_projeto(Projeto* pjt) {
         printf(" ||      Nome: %s            \n", pjt->nome);
         printf(" ||      ID: %s              \n", pjt->id);
         printf(" ||      Data de Entrega: %s \n", pjt->data_entrega);
-        printf(" ||      Status: %d          \n", pjt->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");

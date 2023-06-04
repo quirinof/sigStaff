@@ -55,9 +55,8 @@ void atualizar_projeto(void) {
         getchar();
     }
     else {
-        pjt = tela_adicionar_projeto();
-		strcpy(pjt->id, id);
-		refazer_projeto(pjt);
+        tela_editar_projeto(pjt);
+        refazer_projeto(pjt);
 		free(pjt);
     }
     free(id);
@@ -222,7 +221,7 @@ char* tela_atualizar_projeto(void) {
    ////////// esta e as demais funcoes do mesmo tema editar
    ////////// por enquanto ficaram inutilizaveis e posteriormente
    ////////// sera encontrada uma forma de reutiliza-las 
-void tela_editar_projeto(void) {
+void tela_editar_projeto(Projeto* pjt) {
     char editar;
 
     do {
@@ -240,9 +239,8 @@ void tela_editar_projeto(void) {
         printf(" ||         [ 1 ] Titulo                                            ||\n");
         printf(" ||         [ 2 ] ID                                                ||\n");
         printf(" ||         [ 3 ] Data para entrega                                 ||\n");
-        printf(" ||         [ 4 ] Status                                            ||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||         [ 0 ] Sair                                              ||\n");
+        printf(" ||         [ 0 ] Retornar ao menu de Projetos                      ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
@@ -251,21 +249,17 @@ void tela_editar_projeto(void) {
         getchar();
         printf("\n");
         switch (editar) {
-            case '1': tela_editar_titulo_projeto();
+            case '1': tela_editar_titulo_projeto(pjt);
                       break;
-            case '2': tela_editar_id_projeto();
+            case '2': tela_editar_id_projeto(pjt);
                       break;
-            case '3': tela_editar_data_projeto();
-                      break;
-            case '4': tela_editar_status_projeto();
+            case '3': tela_editar_data_projeto(pjt);
                       break;
         }
     } while (editar != '0');
 }
 
-void tela_editar_titulo_projeto(void) {
-    char nome[51];
-
+void tela_editar_titulo_projeto(Projeto* pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -280,9 +274,9 @@ void tela_editar_titulo_projeto(void) {
     do {
         printf("         Novo titulo do projeto: \n");
         printf("         => ");
-        scanf("%[^\n]", nome);
+        scanf("%[^\n]", pjt->nome);
         getchar();
-    } while (!valida_nome(nome));
+    } while (!valida_nome(pjt->nome));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -293,9 +287,7 @@ void tela_editar_titulo_projeto(void) {
     getchar(); 
 }
 
-void tela_editar_id_projeto(void) {
-    char id[6];
-
+void tela_editar_id_projeto(Projeto* pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -310,9 +302,9 @@ void tela_editar_id_projeto(void) {
     do {
         printf("            Novo ID do Projeto: \n");
         printf("            => ");
-        scanf("%[^\n]", id);
+        scanf("%[^\n]", pjt->id);
         getchar();
-    } while (!valida_id(id, 5));
+    } while (!valida_id(pjt->id, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -323,9 +315,7 @@ void tela_editar_id_projeto(void) {
     getchar(); 
 }
 
-void tela_editar_data_projeto(void) {
-    char data_entrega[11];
-
+void tela_editar_data_projeto(Projeto* pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -340,9 +330,9 @@ void tela_editar_data_projeto(void) {
     do {
         printf("         Nova data de entrega do projeto (dd/mm/aaaa): \n");
         printf("         => ");
-        scanf("%[^\n]", data_entrega);
+        scanf("%[^\n]", pjt->data_entrega);
         getchar();
-    } while (!valida_data(data_entrega));    
+    } while (!valida_data(pjt->data_entrega));    
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

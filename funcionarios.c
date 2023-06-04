@@ -49,10 +49,13 @@ void atualizar_funcionario(void) {
 	cpf = tela_atualizar_funcionario();
 	fnc = buscar_funcionario(cpf);
 	if (fnc == NULL) {
-    	printf("\n>>>>> Funcionario não encontrado <<<<<\n");
+    	printf(" ||               >>>>>> Funcionario inexistente <<<<<<             ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
   	} 
     else {
-		  fnc = tela_adicionar_funcionario();
+		  tela_editar_funcionario(fnc);
 		  strcpy(fnc->cpf, cpf);
 		  refazer_funcionario(fnc);
 		  free(fnc);
@@ -68,12 +71,15 @@ void excluir_funcionario(void) {
 	fnc = (Funcionario*) malloc(sizeof(Funcionario));
 	fnc = buscar_funcionario(cpf);
 	if (fnc == NULL) {
-    	printf("\n >>>>> Funcionario não encontrado! <<<<< \n");
+    	printf(" ||             >>>>>> Funcionario nao encontrado! <<<<<<           ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
   	} 
     else {
-		  fnc->status = 0;
-		  refazer_funcionario(fnc);
-		  free(fnc);
+		fnc->status = 0;
+		refazer_funcionario(fnc);
+		free(fnc);
 	}
 	free(cpf);
 }
@@ -229,11 +235,7 @@ char* tela_atualizar_funcionario(void) {
     return cpf;
 }
 
-   ////////// esta e as demais funcoes do mesmo tema editar
-   ////////// por enquanto ficaram inutilizaveis e posteriormente
-   ////////// sera encontrada uma forma de reutiliza-las 
-Funcionario* tela_editar_funcionario(void) {
-    Funcionario *fnc;
+void tela_editar_funcionario(Funcionario *fnc) {
     char editar;
 
     do {
@@ -263,25 +265,22 @@ Funcionario* tela_editar_funcionario(void) {
         getchar();
         printf("\n");
         switch (editar) {
-            case '1': fnc = tela_editar_nome();
+            case '1': tela_editar_nome(fnc);
                       break;
-            case '2': fnc = tela_editar_cpf();
+            case '2': tela_editar_cpf(fnc);
                       break;
-            case '3': fnc = tela_editar_email();
+            case '3': tela_editar_email(fnc);
                       break;
-            case '4': fnc = tela_editar_cel();
+            case '4': tela_editar_cel(fnc);
                       break;
-            case '5': fnc = tela_editar_cargo();
+            case '5': tela_editar_cargo(fnc);
                       break;
         }
     } while (editar != '0');
-    return fnc;
+    fnc->status = 1;
 }
 
-
-Funcionario* tela_editar_nome(void) {
-    Funcionario *fnc;
-
+void tela_editar_nome(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -303,18 +302,14 @@ Funcionario* tela_editar_nome(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||               ...... Informacao atualizada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return fnc; 
+    getchar();
 }
 
 
-Funcionario* tela_editar_cpf(void) {
-    Funcionario *fnc;
-
+void tela_editar_cpf(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -336,17 +331,13 @@ Funcionario* tela_editar_cpf(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||               ...... Informacao atualizada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
-
-    return fnc;
 }
 
-Funcionario* tela_editar_cel(void) {
-    Funcionario *fnc;
-
+void tela_editar_cel(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -368,16 +359,13 @@ Funcionario* tela_editar_cel(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||               ...... Informacao atualizada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return fnc;
+    getchar();
 }
 
-Funcionario* tela_editar_email(void) {
-    Funcionario *fnc;
+void tela_editar_email(Funcionario* fnc) {
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -400,17 +388,13 @@ Funcionario* tela_editar_email(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||               ...... Informacao atualizada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return fnc;
+    getchar();
 }
 
-Funcionario* tela_editar_cargo(void) {
-    Funcionario* fnc;
-    
+void tela_editar_cargo(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -432,12 +416,10 @@ Funcionario* tela_editar_cargo(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Atualizacao efetuada ......                ||\n");
+    printf(" ||               ...... Informacao atualizada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-
-    return fnc;
+    getchar();
 }
 
 
@@ -466,7 +448,7 @@ char* tela_excluir_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                  ...... Acao realizada ......                   ||\n");
+    printf(" ||                ...... Funcionario excluido ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -489,7 +471,9 @@ void tela_erro(void) {
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-	printf("     ------- Enter para continuar! --------");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 	getchar();
 }
 
@@ -526,7 +510,10 @@ Funcionario* buscar_funcionario(char* cpf) {
 
 void exibir_funcionario(Funcionario* fnc) {
 	if (fnc == NULL) {
-		printf("\n>>>>>> Funcionario Inexistente <<<<<<\n");
+		printf(" ||               >>>>>> Funcionario Inexistente <<<<<<             ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
 	} 
     else {
         system("cls || clear");
@@ -548,7 +535,9 @@ void exibir_funcionario(Funcionario* fnc) {
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
 	}
-	printf(" ||    ------- Enter para continuar! --------");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 	getchar();
 }
 

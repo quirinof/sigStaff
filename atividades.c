@@ -18,6 +18,8 @@ void modulo_atividades(void) {
                       break;
             case '4': excluir_atividade();
                       break;
+            case '5': listar_atividades();
+                      break;
         }
     } while (opcao != '0');
 }
@@ -107,6 +109,7 @@ char tela_atividades(void) {
     printf(" ||         [ 2 ] Pesquisar atividade existente                     ||\n");
     printf(" ||         [ 3 ] Atualizar uma atividade em andamento              ||\n");
     printf(" ||         [ 4 ] Excluir atividade                                 ||\n");
+    printf(" ||         [ 5 ] Listar todas as Atividades                        ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -541,6 +544,7 @@ void exibir_atividade(Atividade* atv) {
         printf(" ||      ID da Atividade: %s                \n", atv->id);
         printf(" ||      ID do Projeto relacionado: %s      \n", atv->id_pjt);
         printf(" ||      CPF do Funcionario atribuido: %s   \n", atv->cpf);
+        printf(" ||      Status: %d                         \n", atv->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
@@ -571,4 +575,16 @@ void refazer_atividade(Atividade* atv) {
 	}
 	fclose(fp);
 	free(atv_lido);
+}
+
+void listar_atividades(void) {
+    FILE *fp;
+    Atividade *atv;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    while (fread(atv, sizeof(Atividade), 1, fp)) {
+        exibir_atividade(atv);
+    }
+    fclose(fp);
+    free(atv);
 }

@@ -1,38 +1,29 @@
-#include <stdio.h> 
+#include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
+#include "atividades.h"
 #include "funcionarios.h"
 #include "projetos.h"
-#include "atividades.h"
 #include "relatorios.h"
-#include "sobre.h"
-
-char tela_principal(void);
+#include "validacoes.h"
 
 
-int main(void) {
+void modulo_relatorios(void) {
     char opcao;
-
     do {
-        opcao = tela_principal();
+        opcao = tela_relatorios();
         switch(opcao) {
-            case '1': modulo_funcionarios();
+            case '1': listar_funcionarios();
                       break;
-            case '2': modulo_projetos();
+            case '2': listar_projetos();
                       break;
-            case '3': modulo_atividades();
-                      break;
-            case '4': modulo_relatorios();
-                      break;
-            case '5': tela_sobre();
-                      tela_equipe();
+            case '3': listar_atividades();
                       break;
         }
     } while (opcao != '0');
-    
-    return 0;
 }
 
-char tela_principal(void) {
+char tela_relatorios(void) {
     char escolha;
 
     system("cls||clear");
@@ -42,21 +33,19 @@ char tela_principal(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                  >>>>>>  MENU PRINCIPAL  <<<<<<                 ||\n");
+    printf(" ||                    >>>>>>  RELATORIOS  <<<<<<                   ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
     printf(" ||         [ 2 ] Projetos                                          ||\n");
     printf(" ||         [ 3 ] Atividades                                        ||\n");
-    printf(" ||         [ 4 ] Relatorios                                        ||\n"); 
-    printf(" ||         [ 5 ] Sobre                                             ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 0 ] Sair                                              ||\n");
+    printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"); 
     printf(" ||                                                                 ||\n");
-    printf("       Digite o numero da sua escolha: ");
+    printf("       Digite sua escolha: ");
     scanf("%c", &escolha);
     getchar();
-
+    
     return escolha;
 }

@@ -582,6 +582,9 @@ void listar_atividades(void) {
     Atividade *atv;
     atv = (Atividade*) malloc(sizeof(Atividade));
     fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
     while (fread(atv, sizeof(Atividade), 1, fp)) {
         exibir_atividade(atv);
     }

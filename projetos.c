@@ -521,6 +521,9 @@ void listar_projetos(void) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_pjt();
+    }
     while (fread(pjt, sizeof(Projeto), 1, fp)) {
         exibir_projeto(pjt);
     }

@@ -17,6 +17,7 @@ void modulo_projetos(void) {
                       break;
             case '4': excluir_projeto();
                       break;
+            case '5': lista_projeto();
         }
     } while (opcao != '0');
 }
@@ -88,6 +89,7 @@ void excluir_projeto(void) {
     free(id);
 }
 
+
 char tela_projetos(void) {
     char escolha;
 
@@ -104,6 +106,7 @@ char tela_projetos(void) {
     printf(" ||         [ 2 ] Pesquisar por projeto existente                   ||\n");
     printf(" ||         [ 3 ] Atualizar um projeto em andamento                 ||\n");
     printf(" ||         [ 4 ] Excluir projeto                                   ||\n");
+    printf(" ||         [ 5 ] Listar todos os projetos                          ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -479,6 +482,7 @@ void exibir_projeto(Projeto* pjt) {
         printf(" ||      Nome: %s            \n", pjt->nome);
         printf(" ||      ID: %s              \n", pjt->id);
         printf(" ||      Data de Entrega: %s \n", pjt->data_entrega);
+        printf(" ||      Status: %d          \n", pjt->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
@@ -509,4 +513,16 @@ void refazer_projeto(Projeto* pjt) {
     }
     fclose(fp);
     free(pjt_lido);
+}
+
+void lista_projeto(void) {
+    FILE *fp;
+    Projeto *pjt;
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    fp = fopen("projetos.dat", "rb");
+    while (fread(pjt, sizeof(Projeto), 1, fp)) {
+        exibir_projeto(pjt);
+    }
+    fclose(fp);
+    free(pjt);
 }

@@ -17,6 +17,8 @@ void modulo_funcionarios(void) {
                       break;
             case '4': excluir_funcionario();
                       break;
+            case '5': listar_funcionarios();
+                      break;
         }
     } while (opcao != '0');
 }
@@ -105,6 +107,7 @@ char tela_funcionarios(void) {
     printf(" ||        [ 2 ] Pesquisar funcionario ja cadastrado                ||\n");
     printf(" ||        [ 3 ] Atualizar os dados de um funcionario               ||\n");
     printf(" ||        [ 4 ] Excluir funcionario do sistema                     ||\n");
+    printf(" ||        [ 5 ] Listar todos os Funcionarios                       ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 0 ] Voltar ao Menu Principal                           ||\n");
     printf(" ||                                                                 ||\n");
@@ -185,7 +188,6 @@ Funcionario* tela_adicionar_funcionario(void) {
 
 char* tela_pesquisar_funcionario(void) {
     char *cpf;
-
     system("cls||clear");  
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -534,6 +536,7 @@ void exibir_funcionario(Funcionario* fnc) {
         printf(" ||      Email: %s        \n", fnc->email);
         printf(" ||      Celular: %s      \n", fnc->celular);
         printf(" ||      CPF: %s          \n", fnc->cpf);
+        printf(" ||      Status: %d       \n", fnc->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
@@ -564,4 +567,19 @@ void refazer_funcionario(Funcionario* fnc) {
 	}
 	fclose(fp);
 	free(fnc_lido);
+}
+
+void listar_funcionarios(void) {
+    FILE *fp;
+    Funcionario *fnc;
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+        exibir_funcionario(fnc);
+    }
+    fclose(fp);
+    free(fnc);
 }

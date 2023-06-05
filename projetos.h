@@ -29,4 +29,4 @@ Projeto* buscar_projeto(char*);
 void exibir_projeto(Projeto*);
 void refazer_projeto(Projeto*);
 
-void lista_projeto(void);
+void listar_projetos(void);

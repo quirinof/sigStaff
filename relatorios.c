@@ -23,6 +23,14 @@ void modulo_relatorios(void) {
     } while (opcao != '0');
 }
 
+void atividades_por_funcionario(void) {
+    tela_atividades_por_funcionario();
+}
+
+void atividades_por_projeto(void) {
+    tela_atividades_por_projeto();
+}
+
 char tela_relatorios(void) {
     char escolha;
 
@@ -73,6 +81,32 @@ void tela_atividades_por_funcionario(void) {
     scanf("%s[^\n]", cpf);
     getchar();
     } while (!valida_cpf(cpf));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void tela_atividades_por_projeto(void) {
+    char id_pjt[6];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ----- Atividades por Projeto -----               ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+    printf(" ||         ID do Projeto:                                          ||\n");
+    printf(" ||         => ");
+    scanf("%s[^\n]", id_pjt);
+    getchar();
+    } while (!valida_id(id_pjt, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

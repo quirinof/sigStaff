@@ -33,7 +33,9 @@ char tela_relatorios(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                    >>>>>>  RELATORIOS  <<<<<<                   ||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         Lista completa de todos os:                             ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
     printf(" ||         [ 2 ] Projetos                                          ||\n");
@@ -50,6 +52,32 @@ char tela_relatorios(void) {
     return escolha;
 }
 
+
+void tela_atividades_por_funcionario(void) {
+    char cpf[12];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||              ----- Atividades por Funcionario -----             ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+    printf(" ||         CPF do Funcionario:                                     ||\n");
+    printf(" ||         => ");
+    scanf("%s[^\n]", cpf);
+    getchar();
+    } while (!valida_cpf(cpf));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
 
 void listar_funcionarios(void) {
     FILE *fp;

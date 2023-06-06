@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "string.h"
 #include "projetos.h"
+#include "relatorios.h"
 #include "validacoes.h"
 
 void modulo_projetos(void) {
@@ -514,19 +515,4 @@ void refazer_projeto(Projeto* pjt) {
     }
     fclose(fp);
     free(pjt_lido);
-}
-
-void listar_projetos(void) {
-    FILE *fp;
-    Projeto *pjt;
-    pjt = (Projeto*) malloc(sizeof(Projeto));
-    fp = fopen("projetos.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_pjt();
-    }
-    while (fread(pjt, sizeof(Projeto), 1, fp)) {
-        exibir_projeto(pjt);
-    }
-    fclose(fp);
-    free(pjt);
 }

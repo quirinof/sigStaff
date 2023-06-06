@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "string.h"
 #include "atividades.h"
+#include "relatorios.h"
 #include "validacoes.h"
 
 
@@ -575,19 +576,4 @@ void refazer_atividade(Atividade* atv) {
 	}
 	fclose(fp);
 	free(atv_lido);
-}
-
-void listar_atividades(void) {
-    FILE *fp;
-    Atividade *atv;
-    atv = (Atividade*) malloc(sizeof(Atividade));
-    fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        exibir_atividade(atv);
-    }
-    fclose(fp);
-    free(atv);
 }

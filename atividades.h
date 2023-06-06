@@ -32,7 +32,3 @@ void tela_editar_cpf_atividade(Atividade*);
 void tela_editar_data_atividade(Atividade*);
 void tela_editar_id_atribuido(Atividade*);
 void tela_editar_id_atividade(Atividade*);
-
-void listar_atividades(void);
-
-

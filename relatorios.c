@@ -49,3 +49,49 @@ char tela_relatorios(void) {
     
     return escolha;
 }
+
+
+void listar_funcionarios(void) {
+    FILE *fp;
+    Funcionario *fnc;
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+        exibir_funcionario(fnc);
+    }
+    fclose(fp);
+    free(fnc);
+}
+
+void listar_projetos(void) {
+    FILE *fp;
+    Projeto *pjt;
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    fp = fopen("projetos.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_pjt();
+    }
+    while (fread(pjt, sizeof(Projeto), 1, fp)) {
+        exibir_projeto(pjt);
+    }
+    fclose(fp);
+    free(pjt);
+}
+
+void listar_atividades(void) {
+    FILE *fp;
+    Atividade *atv;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    while (fread(atv, sizeof(Atividade), 1, fp)) {
+        exibir_atividade(atv);
+    }
+    fclose(fp);
+    free(atv);
+}

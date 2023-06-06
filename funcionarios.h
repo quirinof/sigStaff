@@ -33,4 +33,3 @@ void tela_editar_cel(Funcionario*);
 void tela_editar_email(Funcionario*);
 void tela_editar_cargo(Funcionario*);
 
-void listar_funcionarios(void);

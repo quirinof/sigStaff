@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "string.h"
 #include "funcionarios.h"
+#include "relatorios.h"
 #include "validacoes.h"
 
 void modulo_funcionarios(void) {
@@ -567,19 +568,4 @@ void refazer_funcionario(Funcionario* fnc) {
 	}
 	fclose(fp);
 	free(fnc_lido);
-}
-
-void listar_funcionarios(void) {
-    FILE *fp;
-    Funcionario *fnc;
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
-    fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
-        tela_erro();
-    }
-    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
-        exibir_funcionario(fnc);
-    }
-    fclose(fp);
-    free(fnc);
 }

@@ -19,6 +19,12 @@ void modulo_relatorios(void) {
                       break;
             case '3': listar_atividades();
                       break;
+            case '4': atividades_por_funcionario();
+                      break;
+            case '5': atividades_por_projeto();
+                      break;
+            case '6': funcionarios_por_projeto();
+                      break;
         }
     } while (opcao != '0');
 }
@@ -29,6 +35,10 @@ void atividades_por_funcionario(void) {
 
 void atividades_por_projeto(void) {
     tela_atividades_por_projeto();
+}
+
+void funcionarios_por_projeto(void) {
+    tela_funcionarios_por_projeto();
 }
 
 char tela_relatorios(void) {
@@ -43,11 +53,17 @@ char tela_relatorios(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         Lista completa de todos os:                             ||\n");
+    printf(" ||         Relatorio completo:                         ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
     printf(" ||         [ 2 ] Projetos                                          ||\n");
     printf(" ||         [ 3 ] Atividades                                        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         Relatorio Especifico:                                   ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         [ 4 ] Atividades por Funcionario                        ||\n");
+    printf(" ||         [ 5 ] Atividades por Projeto                            ||\n");
+    printf(" ||         [ 6 ] Funcionarios por Projeto                          ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -78,7 +94,7 @@ void tela_atividades_por_funcionario(void) {
     do {
     printf(" ||         CPF do Funcionario:                                     ||\n");
     printf(" ||         => ");
-    scanf("%s[^\n]", cpf);
+    scanf("%[^\n]", cpf);
     getchar();
     } while (!valida_cpf(cpf));
     printf(" ||                                                                 ||\n");
@@ -104,7 +120,33 @@ void tela_atividades_por_projeto(void) {
     do {
     printf(" ||         ID do Projeto:                                          ||\n");
     printf(" ||         => ");
-    scanf("%s[^\n]", id_pjt);
+    scanf("%[^\n]", id_pjt);
+    getchar();
+    } while (!valida_id(id_pjt, 5));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void tela_funcionarios_por_projeto(void) {
+    char id_pjt[6];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ----- Funcionarios por Projeto -----             ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+    printf(" ||         ID do Projeto:                                          ||\n");
+    printf(" ||         => ");
+    scanf("%[^\n]", id_pjt);
     getchar();
     } while (!valida_id(id_pjt, 5));
     printf(" ||                                                                 ||\n");

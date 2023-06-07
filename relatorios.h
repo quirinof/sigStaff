@@ -4,10 +4,12 @@ char tela_relatorios(void);
 void atividades_por_funcionario(void);
 void funcionarios_por_projeto(void);
 void atividades_por_projeto(void);
+void atividades_por_data(void);
 
 char* tela_atividades_por_funcionario(void);
 void tela_funcionarios_por_projeto(void);
 void tela_atividades_por_projeto(void);
+void tela_atividades_por_data(void);
 
 void relatorio_atv_por_fnc(char*);
 

@@ -44,6 +44,10 @@ void funcionarios_por_projeto(void) {
     tela_funcionarios_por_projeto();
 }
 
+void atividades_por_data(void) {
+    tela_atividades_por_data();
+}
+
 char tela_relatorios(void) {
     char escolha;
 
@@ -56,7 +60,7 @@ char tela_relatorios(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         Relatorio completo:                         ||\n");
+    printf(" ||         Relatorio completo:                                     ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 1 ] Funcionarios                                      ||\n");
     printf(" ||         [ 2 ] Projetos                                          ||\n");
@@ -64,9 +68,10 @@ char tela_relatorios(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||         Relatorio Especifico:                                   ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         [ 4 ] Atividades por Funcionario                        ||\n");
-    printf(" ||         [ 5 ] Atividades por Projeto                            ||\n");
-    printf(" ||         [ 6 ] Funcionarios por Projeto                          ||\n");
+    printf(" ||         [ 4 ] Todas as atividades relacionadas a um Funcionario ||\n");
+    printf(" ||         [ 5 ] As atividades de um Projeto                            ||\n");
+    printf(" ||         [ 6 ] Relatorio de funcionarios por projeto                          ||\n");
+    printf(" ||         [ 7 ] Lista de atividades por data especifica             ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -96,10 +101,10 @@ char* tela_atividades_por_funcionario(void) {
     printf(" ||              ----- Atividades por Funcionario -----             ||\n");
     printf(" ||                                                                 ||\n");
     do {
-    printf(" ||         CPF do Funcionario:                                     ||\n");
-    printf(" ||         => ");
-    scanf("%[^\n]", cpf);
-    getchar();
+        printf(" ||         CPF do Funcionario:                                     ||\n");
+        printf(" ||         => ");
+        scanf("%[^\n]", cpf);
+        getchar();
     } while (!valida_cpf(cpf));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -124,15 +129,14 @@ void tela_atividades_por_projeto(void) {
     printf(" ||                ----- Atividades por Projeto -----               ||\n");
     printf(" ||                                                                 ||\n");
     do {
-    printf(" ||         ID do Projeto:                                          ||\n");
-    printf(" ||         => ");
-    scanf("%[^\n]", id_pjt);
-    getchar();
+        printf(" ||         ID do Projeto:                                          ||\n");
+        printf(" ||         => ");
+        scanf("%[^\n]", id_pjt);
+        getchar();
     } while (!valida_id(id_pjt, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
 }
 
 void tela_funcionarios_por_projeto(void) {
@@ -150,15 +154,39 @@ void tela_funcionarios_por_projeto(void) {
     printf(" ||                ----- Funcionarios por Projeto -----             ||\n");
     printf(" ||                                                                 ||\n");
     do {
-    printf(" ||         ID do Projeto:                                          ||\n");
-    printf(" ||         => ");
-    scanf("%[^\n]", id_pjt);
-    getchar();
+        printf(" ||         ID do Projeto:                                          ||\n");
+        printf(" ||         => ");
+        scanf("%[^\n]", id_pjt);
+        getchar();
     } while (!valida_id(id_pjt, 5));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
+}
+
+void tela_atividades_por_data(void) {
+    char data_atv[11];
+
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                  ----- Atividades por Data -----                ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf(" ||         Data de entrega da atividade:                           ||\n");
+        printf(" ||         => ");
+        scanf("%[^\n]", data_atv);
+        getchar();
+    } while(!valida_data(data_atv));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 }
 
 void relatorio_atv_por_fnc (char *cpf) {
@@ -187,6 +215,7 @@ void relatorio_atv_por_fnc (char *cpf) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
+
 
 void listar_funcionarios(void) {
     FILE *fp;

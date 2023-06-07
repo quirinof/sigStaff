@@ -10,7 +10,6 @@ void tela_funcionarios_por_projeto(void);
 void tela_atividades_por_projeto(void);
 
 void relatorio_atv_por_fnc(char*);
-void listar_atv_por_fnc(char*);
 
 void listar_funcionarios(void);
 void listar_projetos(void);

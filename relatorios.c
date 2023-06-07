@@ -161,6 +161,33 @@ void tela_funcionarios_por_projeto(void) {
     getchar();
 }
 
+void relatorio_atv_por_fnc (char *cpf) {
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||          --- CPF do(a) Funcionario(a): %s ---                   \n", cpf);
+    printf(" ||                                                                 ||\n");
+    printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||              00000          ||      Exemplo de nome 0           ||\n");
+    printf(" ||              11111          ||      Exemplo de nome 1           ||\n");
+    printf(" ||              22222          ||      Exemplo de nome 2           ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
 void listar_funcionarios(void) {
     FILE *fp;
     Funcionario *fnc;

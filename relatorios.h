@@ -17,5 +17,5 @@ void relatorio_atv_por_data(char*);
 void listar_funcionarios(void);
 void listar_projetos(void);
 void listar_atividades(void);
-
+void listar_atividades_por_data(char*);
 

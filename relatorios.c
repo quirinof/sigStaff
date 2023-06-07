@@ -215,8 +215,8 @@ void relatorio_atv_por_data(char *data_atv) {
     printf(" ||          --- Data da Atividade(ddmmaaaa): %s ---                       \n", data_atv);
     printf(" ||                                                                 ||\n");
     printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
-    printf(" ||                                                                 ||\n");
-    // listar_atividades_por_data(data_atv);
+    printf(" ||   -----------------------------------------------------------   ||\n");
+    listar_atividades_por_data(data_atv);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -224,6 +224,23 @@ void relatorio_atv_por_data(char *data_atv) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+}
+
+void listar_atividades_por_data(char *data) {
+    FILE *fp;
+    Atividade *atv;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    while (fread(atv, sizeof(Atividade), 1, fp)) {
+        if(strcmp(atv->data_atv, data) == 0) {
+           printf(" ||              %s          ||      %s             \n", atv->id, atv->nome_atv); 
+        }
+    }
+    fclose(fp);
+    free(atv);
 }
 
 

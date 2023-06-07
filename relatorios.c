@@ -30,7 +30,10 @@ void modulo_relatorios(void) {
 }
 
 void atividades_por_funcionario(void) {
-    tela_atividades_por_funcionario();
+    char *cpf;
+    cpf = tela_atividades_por_funcionario();
+    relatorio_atv_por_fnc(cpf);
+    free(cpf);
 }
 
 void atividades_por_projeto(void) {
@@ -77,8 +80,9 @@ char tela_relatorios(void) {
 }
 
 
-void tela_atividades_por_funcionario(void) {
-    char cpf[12];
+char* tela_atividades_por_funcionario(void) {
+    char *cpf;
+    cpf = (char*) malloc(12*sizeof(char));
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -101,6 +105,8 @@ void tela_atividades_por_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
+    return cpf;
 }
 
 void tela_atividades_por_projeto(void) {

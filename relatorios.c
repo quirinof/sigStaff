@@ -212,7 +212,7 @@ void relatorio_atv_por_data(char *data_atv) {
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||          --- Data da Atividade(ddmmaaaa): %s ---                       \n", data_atv);
+    printf(" ||          --- Data da Atividade(ddmmaaaa): %s ---                  \n", data_atv);
     printf(" ||                                                                 ||\n");
     printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");
@@ -226,24 +226,6 @@ void relatorio_atv_por_data(char *data_atv) {
     getchar();
 }
 
-void listar_atividades_por_data(char *data) {
-    FILE *fp;
-    Atividade *atv;
-    atv = (Atividade*) malloc(sizeof(Atividade));
-    fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        if(strcmp(atv->data_atv, data) == 0) {
-           printf(" ||              %s          ||      %s             \n", atv->id, atv->nome_atv); 
-        }
-    }
-    fclose(fp);
-    free(atv);
-}
-
-
 void relatorio_atv_por_fnc (char *cpf) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -254,14 +236,7 @@ void relatorio_atv_por_fnc (char *cpf) {
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||          --- CPF do(a) Funcionario(a): %s ---                     \n", cpf);
-    printf(" ||                                                                 ||\n");
-    printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||              00000          ||      Exemplo de nome 0           ||\n");
-    printf(" ||              11111          ||      Exemplo de nome 1           ||\n");
-    printf(" ||              22222          ||      Exemplo de nome 2           ||\n");
-    printf(" ||                                                                 ||\n");
+    listar_atividades_por_fnc(cpf);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -271,7 +246,7 @@ void relatorio_atv_por_fnc (char *cpf) {
     getchar();
 }
 
-
+/////// FUNCOES DE ARQUIVAMENTO /////////////////
 void listar_funcionarios(void) {
     FILE *fp;
     Funcionario *fnc;
@@ -317,3 +292,44 @@ void listar_atividades(void) {
     free(atv);
 }
 
+void listar_atividades_por_data(char *data) {
+    FILE *fp;
+    Atividade *atv;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    while (fread(atv, sizeof(Atividade), 1, fp)) {
+        if(strcmp(atv->data_atv, data) == 0) {
+           printf(" ||              %s          ||      %s             \n", atv->id, atv->nome_atv); 
+        }
+    }
+    fclose(fp);
+    free(atv);
+}
+
+void listar_atividades_por_fnc(char *cpf) {
+    FILE *fp_atv;
+    Atividade *atv;
+    Funcionario *fnc;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = buscar_funcionario(cpf);
+    fp_atv = fopen("atividades.dat", "rb");
+    printf(" ||                  ----- Lista de Atividades -----                ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||         Funcionario: %s \n", fnc->nome);
+    printf(" ||                                                                 ||\n");
+    printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
+    printf(" ||   -----------------------------------------------------------   ||\n");
+    while (fread(atv, sizeof(Atividade), 1, fp_atv)) {
+        if(strcmp(atv->cpf, cpf) == 0) {
+            // precisando limitar os caracteres do nome exibido, para ficar com tamanhos padronizados
+            printf(" ||      %s        %s                   %s\n", atv->id, atv->nome_atv, atv->data_atv);
+        }
+    }
+    fclose(fp_atv);
+    free(atv);
+    free(fnc);
+}

@@ -256,28 +256,6 @@ void relatorio_atv_por_fnc (char *cpf) {
     getchar();
 }
 
-void relatorio_fnc_por_pjt(void) {
-    system("cls||clear");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                 ----- Lista de Funcionarios -----               ||\n");
-    printf(" ||                                                                 ||\n");
-    // listar_funcionarios_por_pjt(id_pjt);
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||               ------- Enter para continuar! --------            ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
-}
-
 void relatorio_atv_por_pjt(char *id_pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -291,6 +269,28 @@ void relatorio_atv_por_pjt(char *id_pjt) {
     printf(" ||                   ----- Lista de Atividades -----               ||\n");
     printf(" ||                                                                 ||\n");
     listar_atividades_por_pjt(id_pjt);
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void relatorio_fnc_por_pjt(void) {
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                 ----- Lista de Funcionarios -----               ||\n");
+    printf(" ||                                                                 ||\n");
+    // listar_funcionarios_por_pjt(id_pjt);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -346,6 +346,40 @@ void listar_atividades(void) {
     free(atv);
 }
 
+void listar_atv_filtrada(char *id) {
+    FILE *fp;
+    Atividade *atv; 
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    while(fread(atv, sizeof(Atividade), 1, fp)) {
+        if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
+            printf(" ||      %s        %s                   %s\n", atv->id, atv->nome_atv, atv->data_atv);
+        }
+    }
+    fclose(fp);
+    free(atv);
+}
+
+void listar_fnc_filtrado(char *cpf) {
+    FILE *fp;
+    Funcionario *fnc; 
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    while(fread(fnc, sizeof(Funcionario), 1, fp)) {
+        if(strcmp(fnc->cpf, cpf) == 0) {
+            printf(" ||      %s        %s                   %s\n", fnc->cpf, fnc->nome, fnc->cargo);
+        }
+    }
+    fclose(fp);
+    free(fnc);
+}
+
 void listar_atividades_por_fnc(char *cpf) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
@@ -367,39 +401,5 @@ void listar_atividades_por_pjt(char* id_pjt) {
     printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");
     listar_atv_filtrada(id_pjt);
-    free(pjt);
-}
-
-void listar_atv_filtrada(char *id) {
-    FILE *fp;
-    Atividade *atv; 
-    atv = (Atividade*) malloc(sizeof(Atividade));
-    fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while(fread(atv, sizeof(Atividade), 1, fp)) {
-        if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
-            printf(" ||      %s        %s                   %s\n", atv->id, atv->nome_atv, atv->data_atv);
-        }
-    }
-    fclose(fp);
-    free(atv);
-}
-
-void listar_fnc_por_pjt(char *id_pjt) {
-    // criar variavel ou estrutura para posteriormente 
-    // receber cpf do fnc ou um struct funcionario
-    Projeto *pjt;
-    pjt = (Projeto*) malloc(sizeof(Projeto));
-    pjt = buscar_projeto(id_pjt);
-    printf(" ||         Projeto: %s \n", pjt->nome);
-    printf(" ||                                                                 ||\n");
-    printf(" ||   <<    CPF     |            Nome             |    Cargo    >>  ||\n");
-    printf(" ||   -----------------------------------------------------------   ||\n");
-    // uma função que faça a busca da atividade relacionada ao projeto 
-    // e retorne o cpf atribuido a essa atividade
-
-    // listar_fnc_filtrado(cpf);
     free(pjt);
 }

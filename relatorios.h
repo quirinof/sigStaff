@@ -20,8 +20,10 @@ void listar_funcionarios(void);
 void listar_projetos(void);
 void listar_atividades(void);
 void listar_atv_filtrada(char*);
+void listar_fnc_filtrado(char*);
 void listar_atividades_por_fnc(char*);
-void listar_fnc_por_pjt(char*);
 void listar_atividades_por_pjt(char*);
+
+
 
 

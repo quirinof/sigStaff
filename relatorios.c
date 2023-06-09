@@ -403,3 +403,25 @@ void listar_atividades_por_pjt(char* id_pjt) {
     listar_atv_filtrada(id_pjt);
     free(pjt);
 }
+
+void listar_fnc_por_pjt(char *id_pjt) {
+    char *cpf;
+    FILE *fp;
+    Projeto *pjt;
+    Atividade *atv;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    pjt = buscar_projeto(id_pjt);
+    printf(" ||         Projeto: %s \n", pjt->nome);
+    printf(" ||                                                                 ||\n");
+    printf(" ||   <<    CPF     |            Nome             |    Cargo    >>  ||\n");
+    printf(" ||   -----------------------------------------------------------   ||\n");
+    fp = fopen("atividades.dat", "rb");
+    while(fread(atv, sizeof(Atividade), 1, fp)) {
+        if(strcmp(atv->id_pjt, id_pjt) == 0) {
+            cpf = atv->cpf;
+            listar_fnc_filtrado(cpf);
+        }
+    }
+    free(pjt);
+}

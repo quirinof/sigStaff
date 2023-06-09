@@ -46,6 +46,7 @@ void atividades_por_projeto(void) {
 
 void funcionarios_por_projeto(void) {
     tela_funcionarios_por_projeto();
+    relatorio_atv_por_pjt();
 }
 
 void atividades_por_data(void) {
@@ -236,7 +237,31 @@ void relatorio_atv_por_fnc (char *cpf) {
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
+    printf(" ||                  ----- Lista de Atividades -----                ||\n");
+    printf(" ||                                                                 ||\n");
     listar_atividades_por_fnc(cpf);
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void relatorio_atv_por_pjt(void) {
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                   ----- Lista de Projetos -----                 ||\n");
+    printf(" ||                                                                 ||\n");
+    // listar_atividades_por_pjt(id_pjt);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -317,8 +342,6 @@ void listar_atividades_por_fnc(char *cpf) {
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fnc = buscar_funcionario(cpf);
     fp_atv = fopen("atividades.dat", "rb");
-    printf(" ||                  ----- Lista de Atividades -----                ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" ||         Funcionario: %s \n", fnc->nome);
     printf(" ||                                                                 ||\n");
     printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");

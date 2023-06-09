@@ -12,6 +12,7 @@ void tela_atividades_por_projeto(void);
 char* tela_atividades_por_data(void);
 
 void relatorio_atv_por_fnc(char*);
+void relatorio_atv_por_pjt(void);
 void relatorio_atv_por_data(char*);
 
 void listar_funcionarios(void);

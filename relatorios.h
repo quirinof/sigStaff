@@ -21,5 +21,6 @@ void listar_atividades(void);
 void listar_atv_filtrada(char*);
 void listar_atividades_por_data(char*);
 void listar_atividades_por_fnc(char*);
+void listar_atividades_por_pjt(char*);
 
 

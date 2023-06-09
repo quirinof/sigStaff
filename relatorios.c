@@ -261,7 +261,7 @@ void relatorio_atv_por_pjt(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                   ----- Lista de Projetos -----                 ||\n");
     printf(" ||                                                                 ||\n");
-    // listar_atividades_por_pjt(id_pjt);
+    //listar_atividades_por_pjt(id_pjt);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -344,6 +344,18 @@ void listar_atividades_por_fnc(char *cpf) {
     printf(" ||   -----------------------------------------------------------   ||\n");
     listar_atv_filtrada(cpf);
     free(fnc);
+}
+
+void listar_atividades_por_pjt(char* id_pjt) {
+    Projeto *pjt;
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    pjt = buscar_projeto(id_pjt);
+    printf(" ||         Projeto: %s \n", pjt->nome);
+    printf(" ||                                                                 ||\n");
+    printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
+    printf(" ||   -----------------------------------------------------------   ||\n");
+    listar_atv_filtrada(id_pjt);
+    free(pjt);
 }
 
 void listar_atv_filtrada(char *id) {

@@ -386,4 +386,20 @@ void listar_atv_filtrada(char *id) {
     fclose(fp);
     free(atv);
 }
- 
+
+void listar_fnc_por_pjt(char *id_pjt) {
+    // criar variavel ou estrutura para posteriormente 
+    // receber cpf do fnc ou um struct funcionario
+    Projeto *pjt;
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    pjt = buscar_projeto(id_pjt);
+    printf(" ||         Projeto: %s \n", pjt->nome);
+    printf(" ||                                                                 ||\n");
+    printf(" ||   <<    CPF     |            Nome             |    Cargo    >>  ||\n");
+    printf(" ||   -----------------------------------------------------------   ||\n");
+    // uma função que faça a busca da atividade relacionada ao projeto 
+    // e retorne o cpf atribuido a essa atividade
+
+    // listar_fnc_filtrado(cpf);
+    free(pjt);
+}

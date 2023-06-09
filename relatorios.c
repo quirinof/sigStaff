@@ -50,7 +50,12 @@ void atividades_por_projeto(void) {
 }
 
 void funcionarios_por_projeto(void) {
-    tela_funcionarios_por_projeto();
+    char *id_pjt;
+
+    id_pjt = tela_funcionarios_por_projeto();
+    relatorio_fnc_por_pjt(id_pjt);
+
+    free(id_pjt);
 }
 
 void atividades_por_data(void) {
@@ -157,8 +162,9 @@ char* tela_atividades_por_projeto(void) {
     return id_pjt;
 }
 
-void tela_funcionarios_por_projeto(void) {
-    char id_pjt[6];
+char* tela_funcionarios_por_projeto(void) {
+    char *id_pjt;
+    id_pjt = (char*) malloc(6*sizeof(char));
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -180,6 +186,8 @@ void tela_funcionarios_por_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+
+    return id_pjt;
 }
 
 char* tela_atividades_por_data(void) {
@@ -278,7 +286,7 @@ void relatorio_atv_por_pjt(char *id_pjt) {
     getchar();
 }
 
-void relatorio_fnc_por_pjt(void) {
+void relatorio_fnc_por_pjt(char* id_pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -290,7 +298,7 @@ void relatorio_fnc_por_pjt(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                 ----- Lista de Funcionarios -----               ||\n");
     printf(" ||                                                                 ||\n");
-    // listar_funcionarios_por_pjt(id_pjt);
+    listar_fnc_por_pjt(id_pjt);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -405,10 +413,10 @@ void listar_atividades_por_pjt(char* id_pjt) {
 }
 
 void listar_fnc_por_pjt(char *id_pjt) {
-    char *cpf;
     FILE *fp;
     Projeto *pjt;
     Atividade *atv;
+    char *cpf_fnc;
     atv = (Atividade*) malloc(sizeof(Atividade));
     pjt = (Projeto*) malloc(sizeof(Projeto));
     pjt = buscar_projeto(id_pjt);
@@ -419,9 +427,11 @@ void listar_fnc_por_pjt(char *id_pjt) {
     fp = fopen("atividades.dat", "rb");
     while(fread(atv, sizeof(Atividade), 1, fp)) {
         if(strcmp(atv->id_pjt, id_pjt) == 0) {
-            cpf = atv->cpf;
-            listar_fnc_filtrado(cpf);
+            cpf_fnc = atv->cpf;
+            listar_fnc_filtrado(cpf_fnc);
         }
     }
+    fclose(fp);
     free(pjt);
+    free(atv);
 }

@@ -335,24 +335,28 @@ void listar_atividades_por_data(char *data) {
 }
 
 void listar_atividades_por_fnc(char *cpf) {
-    FILE *fp_atv;
-    Atividade *atv;
     Funcionario *fnc;
-    atv = (Atividade*) malloc(sizeof(Atividade));
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fnc = buscar_funcionario(cpf);
-    fp_atv = fopen("atividades.dat", "rb");
     printf(" ||         Funcionario: %s \n", fnc->nome);
     printf(" ||                                                                 ||\n");
     printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");
-    while (fread(atv, sizeof(Atividade), 1, fp_atv)) {
-        if(strcmp(atv->cpf, cpf) == 0) {
-            // precisando limitar os caracteres do nome exibido, para ficar com tamanhos padronizados
+    listar_atv_filtrada(cpf);
+    free(fnc);
+}
+
+void listar_atv_filtrada(char *id) {
+    FILE *fp;
+    Atividade *atv; 
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    while(fread(atv, sizeof(Atividade), 1, fp)) {
+        if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
             printf(" ||      %s        %s                   %s\n", atv->id, atv->nome_atv, atv->data_atv);
         }
     }
-    fclose(fp_atv);
+    fclose(fp);
     free(atv);
-    free(fnc);
 }
+ 

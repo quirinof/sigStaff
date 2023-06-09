@@ -41,12 +41,16 @@ void atividades_por_funcionario(void) {
 }
 
 void atividades_por_projeto(void) {
-    tela_atividades_por_projeto();
+    char *id_pjt;
+
+    id_pjt = tela_atividades_por_projeto();
+    relatorio_atv_por_pjt(id_pjt);
+
+    free(id_pjt);
 }
 
 void funcionarios_por_projeto(void) {
     tela_funcionarios_por_projeto();
-    relatorio_atv_por_pjt();
 }
 
 void atividades_por_data(void) {
@@ -125,8 +129,9 @@ char* tela_atividades_por_funcionario(void) {
     return cpf;
 }
 
-void tela_atividades_por_projeto(void) {
-    char id_pjt[6];
+char* tela_atividades_por_projeto(void) {
+    char *id_pjt;
+    id_pjt = (char*) malloc(6*sizeof(char));
 
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -148,6 +153,8 @@ void tela_atividades_por_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+
+    return id_pjt;
 }
 
 void tela_funcionarios_por_projeto(void) {
@@ -249,7 +256,7 @@ void relatorio_atv_por_fnc (char *cpf) {
     getchar();
 }
 
-void relatorio_atv_por_pjt(void) {
+void relatorio_atv_por_pjt(char *id_pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -259,9 +266,9 @@ void relatorio_atv_por_pjt(void) {
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                   ----- Lista de Projetos -----                 ||\n");
+    printf(" ||                   ----- Lista de Atividades -----               ||\n");
     printf(" ||                                                                 ||\n");
-    //listar_atividades_por_pjt(id_pjt);
+    listar_atividades_por_pjt(id_pjt);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");

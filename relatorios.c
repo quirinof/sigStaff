@@ -224,7 +224,7 @@ void relatorio_atv_por_data(char *data_atv) {
     printf(" ||                                                                 ||\n");
     printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");
-    listar_atividades_por_data(data_atv);
+    listar_atv_filtrada(data_atv);
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -324,23 +324,6 @@ void listar_atividades(void) {
     free(atv);
 }
 
-void listar_atividades_por_data(char *data) {
-    FILE *fp;
-    Atividade *atv;
-    atv = (Atividade*) malloc(sizeof(Atividade));
-    fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        if(strcmp(atv->data_atv, data) == 0) {
-           printf(" ||              %s          ||      %s             \n", atv->id, atv->nome_atv); 
-        }
-    }
-    fclose(fp);
-    free(atv);
-}
-
 void listar_atividades_por_fnc(char *cpf) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
@@ -370,6 +353,9 @@ void listar_atv_filtrada(char *id) {
     Atividade *atv; 
     atv = (Atividade*) malloc(sizeof(Atividade));
     fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
     while(fread(atv, sizeof(Atividade), 1, fp)) {
         if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
             printf(" ||      %s        %s                   %s\n", atv->id, atv->nome_atv, atv->data_atv);

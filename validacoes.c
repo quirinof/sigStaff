@@ -152,21 +152,18 @@ int verifica_data(int dd, int mm, int aa) {
 
 int valida_data(char* data) {
     int dia, mes, ano;
-
-    // eliminar as barras ou pontos e ja retorna apenas numeros
-    limpa_caracteres(data);
     // verifica quantidade de digitos 
-    if (!quantidade_digitos(data, 8)) {
+    if (!quantidade_digitos(data, 10)) {
         return 0;
     }
     dia = (data[0] - '0') * 10 + (data[1] - '0');
-    mes = (data[2] - '0') * 10 + (data[3] - '0');
-    ano = (data[4] - '0') * 1000 + (data[5] - '0') * 100 + (data[6] - '0') * 10 + (data [7] - '0');
+    mes = (data[3] - '0') * 10 + (data[4] - '0');
+    ano = (data[6] - '0') * 1000 + (data[7] - '0') * 100 + (data[8] - '0') * 10 + (data [9] - '0');
     // verifica se é uma data valida
     if (!verifica_data(dia, mes, ano)) {
         return 0;
     }
-    
+
     return 1;
 }
 

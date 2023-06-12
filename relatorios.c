@@ -308,7 +308,10 @@ void relatorio_fnc_por_pjt(char* id_pjt) {
     getchar();
 }
 
+
 /////// FUNCOES DE ARQUIVAMENTO /////////////////
+
+/// RELATORIOS COMPLETOS SIMPLES ///
 void listar_funcionarios(void) {
     FILE *fp;
     Funcionario *fnc;
@@ -354,6 +357,7 @@ void listar_atividades(void) {
     free(atv);
 }
 
+/// RELATORIOS FILTRADOS/ESPECIFICOS ///
 void listar_atv_filtrada(char *id) {
     FILE *fp;
     Atividade *atv; 
@@ -388,6 +392,7 @@ void listar_fnc_filtrado(char *cpf) {
     free(fnc);
 }
 
+/// RELATORIOS USANDO MAIS DE UM ARQUIVO ///
 void listar_atividades_por_fnc(char *cpf) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
@@ -425,6 +430,9 @@ void listar_fnc_por_pjt(char *id_pjt) {
     printf(" ||   <<    CPF     |            Nome             |    Cargo    >>  ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");
     fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
     while(fread(atv, sizeof(Atividade), 1, fp)) {
         if(strcmp(atv->id_pjt, id_pjt) == 0) {
             cpf_fnc = atv->cpf;

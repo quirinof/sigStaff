@@ -228,7 +228,7 @@ void relatorio_atv_por_data(char *data_atv) {
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||          --- Data da Atividade(ddmmaaaa): %s ---                  \n", data_atv);
+    printf(" ||          --- Data da Atividade(dd/mm/aaaa): %s ---                  \n", data_atv);
     printf(" ||                                                                 ||\n");
     printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");

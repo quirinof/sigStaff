@@ -154,7 +154,7 @@ Projeto* tela_adicionar_projeto(void) {
     printf("\n");
 
     do {
-        printf("            Data limite para entrega (DD/MM/AAAA): \n");
+        printf("            Data limite para entrega (dd/mm/aaaa): \n");
         printf("            => ");
         scanf("%[^\n]", pjt->data_entrega);
         getchar();
@@ -483,7 +483,7 @@ void exibir_projeto(Projeto* pjt) {
         printf(" ||                                                                 ||\n");
         printf(" ||      Nome: %s            \n", pjt->nome);
         printf(" ||      ID: %s              \n", pjt->id);
-        printf(" ||      Data de Entrega(ddmmaaaa): %s \n", pjt->data_entrega);
+        printf(" ||      Data de Entrega(dd/mm/aaaa): %s \n", pjt->data_entrega);
         printf(" ||      Status: %d          \n", pjt->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

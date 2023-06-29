@@ -145,21 +145,22 @@ Projeto* tela_adicionar_projeto(void) {
     } while (!valida_nome(pjt->nome));
     printf("\n");
 
-    do {
-        printf("            ID do Projeto: \n");
-        printf("            => ");
-        scanf("%[^\n]", pjt->id);
-        getchar();
-    } while (!valida_id(pjt->id, 5));
-    printf("\n");
-
+    //do {
+    //    printf("            ID do Projeto: \n");
+    //   printf("            => ");
+    //    scanf("%[^\n]", pjt->id);
+    //    getchar();
+    //} while (!valida_id(pjt->id, 5));
+    
     do {
         printf("            Data limite para entrega (dd/mm/aaaa): \n");
         printf("            => ");
         scanf("%[^\n]", pjt->data_entrega);
         getchar();
     } while (!valida_data(pjt->data_entrega));
+    pjt->id = gerar_id();
     pjt->status = 1;
+    printf(" ||         O ID do seu projeto é: %s", pjt->id);
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -515,4 +516,26 @@ void refazer_projeto(Projeto* pjt) {
     }
     fclose(fp);
     free(pjt_lido);
+}
+
+
+//////// UTEIS
+
+int gerar_id(void) {
+    FILE *fp;
+    Projeto *pjt;
+    long tam;
+    int id;
+
+    fp = fopen("projeto.dat", "rb");
+    if(fp = NULL) {
+        return 1;
+    }
+    else {
+        fseek(fp, 0, SEEK_END);
+        tam = ftell(fp);
+        fclose(fp);
+        id = tam / sizeof(Projeto);
+        return id + 1;
+    }
 }

@@ -1,7 +1,7 @@
 typedef struct projeto Projeto;
 struct projeto {
     char nome[71];
-    int id;
+    char id[6];
     char data_entrega[11];
     int status;
 };
@@ -29,7 +29,6 @@ Projeto* buscar_projeto(char*);
 void exibir_projeto(Projeto*);
 void refazer_projeto(Projeto*);
 
-int gerar_id(void);
-char transforma_id(int);
+char* gerar_id(void);
 
 

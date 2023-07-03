@@ -63,7 +63,6 @@ void atualizar_projeto(void) {
     }
     else {
         tela_editar_projeto(pjt);
-        strcpy(pjt->id, id);
         refazer_projeto(pjt);
 		free(pjt);
     }
@@ -123,8 +122,9 @@ char tela_projetos(void) {
 
 Projeto* tela_adicionar_projeto(void) {
     Projeto *pjt;
-
+    char *id;
     pjt = (Projeto*) malloc(sizeof(Projeto));
+    id = (char*) malloc(6*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -158,9 +158,10 @@ Projeto* tela_adicionar_projeto(void) {
         scanf("%[^\n]", pjt->data_entrega);
         getchar();
     } while (!valida_data(pjt->data_entrega));
-    pjt->id = gerar_id();
+    id = gerar_id();
+    strcpy(pjt->id, id);
     pjt->status = 1;
-    printf(" ||         O ID do seu projeto é: %s", pjt->id);
+    printf(" ||         O ID do seu projeto: %s", pjt->id);
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -169,6 +170,7 @@ Projeto* tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+    free(id);
 
     return pjt;
 }
@@ -520,22 +522,21 @@ void refazer_projeto(Projeto* pjt) {
 
 
 //////// UTEIS
-
-int gerar_id(void) {
+char* gerar_id(void) {
     FILE *fp;
     Projeto *pjt;
-    long tam;
-    int id;
-
-    fp = fopen("projeto.dat", "rb");
-    if(fp = NULL) {
-        return 1;
-    }
-    else {
-        fseek(fp, 0, SEEK_END);
-        tam = ftell(fp);
+    int id_gerado = 1;
+    char *id;
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    id = (char*) malloc(6 * sizeof(char));
+    fp = fopen("projetos.dat", "rb");
+    if (fp != NULL) {
+        while (fread(pjt, sizeof(Projeto), 1, fp) == 1) {
+            id_gerado++;
+        }
         fclose(fp);
-        id = tam / sizeof(Projeto);
-        return id + 1;
+        free(pjt);
     }
+    sprintf(id, "%05d", id_gerado);
+    return id;
 }

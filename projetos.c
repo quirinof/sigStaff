@@ -149,9 +149,12 @@ Projeto* tela_adicionar_projeto(void) {
     } while (!valida_data(pjt->data_entrega));
 
     printf("\n");
-    pjt->status = 1;
     strcpy(pjt->id, gerar_id());
-    printf(" ||         O ID do seu projeto: %s\n", pjt->id);
+    printf(" ||         O ID do seu projeto: \n");
+    printf(" ||         => %s", pjt->id);
+    getchar();
+
+    pjt->status = 1;
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

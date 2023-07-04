@@ -6,6 +6,7 @@ struct funcionario {
     char email[51];
     char cargo[61];
     int status;
+    Funcionario *prox;
 };
 
 // funções gerais de controle

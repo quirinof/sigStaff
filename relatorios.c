@@ -7,6 +7,10 @@
 #include "relatorios.h"
 #include "validacoes.h"
 
+void relatorio_ordenado_fnc(Funcionario **);
+void exibir_lista_fnc(Funcionario *);
+void excluir_lista_fnc(Funcionario **);
+
 
 void modulo_relatorios(void) {
     char opcao;
@@ -27,8 +31,19 @@ void modulo_relatorios(void) {
                       break;
             case '7': atividades_por_data();
                       break;
+            case '8': modulo_lista_ordenada_funcionarios();
+                      break;
         }
     } while (opcao != '0');
+}
+
+
+void modulo_lista_ordenada_funcionarios(void) {
+    Funcionario *lista;
+    lista = NULL;
+    relatorio_ordenado_fnc(&lista);
+    exibir_lista_fnc(lista);
+    excluir_lista_fnc(&lista);
 }
 
 void atividades_por_funcionario(void) {
@@ -92,6 +107,8 @@ char tela_relatorios(void) {
     printf(" ||      [ 5 ] As atividades de um Projeto                          ||\n");
     printf(" ||      [ 6 ] Relatorio de funcionarios por projeto                ||\n");
     printf(" ||      [ 7 ] Lista de atividades por data especifica              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||      [ 8 ] Lista ordenada de funcionarios                       ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 0 ] Voltar ao Menu Principal                             ||\n");
     printf(" ||                                                                 ||\n");
@@ -443,3 +460,75 @@ void listar_fnc_por_pjt(char *id_pjt) {
     free(pjt);
     free(atv);
 }
+
+
+void relatorio_ordenado_fnc(Funcionario **lista) {
+    FILE *fp;
+    Funcionario *fnc;
+
+    excluir_lista_fnc(&(*lista));
+    *lista = NULL;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    else {
+        fnc = (Funcionario*) malloc(sizeof(Funcionario));
+        while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+            if ((*lista == NULL) || (strcmp(fnc->nome, (*lista)->nome) < 0)) {
+                fnc->prox = *lista;
+                *lista = fnc;
+            }
+            else {
+                Funcionario *ant = *lista;
+                Funcionario *atu =  (*lista)->prox;
+                while ((atu != NULL) && (strcmp(atu->nome, fnc->nome) < 0)) {
+                    ant = atu;
+                    atu = atu->prox;
+                }
+                ant->prox = fnc;
+                fnc->prox = atu;
+            }
+            fnc = (Funcionario *) malloc(sizeof(Funcionario));
+        }
+        free(fnc);
+        fclose(fp);
+    }
+} // by: @FlaviusGorgonio
+
+
+void exibir_lista_fnc(Funcionario *aux) {
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                 ----- Lista de Funcionarios -----               ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||              Nome             |             Cargo               ||\n");
+    printf("\n");
+    while (aux != NULL) {
+        printf(" ||  %s  ||", aux->nome);
+        printf("  %s  ||\n", aux->cargo);
+        aux = aux->prox;
+	}
+    printf(" ||                                                                 ||\n");
+    printf(" ||                     --- Fim da lista ---                        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void excluir_lista_fnc(Funcionario **lista) {
+    Funcionario *fnc; 
+    while (*lista != NULL) {
+        fnc = *lista;
+        *lista = (*lista)->prox;
+        free(fnc);
+    }
+}
+

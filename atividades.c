@@ -170,7 +170,7 @@ Atividade* tela_adicionar_atividade(void) {
         scanf("%[^\n]", atv->data_atv);
         getchar();
     } while (!valida_data(atv->data_atv));
-
+    printf("\n");
     strcpy(atv->id, gerar_id_atv());
     printf("            O ID da atividade:\n");
     printf("            => %s", atv->id);
@@ -538,7 +538,7 @@ void exibir_atividade(Atividade* atv) {
         printf(" ||                 >>>>>> Atividade Encontrada <<<<<<              ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||      Titulo/Nome: %s                    \n", atv->nome_atv);
-        printf(" ||      Data de entrega(dd/mm/aaaa): %s      \n", atv->data_atv);
+        printf(" ||      Data de entrega: %s                \n", atv->data_atv);
         printf(" ||      ID da Atividade: %s                \n", atv->id);
         printf(" ||      ID do Projeto relacionado: %s      \n", atv->id_pjt);
         printf(" ||      CPF do Funcionario atribuido: %s   \n", atv->cpf);

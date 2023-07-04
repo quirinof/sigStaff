@@ -148,6 +148,7 @@ Projeto* tela_adicionar_projeto(void) {
         getchar();
     } while (!valida_data(pjt->data_entrega));
 
+    printf("\n");
     pjt->status = 1;
     strcpy(pjt->id, gerar_id());
     printf(" ||         O ID do seu projeto: %s\n", pjt->id);
@@ -443,7 +444,7 @@ void exibir_projeto(Projeto* pjt) {
         printf(" ||                                                                 ||\n");
         printf(" ||      Nome: %s            \n", pjt->nome);
         printf(" ||      ID: %s              \n", pjt->id);
-        printf(" ||      Data de Entrega(dd/mm/aaaa): %s \n", pjt->data_entrega);
+        printf(" ||      Data de Entrega: %s \n", pjt->data_entrega);
         printf(" ||      Status: %d          \n", pjt->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

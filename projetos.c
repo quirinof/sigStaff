@@ -159,7 +159,7 @@ Projeto* tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
-
+    
     return pjt;
 }
 
@@ -383,7 +383,7 @@ void tela_erro_pjt(void) {
 	printf(" ||                                                                 ||\n");
 	printf(" ||                   >>>>>>>>    ERRO    <<<<<<<                   ||\n");
 	printf(" ||                                                                 ||\n");
-    printf(" ||                 Não foi possível acessar o arquivo              ||\n");
+    printf(" ||                 Nao foi possivel acessar o arquivo              ||\n");
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -455,7 +455,7 @@ void exibir_projeto(Projeto* pjt) {
 	getchar();
 }
 
-void refazer_projeto(Projeto* pjt) {
+void refazer_projeto(Projeto *pjt) {
     int achou;
     FILE *fp;
     Projeto *pjt_lido;
@@ -473,8 +473,9 @@ void refazer_projeto(Projeto* pjt) {
             fwrite(pjt, sizeof(Projeto), 1, fp);
         }
     }
-    fclose(fp);
+    
     free(pjt_lido);
+    fclose(fp);
 }
 
 

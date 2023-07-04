@@ -20,7 +20,6 @@ void tela_editar_projeto(Projeto*);
 void tela_editar_titulo_projeto(Projeto*);
 void tela_editar_id_projeto(Projeto*);
 void tela_editar_data_projeto(Projeto*);
-void tela_editar_status_projeto(void);
 char* tela_excluir_projeto(void);
 void tela_erro_pjt(void);
 

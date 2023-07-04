@@ -170,11 +170,13 @@ Atividade* tela_adicionar_atividade(void) {
         scanf("%[^\n]", atv->data_atv);
         getchar();
     } while (!valida_data(atv->data_atv));
+
     printf("\n");
     strcpy(atv->id, gerar_id_atv());
     printf("            O ID da atividade:\n");
     printf("            => %s", atv->id);
-
+    getchar();
+    
     atv->status = 1;
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");

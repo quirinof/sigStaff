@@ -8,7 +8,7 @@ struct atividade {
     int status;
 };
 
-// modulos para navegação
+// funções que coordenam todas as funcionalidades do módulo
 void adicionar_atividade(void);
 void pesquisar_atividade(void);
 void atualizar_atividade(void);

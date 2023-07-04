@@ -122,9 +122,7 @@ char tela_projetos(void) {
 
 Projeto* tela_adicionar_projeto(void) {
     Projeto *pjt;
-    char *id;
     pjt = (Projeto*) malloc(sizeof(Projeto));
-    id = (char*) malloc(6*sizeof(char));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -136,7 +134,6 @@ Projeto* tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                      ----- ADICIONAR -----                      ||\n");
     printf(" ||                                                                 ||\n");
-    
     do {
         printf("            Titulo/Nome: \n");
         printf("            => ");
@@ -144,24 +141,16 @@ Projeto* tela_adicionar_projeto(void) {
         getchar();
     } while (!valida_nome(pjt->nome));
     printf("\n");
-
-    //do {
-    //    printf("            ID do Projeto: \n");
-    //   printf("            => ");
-    //    scanf("%[^\n]", pjt->id);
-    //    getchar();
-    //} while (!valida_id(pjt->id, 5));
-    
     do {
         printf("            Data limite para entrega (dd/mm/aaaa): \n");
         printf("            => ");
         scanf("%[^\n]", pjt->data_entrega);
         getchar();
     } while (!valida_data(pjt->data_entrega));
-    id = gerar_id();
-    strcpy(pjt->id, id);
+
     pjt->status = 1;
-    printf(" ||         O ID do seu projeto: %s", pjt->id);
+    strcpy(pjt->id, gerar_id());
+    printf(" ||         O ID do seu projeto: %s\n", pjt->id);
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -170,7 +159,6 @@ Projeto* tela_adicionar_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
-    free(id);
 
     return pjt;
 }
@@ -310,12 +298,9 @@ void tela_editar_id_projeto(Projeto* pjt) {
     printf(" ||                                                                 ||\n");
     printf(" ||                           __ EDITAR __                          ||\n");
     printf(" ||                                                                 ||\n");
-    do {
-        printf("            Novo ID do Projeto: \n");
-        printf("            => ");
-        scanf("%[^\n]", pjt->id);
-        getchar();
-    } while (!valida_id(pjt->id, 5));
+    strcpy(pjt->id, gerar_id());
+    printf("            Novo ID do Projeto: \n");
+    printf(" ||           => %s\n", pjt->id);
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -352,34 +337,6 @@ void tela_editar_data_projeto(Projeto* pjt) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
-}
-
-void tela_editar_status_projeto(void) {
-    char status_projeto[4];
-
-    system("cls||clear");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                           __ EDITAR __                          ||\n");
-    printf(" ||                                                                 ||\n");
-    printf("         Status do projeto (xxx): \n");
-    printf("         => ");
-    scanf("%[0-9]", status_projeto);
-    getchar();
-    printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Informacao atualizada ......              ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
 }
 
 char* tela_excluir_projeto(void) {

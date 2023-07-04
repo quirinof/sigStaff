@@ -149,14 +149,6 @@ Atividade* tela_adicionar_atividade(void) {
     printf("\n");
 
     do {
-        printf("            ID da Atividade: \n");
-        printf("            => ");
-        scanf("%[^\n]", atv->id);
-        getchar();
-    } while (!valida_id(atv->id, 5));
-    printf("\n");
-
-    do {
         printf("            ID do Projeto relacionado: \n");
         printf("            => ");
         scanf("%[^\n]", atv->id_pjt);
@@ -178,6 +170,11 @@ Atividade* tela_adicionar_atividade(void) {
         scanf("%[^\n]", atv->data_atv);
         getchar();
     } while (!valida_data(atv->data_atv));
+
+    strcpy(atv->id, gerar_id_atv());
+    printf("            O ID da atividade:\n");
+    printf("            => %s", atv->id);
+
     atv->status = 1;
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
@@ -576,4 +573,24 @@ void refazer_atividade(Atividade* atv) {
 	}
 	fclose(fp);
 	free(atv_lido);
+}
+
+//////// UTEIS
+char* gerar_id_atv(void) {
+    FILE *fp;
+    Atividade *atv;
+    int id_gerado = 1;
+    char *id;
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    id = (char*) malloc(6 * sizeof(char));
+    fp = fopen("atividades.dat", "rb");
+    if (fp != NULL) {
+        while (fread(atv, sizeof(Atividade), 1, fp) == 1) {
+            id_gerado++;
+        }
+        fclose(fp);
+        free(atv);
+    }
+    sprintf(id, "%05d", id_gerado);
+    return id;
 }

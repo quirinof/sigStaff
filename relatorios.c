@@ -17,21 +17,21 @@ void modulo_relatorios(void) {
     do {
         opcao = tela_relatorios();
         switch(opcao) {
-            case '1': listar_funcionarios();
+            case '1': modulo_lista_ordenada_funcionarios();
                       break;
-            case '2': listar_projetos();
+            case '2': atividades_por_funcionario();
                       break;
-            case '3': listar_atividades();
+            case '3': atividades_por_projeto();
                       break;
-            case '4': atividades_por_funcionario();
+            case '4': funcionarios_por_projeto();
                       break;
-            case '5': atividades_por_projeto();
+            case '5': atividades_por_data();
                       break;
-            case '6': funcionarios_por_projeto();
+            case '6': listar_funcionarios();
                       break;
-            case '7': atividades_por_data();
+            case '7': listar_projetos();
                       break;
-            case '8': modulo_lista_ordenada_funcionarios();
+            case '8': listar_atividades();
                       break;
         }
     } while (opcao != '0');
@@ -95,20 +95,22 @@ char tela_relatorios(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         Relatorios completos:                                   ||\n");
+    printf(" ||         Ordenado:                                               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 1 ] Funcionarios                                         ||\n");
-    printf(" ||      [ 2 ] Projetos                                             ||\n");
-    printf(" ||      [ 3 ] Atividades                                           ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||         Relatorios Especificos:                                 ||\n");
+    printf(" ||         Filtrados:                                              ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      [ 4 ] Todas as atividades relacionadas a um Funcionario    ||\n");
-    printf(" ||      [ 5 ] As atividades de um Projeto                          ||\n");
-    printf(" ||      [ 6 ] Relatorio de funcionarios por projeto                ||\n");
-    printf(" ||      [ 7 ] Lista de atividades por data especifica              ||\n");
+    printf(" ||      [ 2 ] Todas as atividades relacionadas a um Funcionario    ||\n");
+    printf(" ||      [ 3 ] As atividades de um Projeto                          ||\n");
+    printf(" ||      [ 4 ] Funcionarios por projeto                             ||\n");
+    printf(" ||      [ 5 ] Atividades por data especifica                       ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      [ 8 ] Lista ordenada de funcionarios                       ||\n");
+    printf(" ||         Gerais(Basico):                                         ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||      [ 6 ] Funcionarios                                         ||\n");
+    printf(" ||      [ 7 ] Projetos                                             ||\n");
+    printf(" ||      [ 8 ] Atividades                                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 0 ] Voltar ao Menu Principal                             ||\n");
     printf(" ||                                                                 ||\n");
@@ -146,7 +148,6 @@ char* tela_atividades_por_funcionario(void) {
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
 
     return cpf;
 }
@@ -245,9 +246,7 @@ void relatorio_atv_por_data(char *data_atv) {
     printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||          --- Data da Atividade(dd/mm/aaaa): %s ---                  \n", data_atv);
-    printf(" ||                                                                 ||\n");
-    printf(" ||    <<    ID da atividade    ||      Nome da atividade     >>    ||\n");
+    printf(" ||   << ID da atividade | Nome da atividade | Data de entrega >>   ||\n");
     printf(" ||   -----------------------------------------------------------   ||\n");
     listar_atv_filtrada(data_atv);
     printf(" ||                                                                 ||\n");
@@ -385,7 +384,7 @@ void listar_atv_filtrada(char *id) {
     }
     while(fread(atv, sizeof(Atividade), 1, fp)) {
         if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
-            printf(" ||      %s        %s                   %s\n", atv->id, atv->nome_atv, atv->data_atv);
+            printf(" ||     %s  |   %s   |   %s\n", atv->id, atv->nome_atv, atv->data_atv);
         }
     }
     fclose(fp);
@@ -402,7 +401,7 @@ void listar_fnc_filtrado(char *cpf) {
     }
     while(fread(fnc, sizeof(Funcionario), 1, fp)) {
         if(strcmp(fnc->cpf, cpf) == 0) {
-            printf(" ||      %s        %s                   %s\n", fnc->cpf, fnc->nome, fnc->cargo);
+            printf(" ||    %s     %s     %s\n", fnc->cpf, fnc->nome, fnc->cargo);
         }
     }
     fclose(fp);
@@ -512,12 +511,16 @@ void exibir_lista_fnc(Funcionario *aux) {
     printf(" ||              Nome             |             Cargo               ||\n");
     printf("\n");
     while (aux != NULL) {
-        printf(" ||  %s  ||", aux->nome);
-        printf("  %s  ||\n", aux->cargo);
+        printf(" ||  %s  |", aux->nome);
+        printf("  %s  \n", aux->cargo);
         aux = aux->prox;
 	}
     printf(" ||                                                                 ||\n");
     printf(" ||                     --- Fim da lista ---                        ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();

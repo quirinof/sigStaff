@@ -178,11 +178,18 @@ int letra(char l) {
 }
 
 int valida_nome(char* nome) {
-    int i;
-    for (i = 0; nome[i] != '\0'; i++) {
-        if(!letra(nome[i]) && nome[i] != ' ') {
+    int cont, tam = 0;
+    tam = strlen(nome);
+    for (int i = 0; (i < tam); i++) {
+        if(numero(nome[i])) {
             return 0; 
         }
+        if(letra(nome[i])) {
+            cont++;
+        }
+    }
+    if (!cont) {
+        return 0;   
     }
     return 1;
 }

@@ -473,7 +473,7 @@ void tela_erro(void) {
 	printf(" ||                                                                 ||\n");
 	printf(" ||                   >>>>>>>>    ERRO    <<<<<<<                   ||\n");
 	printf(" ||                                                                 ||\n");
-    printf(" ||                 Não foi possível acessar o arquivo              ||\n");
+    printf(" ||  <<<<< Nao foi possivel acessar o arquivo de funcionarios >>>>> ||\n");
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -531,12 +531,12 @@ void exibir_funcionario(Funcionario* fnc) {
         printf(" ||                                                                 ||\n");
         printf(" ||               >>>>>> Funcionario Encontrado <<<<<<              ||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||      Nome: %s         \n", fnc->nome);
-        printf(" ||      Cargo/Funcao: %s \n", fnc->cargo);
-        printf(" ||      Email: %s        \n", fnc->email);
-        printf(" ||      Celular: %s      \n", fnc->celular);
-        printf(" ||      CPF: %s          \n", fnc->cpf);
-        printf(" ||      Status: %d       \n", fnc->status);
+        printf(" ||      Nome:    %s \n", fnc->nome);
+        printf(" ||      Cargo:   %s \n", fnc->cargo);
+        printf(" ||      Email:   %s \n", fnc->email);
+        printf(" ||      Celular: %s \n", fnc->celular);
+        printf(" ||      CPF:     %s \n", fnc->cpf);
+        printf(" ||      Status:  %d \n", fnc->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");

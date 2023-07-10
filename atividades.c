@@ -65,7 +65,6 @@ void atualizar_atividade(void) {
   	} 
     else {
 		tela_editar_atividade(atv);
-		strcpy(atv->id, id);
 		refazer_atividade(atv);
 		free(atv);
 	}
@@ -573,8 +572,8 @@ void refazer_atividade(Atividade* atv) {
         	fwrite(atv, sizeof(Atividade), 1, fp);
 		}
 	}
+    free(atv_lido);
 	fclose(fp);
-	free(atv_lido);
 }
 
 //////// UTEIS
@@ -587,12 +586,13 @@ char* gerar_id_atv(void) {
     id = (char*) malloc(6 * sizeof(char));
     fp = fopen("atividades.dat", "rb");
     if (fp != NULL) {
-        while (fread(atv, sizeof(Atividade), 1, fp) == 1) {
+        while(fread(atv, sizeof(Atividade), 1, fp) == 1) {
             id_gerado++;
         }
-        fclose(fp);
-        free(atv);
     }
+    
     sprintf(id, "%05d", id_gerado);
+    free(atv);
+    fclose(fp);
     return id;
 }

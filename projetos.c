@@ -123,6 +123,7 @@ char tela_projetos(void) {
 Projeto* tela_adicionar_projeto(void) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
+    char* id;
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -147,9 +148,9 @@ Projeto* tela_adicionar_projeto(void) {
         scanf("%[^\n]", pjt->data_entrega);
         getchar();
     } while (!valida_data(pjt->data_entrega));
-
     printf("\n");
-    strcpy(pjt->id, gerar_id());
+    id = gerar_id();
+    strcpy(pjt->id, id);
     printf(" ||         O ID do seu projeto: \n");
     printf(" ||         => %s", pjt->id);
     getchar();
@@ -164,6 +165,7 @@ Projeto* tela_adicionar_projeto(void) {
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
     
+    free(id);
     return pjt;
 }
 
@@ -477,7 +479,6 @@ void refazer_projeto(Projeto *pjt) {
             fwrite(pjt, sizeof(Projeto), 1, fp);
         }
     }
-    
     free(pjt_lido);
     fclose(fp);
 }
@@ -493,12 +494,12 @@ char* gerar_id(void) {
     id = (char*) malloc(6 * sizeof(char));
     fp = fopen("projetos.dat", "rb");
     if (fp != NULL) {
-        while (fread(pjt, sizeof(Projeto), 1, fp) == 1) {
+        while(fread(pjt, sizeof(Projeto), 1, fp) == 1) {
             id_gerado++;
         }
-        fclose(fp);
-        free(pjt);
     }
     sprintf(id, "%05d", id_gerado);
+    free(pjt);
+    fclose(fp);
     return id;
 }

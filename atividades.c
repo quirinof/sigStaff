@@ -79,7 +79,7 @@ void excluir_atividade(void) {
 	atv = (Atividade*) malloc(sizeof(Atividade));
 	atv = buscar_atividade(id);
 	if (atv == NULL) {
-    	printf(" ||             >>>>>> Atividade não encontrada! <<<<<<             ||\n");
+    	printf(" ||             >>>>>> Atividade nao encontrada! <<<<<<             ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
@@ -476,7 +476,7 @@ void tela_erro_atv(void) {
 	printf(" ||                                                                 ||\n");
 	printf(" ||                   >>>>>>>>    ERRO    <<<<<<<                   ||\n");
 	printf(" ||                                                                 ||\n");
-    printf(" ||                 Não foi possível acessar o arquivo              ||\n");
+    printf(" ||   <<<<< Nao foi possivel acessar o arquivo de atividades >>>>>  ||\n");
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -538,12 +538,12 @@ void exibir_atividade(Atividade* atv) {
         printf(" ||                                                                 ||\n");
         printf(" ||                 >>>>>> Atividade Encontrada <<<<<<              ||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||      Titulo/Nome: %s                    \n", atv->nome_atv);
-        printf(" ||      Data de entrega: %s                \n", atv->data_atv);
-        printf(" ||      ID da Atividade: %s                \n", atv->id);
-        printf(" ||      ID do Projeto relacionado: %s      \n", atv->id_pjt);
-        printf(" ||      CPF do Funcionario atribuido: %s   \n", atv->cpf);
-        printf(" ||      Status: %d                         \n", atv->status);
+        printf(" ||      Titulo/Nome:     %s \n", atv->nome_atv);
+        printf(" ||      Data de entrega: %s \n", atv->data_atv);
+        printf(" ||      ID da Atividade: %s \n", atv->id);
+        printf(" ||      ID do Projeto:   %s \n", atv->id_pjt);
+        printf(" ||      Funcionario:     %s \n", atv->cpf);
+        printf(" ||      Status:          %d \n", atv->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");

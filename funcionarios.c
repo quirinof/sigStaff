@@ -77,7 +77,14 @@ void excluir_funcionario(void) {
 	fnc = (Funcionario*) malloc(sizeof(Funcionario));
 	fnc = buscar_funcionario(cpf);
 	if (fnc == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
     	printf(" ||             >>>>>> Funcionario nao encontrado! <<<<<<           ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
@@ -85,6 +92,16 @@ void excluir_funcionario(void) {
     else {
 		fnc->status = 0;
 		refazer_funcionario(fnc);
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                ...... Funcionario excluido ......               ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
 		free(fnc);
 	}
 	free(cpf);
@@ -207,10 +224,6 @@ char* tela_pesquisar_funcionario(void) {
         getchar();
     } while (!valida_cpf(cpf));
     printf("\n");
-    printf(" ||               ------- Enter para continuar! --------            ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-	getchar();
 
     return cpf;
 }
@@ -237,6 +250,7 @@ char* tela_atualizar_funcionario(void) {
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
+    printf("\n");
 
     return cpf;
 }
@@ -450,14 +464,7 @@ char* tela_excluir_funcionario(void) {
         scanf("%[^\n]", cpf);
         getchar();
     } while (!valida_cpf(cpf));
-    printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Funcionario excluido ......               ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
+    printf("\n");
 
     return cpf;
 }

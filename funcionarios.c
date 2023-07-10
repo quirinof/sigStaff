@@ -63,7 +63,6 @@ void atualizar_funcionario(void) {
   	} 
     else {
 		  tela_editar_funcionario(fnc);
-		  strcpy(fnc->cpf, cpf);
 		  refazer_funcionario(fnc);
 		  free(fnc);
 	}
@@ -566,6 +565,6 @@ void refazer_funcionario(Funcionario* fnc) {
         	fwrite(fnc, sizeof(Funcionario), 1, fp);
 		}
 	}
+    free(fnc_lido);
 	fclose(fp);
-	free(fnc_lido);
 }

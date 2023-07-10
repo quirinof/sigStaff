@@ -354,8 +354,8 @@ void listar_projetos(void) {
     while (fread(pjt, sizeof(Projeto), 1, fp)) {
         exibir_projeto(pjt);
     }
-    fclose(fp);
     free(pjt);
+    fclose(fp);
 }
 
 void listar_atividades(void) {
@@ -369,8 +369,8 @@ void listar_atividades(void) {
     while (fread(atv, sizeof(Atividade), 1, fp)) {
         exibir_atividade(atv);
     }
-    fclose(fp);
     free(atv);
+    fclose(fp);
 }
 
 /// RELATORIOS FILTRADOS/ESPECIFICOS ///

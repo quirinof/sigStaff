@@ -389,7 +389,7 @@ void tela_erro_pjt(void) {
 	printf(" ||                                                                 ||\n");
 	printf(" ||                   >>>>>>>>    ERRO    <<<<<<<                   ||\n");
 	printf(" ||                                                                 ||\n");
-    printf(" ||                 Nao foi possivel acessar o arquivo              ||\n");
+    printf(" ||   <<<<<  Nao foi possivel acessar o arquivo de projetos  >>>>>  ||\n");
 	printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -447,10 +447,10 @@ void exibir_projeto(Projeto* pjt) {
         printf(" ||                                                                 ||\n");
         printf(" ||                 >>>>>> Projeto Encontrado <<<<<<                ||\n");
         printf(" ||                                                                 ||\n");
-        printf(" ||      Nome: %s            \n", pjt->nome);
-        printf(" ||      ID: %s              \n", pjt->id);
-        printf(" ||      Data de Entrega: %s \n", pjt->data_entrega);
-        printf(" ||      Status: %d          \n", pjt->status);
+        printf(" ||      Nome:    %s \n", pjt->nome);
+        printf(" ||      ID:      %s \n", pjt->id);
+        printf(" ||      Entrega: %s \n", pjt->data_entrega);
+        printf(" ||      Status:  %d \n", pjt->status);
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");

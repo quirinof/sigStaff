@@ -173,8 +173,7 @@ Atividade* tela_adicionar_atividade(void) {
     printf("\n");
     strcpy(atv->id, gerar_id_atv());
     printf("            O ID da atividade:\n");
-    printf("            => %s", atv->id);
-    getchar();
+    printf("            => %s \n", atv->id);
     
     atv->status = 1;
     printf(" ||                                                                 ||\n");

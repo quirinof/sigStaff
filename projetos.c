@@ -152,8 +152,7 @@ Projeto* tela_adicionar_projeto(void) {
     id = gerar_id();
     strcpy(pjt->id, id);
     printf(" ||         O ID do seu projeto: \n");
-    printf(" ||         => %s", pjt->id);
-    getchar();
+    printf(" ||         => %s \n", pjt->id);
 
     pjt->status = 1;
     printf(" ||                                                                 ||\n");
@@ -194,7 +193,6 @@ char* tela_pesquisar_projeto(void) {
     printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-	getchar();
 
     return id;
 }

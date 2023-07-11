@@ -27,7 +27,7 @@ void tela_sobre(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
-}
+} // by: @flaviusgorgonio
 
 void tela_equipe(void) {
     system("cls||clear");
@@ -53,4 +53,4 @@ void tela_equipe(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
-}
+} // by: @flaviusgorgonio

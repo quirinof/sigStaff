@@ -384,7 +384,7 @@ void listar_atv_filtrada(char *id) {
     }
     while(fread(atv, sizeof(Atividade), 1, fp)) {
         if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
-            printf(" ||     %s  |   %s   |   %s\n", atv->id, atv->nome_atv, atv->data_atv);
+            printf(" ||       %s             %s             %s\n", atv->id, atv->nome_atv, atv->data_atv);
         }
     }
     fclose(fp);
@@ -401,7 +401,7 @@ void listar_fnc_filtrado(char *cpf) {
     }
     while(fread(fnc, sizeof(Funcionario), 1, fp)) {
         if(strcmp(fnc->cpf, cpf) == 0) {
-            printf(" ||    %s     %s     %s\n", fnc->cpf, fnc->nome, fnc->cargo);
+            printf(" ||    %s         %s          %s\n", fnc->cpf, fnc->nome, fnc->cargo);
         }
     }
     fclose(fp);
@@ -511,8 +511,8 @@ void exibir_lista_fnc(Funcionario *aux) {
     printf(" ||              Nome             |             Cargo               ||\n");
     printf("\n");
     while (aux != NULL) {
-        printf(" ||  %s  |", aux->nome);
-        printf("  %s  \n", aux->cargo);
+        printf(" ||      %s ", aux->nome);
+        printf("                    %s  \n", aux->cargo);
         aux = aux->prox;
 	}
     printf(" ||                                                                 ||\n");

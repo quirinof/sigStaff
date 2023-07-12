@@ -15,3 +15,4 @@ int bissexto(int);
 int verifica_data(int, int, int);
 void limpa_caracteres(char*);
 int caracteres_email(char);
+char* inv_data(char *);

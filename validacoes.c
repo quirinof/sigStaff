@@ -229,3 +229,20 @@ int valida_email(char* email) {
     }
     return 1;
 }
+
+char* inv_data(char* data_ant) {
+    char* data_atual;
+    data_atual = (char*) malloc(11 * sizeof(char));
+    data_atual[0] = data_ant[6];
+    data_atual[1] = data_ant[7];
+    data_atual[2] = data_ant[8];
+    data_atual[3] = data_ant[9];
+    data_atual[4] = '/';
+    data_atual[5] = data_ant[3];
+    data_atual[6] = data_ant[4];
+    data_atual[7] = '/';
+    data_atual[8] = data_ant[0];
+    data_atual[9] = data_ant[1];
+    data_atual[10] = '\0';
+    return data_atual;
+}

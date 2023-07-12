@@ -26,6 +26,7 @@ void listar_atividades_por_pjt(char*);
 void listar_fnc_por_pjt(char*);
 
 void modulo_lista_ordenada_funcionarios(void);
+void modulo_lista_ordenada_projetos(void);
 void modulo_lista_ordenada_atividades(void);
 
 

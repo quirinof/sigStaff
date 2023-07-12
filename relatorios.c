@@ -8,11 +8,15 @@
 #include "validacoes.h"
 
 void relatorio_ordenado_fnc(Funcionario **);
+void relatorio_ordenado_pjt(Projeto **);
 void relatorio_ordenado_atv(Atividade **);
 void exibir_lista_fnc(Funcionario *);
+void exibir_lista_pjt(Projeto *);
 void exibir_lista_atv(Atividade *);
 void excluir_lista_fnc(Funcionario **);
+void excluir_lista_pjt(Projeto **);
 void excluir_lista_atv(Atividade **);
+
 
 
 void modulo_relatorios(void) {
@@ -22,15 +26,17 @@ void modulo_relatorios(void) {
         switch(opcao) {
             case '1': modulo_lista_ordenada_funcionarios();
                       break;
-            case '2': modulo_lista_ordenada_atividades();
+            case '2': modulo_lista_ordenada_projetos();
                       break;
-            case '3': atividades_por_funcionario();
+            case '3': modulo_lista_ordenada_atividades();
                       break;
-            case '4': atividades_por_projeto();
+            case '4': atividades_por_funcionario();
                       break;
-            case '5': funcionarios_por_projeto();
+            case '5': atividades_por_projeto();
                       break;
-            case '6': atividades_por_data();
+            case '6': funcionarios_por_projeto();
+                      break;
+            case '7': atividades_por_data();
                       break;
         }
     } while (opcao != '0');
@@ -43,6 +49,14 @@ void modulo_lista_ordenada_funcionarios(void) {
     relatorio_ordenado_fnc(&lista);
     exibir_lista_fnc(lista);
     excluir_lista_fnc(&lista);
+}
+
+void modulo_lista_ordenada_projetos(void) {
+    Projeto *lista;
+    lista = NULL;
+    relatorio_ordenado_pjt(&lista);
+    exibir_lista_pjt(lista);
+    excluir_lista_pjt(&lista);
 }
 
 void modulo_lista_ordenada_atividades(void) {
@@ -105,14 +119,15 @@ char tela_relatorios(void) {
     printf(" ||         Ordenado:                                               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 1 ] Funcionarios                                         ||\n");
-    printf(" ||      [ 2 ] Atividades                                           ||\n");
+    printf(" ||      [ 2 ] Projetos                                             ||\n");
+    printf(" ||      [ 3 ] Atividades                                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         Filtrados:                                              ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      [ 3 ] Todas as atividades relacionadas a um Funcionario    ||\n");
-    printf(" ||      [ 4 ] As atividades de um Projeto                          ||\n");
-    printf(" ||      [ 5 ] Funcionarios por projeto                             ||\n");
-    printf(" ||      [ 6 ] Atividades por data especifica                       ||\n");
+    printf(" ||      [ 4 ] Todas as atividades relacionadas a um Funcionario    ||\n");
+    printf(" ||      [ 5 ] As atividades de um Projeto                          ||\n");
+    printf(" ||      [ 6 ] Funcionarios por projeto                             ||\n");
+    printf(" ||      [ 7 ] Atividades por data especifica                       ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 0 ] Voltar ao Menu Principal                             ||\n");
     printf(" ||                                                                 ||\n");
@@ -537,6 +552,79 @@ void excluir_lista_fnc(Funcionario **lista) {
     }
 }
 
+
+void relatorio_ordenado_pjt(Projeto **lista) {
+    FILE *fp;
+    Projeto *pjt;
+
+    excluir_lista_pjt(&(*lista));
+    *lista = NULL;
+    fp = fopen("projetos.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_pjt();
+    }
+    else {
+        pjt = (Projeto*) malloc(sizeof(Projeto));
+        while (fread(pjt, sizeof(Projeto), 1, fp)) {
+            if ((*lista == NULL) || (strcmp(inv_data(pjt->data_entrega), inv_data((*lista)->data_entrega)) < 0)) {
+                pjt->prox = *lista;
+                *lista = pjt;
+            }
+            else {
+                Projeto *ant = *lista;
+                Projeto *atu =  (*lista)->prox;
+                while ((atu != NULL) && (strcmp(inv_data(atu->data_entrega), inv_data(pjt->data_entrega)) < 0)) {
+                    ant = atu;
+                    atu = atu->prox;
+                }
+                ant->prox = pjt;
+                pjt->prox = atu;
+            }
+            pjt = (Projeto *) malloc(sizeof(Projeto));
+        }
+        free(pjt);
+        fclose(fp);
+    }
+}
+
+void exibir_lista_pjt(Projeto *aux) {
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                   ----- Lista de Projetos -----                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||              Data             |             Nome                ||\n");
+    printf("\n");
+    while (aux != NULL) {
+        printf(" ||         %s ", aux->data_entrega);
+        printf("               %s  \n", aux->nome);
+        aux = aux->prox;
+	}
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       --- Fim da lista ---                      ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void excluir_lista_pjt(Projeto **lista) {
+    Projeto *pjt; 
+    while (*lista != NULL) {
+        pjt = *lista;
+        *lista = (*lista)->prox;
+        free(pjt);
+    }
+}
 
 void relatorio_ordenado_atv(Atividade **lista) {
     FILE *fp;

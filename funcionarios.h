@@ -38,3 +38,5 @@ void tela_editar_cel(Funcionario*);
 void tela_editar_email(Funcionario*);
 void tela_editar_cargo(Funcionario*);
 
+int verifica_cpf_cadastrado(char*);
+

@@ -36,7 +36,7 @@ void adicionar_funcionario(void) {
 void pesquisar_funcionario(void) {
     Funcionario *fnc;
     char *cpf;
-
+    
     cpf = tela_pesquisar_funcionario();
     fnc = buscar_funcionario(cpf);
     exibir_funcionario(fnc);
@@ -52,7 +52,10 @@ void atualizar_funcionario(void) {
 	cpf = tela_atualizar_funcionario();
 	fnc = buscar_funcionario(cpf);
 	if (fnc == NULL) {
-    	printf(" ||               >>>>>> Funcionario inexistente <<<<<<             ||\n");
+    	printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+    	printf(" ||             >>>>>> Funcionario nao encontrado! <<<<<<           ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
@@ -139,7 +142,6 @@ char tela_funcionarios(void) {
 
 Funcionario* tela_adicionar_funcionario(void) {
     Funcionario *fnc;
-
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -163,10 +165,10 @@ Funcionario* tela_adicionar_funcionario(void) {
     printf("\n");
     do {
         printf("         CPF do Funcionario: \n");
-        printf("         => ");
+        printf("         => ");  
         scanf("%[^\n]", fnc->cpf);
         getchar();
-    } while (!valida_cpf(fnc->cpf));
+    } while (!valida_cpf(fnc->cpf) || !verifica_cpf_cadastrado(fnc->cpf));
     printf("\n");
     do {
         printf("         Numero de celular: \n");
@@ -257,7 +259,6 @@ char* tela_atualizar_funcionario(void) {
 
 void tela_editar_funcionario(Funcionario *fnc) {
     char editar;
-
     do {
         system("cls||clear");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -297,7 +298,6 @@ void tela_editar_funcionario(Funcionario *fnc) {
                       break;
         }
     } while (editar != '0');
-    fnc->status = 1;
 }
 
 void tela_editar_nome(Funcionario* fnc) {
@@ -574,4 +574,19 @@ void refazer_funcionario(Funcionario* fnc) {
 	}
     free(fnc_lido);
 	fclose(fp);
+}
+
+int verifica_cpf_cadastrado(char *cpf) {
+    FILE *fp;
+    Funcionario *fnc;
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    while(fread(fnc, sizeof(Funcionario), 1, fp)) {
+        if(strcmp(fnc->cpf, cpf) == 0) {
+            free(fnc);
+            return 0;
+        }
+    }
+    free(fnc);
+    return 1;
 }

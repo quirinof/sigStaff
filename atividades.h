@@ -6,6 +6,7 @@ struct atividade {
     char cpf[12];
     char data_atv[11];
     int status;
+    Atividade *prox;
 };
 
 // funções que coordenam todas as funcionalidades do módulo

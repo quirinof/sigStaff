@@ -4,6 +4,7 @@ struct projeto {
     char id[6];
     char data_entrega[11];
     int status;
+    Projeto *prox;
 };
 
 // funções gerais para manipular todas as funcionalidades

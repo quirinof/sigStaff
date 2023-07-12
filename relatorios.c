@@ -8,8 +8,11 @@
 #include "validacoes.h"
 
 void relatorio_ordenado_fnc(Funcionario **);
+void relatorio_ordenado_atv(Atividade **);
 void exibir_lista_fnc(Funcionario *);
+void exibir_lista_atv(Atividade *);
 void excluir_lista_fnc(Funcionario **);
+void excluir_lista_atv(Atividade **);
 
 
 void modulo_relatorios(void) {
@@ -19,19 +22,15 @@ void modulo_relatorios(void) {
         switch(opcao) {
             case '1': modulo_lista_ordenada_funcionarios();
                       break;
-            case '2': atividades_por_funcionario();
+            case '2': modulo_lista_ordenada_atividades();
                       break;
-            case '3': atividades_por_projeto();
+            case '3': atividades_por_funcionario();
                       break;
-            case '4': funcionarios_por_projeto();
+            case '4': atividades_por_projeto();
                       break;
-            case '5': atividades_por_data();
+            case '5': funcionarios_por_projeto();
                       break;
-            case '6': listar_funcionarios();
-                      break;
-            case '7': listar_projetos();
-                      break;
-            case '8': listar_atividades();
+            case '6': atividades_por_data();
                       break;
         }
     } while (opcao != '0');
@@ -44,6 +43,14 @@ void modulo_lista_ordenada_funcionarios(void) {
     relatorio_ordenado_fnc(&lista);
     exibir_lista_fnc(lista);
     excluir_lista_fnc(&lista);
+}
+
+void modulo_lista_ordenada_atividades(void) {
+    Atividade *lista;
+    lista = NULL;
+    relatorio_ordenado_atv(&lista);
+    exibir_lista_atv(lista);
+    excluir_lista_atv(&lista);
 }
 
 void atividades_por_funcionario(void) {
@@ -98,19 +105,14 @@ char tela_relatorios(void) {
     printf(" ||         Ordenado:                                               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 1 ] Funcionarios                                         ||\n");
+    printf(" ||      [ 2 ] Atividades                                           ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         Filtrados:                                              ||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||      [ 2 ] Todas as atividades relacionadas a um Funcionario    ||\n");
-    printf(" ||      [ 3 ] As atividades de um Projeto                          ||\n");
-    printf(" ||      [ 4 ] Funcionarios por projeto                             ||\n");
-    printf(" ||      [ 5 ] Atividades por data especifica                       ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||         Gerais(Basico):                                         ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||      [ 6 ] Funcionarios                                         ||\n");
-    printf(" ||      [ 7 ] Projetos                                             ||\n");
-    printf(" ||      [ 8 ] Atividades                                           ||\n");
+    printf(" ||      [ 3 ] Todas as atividades relacionadas a um Funcionario    ||\n");
+    printf(" ||      [ 4 ] As atividades de um Projeto                          ||\n");
+    printf(" ||      [ 5 ] Funcionarios por projeto                             ||\n");
+    printf(" ||      [ 6 ] Atividades por data especifica                       ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||      [ 0 ] Voltar ao Menu Principal                             ||\n");
     printf(" ||                                                                 ||\n");
@@ -532,6 +534,80 @@ void excluir_lista_fnc(Funcionario **lista) {
         fnc = *lista;
         *lista = (*lista)->prox;
         free(fnc);
+    }
+}
+
+
+void relatorio_ordenado_atv(Atividade **lista) {
+    FILE *fp;
+    Atividade *atv;
+
+    excluir_lista_atv(&(*lista));
+    *lista = NULL;
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    else {
+        atv = (Atividade*) malloc(sizeof(Atividade));
+        while (fread(atv, sizeof(Atividade), 1, fp)) {
+            if ((*lista == NULL) || (strcmp(inv_data(atv->data_atv), inv_data((*lista)->data_atv)) < 0)) {
+                atv->prox = *lista;
+                *lista = atv;
+            }
+            else {
+                Atividade *ant = *lista;
+                Atividade *atu =  (*lista)->prox;
+                while ((atu != NULL) && (strcmp(inv_data(atu->data_atv), inv_data(atv->data_atv)) < 0)) {
+                    ant = atu;
+                    atu = atu->prox;
+                }
+                ant->prox = atv;
+                atv->prox = atu;
+            }
+            atv = (Atividade *) malloc(sizeof(Atividade));
+        }
+        free(atv);
+        fclose(fp);
+    }
+}
+
+void exibir_lista_atv(Atividade *aux) {
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>>     RELATORIOS     <<<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                   ----- Lista de Atividades -----               ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||              Data             |             Nome                ||\n");
+    printf("\n");
+    while (aux != NULL) {
+        printf(" ||         %s ", aux->data_atv);
+        printf("               %s  \n", aux->nome_atv);
+        aux = aux->prox;
+	}
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       --- Fim da lista ---                      ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
+}
+
+void excluir_lista_atv(Atividade **lista) {
+    Atividade *atv;
+    while (*lista != NULL) {
+        atv = *lista;
+        *lista = (*lista)->prox;
+        free(atv);
     }
 }
 

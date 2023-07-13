@@ -14,6 +14,7 @@ void adicionar_funcionario(void);
 void pesquisar_funcionario(void);
 void atualizar_funcionario(void);
 void excluir_funcionario(void);
+void recuperar_funcionario(void);
 
 // telas de navegação e/ou preenchimento de dados
 void modulo_funcionarios(void);
@@ -22,6 +23,7 @@ Funcionario* tela_adicionar_funcionario(void);
 char* tela_pesquisar_funcionario(void);
 char* tela_atualizar_funcionario(void);
 char* tela_excluir_funcionario(void);
+char* tela_recuperar_funcionario(void);
 void tela_erro(void);
 
 // funções para manipular arquivos

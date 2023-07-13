@@ -18,7 +18,9 @@ void modulo_funcionarios(void) {
                       break;
             case '4': excluir_funcionario();
                       break;
-            case '5': listar_funcionarios();
+            case '5': recuperar_funcionario();
+                      break;
+            case '6': listar_funcionarios();
                       break;
         }
     } while (opcao != '0');
@@ -110,6 +112,13 @@ void excluir_funcionario(void) {
 	free(cpf);
 }
 
+void recuperar_funcionario(void) {
+    char *cpf;
+    cpf = tela_recuperar_funcionario();
+    free(cpf);
+    /// função em desenvolvimento
+}
+
 
 char tela_funcionarios(void) {
     char escolha;
@@ -127,7 +136,8 @@ char tela_funcionarios(void) {
     printf(" ||        [ 2 ] Pesquisar funcionario ja cadastrado                ||\n");
     printf(" ||        [ 3 ] Atualizar os dados de um funcionario               ||\n");
     printf(" ||        [ 4 ] Excluir funcionario do sistema                     ||\n");
-    printf(" ||        [ 5 ] Listar todos os Funcionarios                       ||\n");
+    printf(" ||        [ 5 ] Recuperar funcionario excluido                     ||\n");
+    printf(" ||        [ 6 ] Listar todos os Funcionarios                       ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||        [ 0 ] Voltar ao Menu Principal                           ||\n");
     printf(" ||                                                                 ||\n");
@@ -435,6 +445,43 @@ char* tela_excluir_funcionario(void) {
     } while (!valida_cpf(cpf));
     printf("\n");
 
+    return cpf;
+}
+
+char* tela_recuperar_funcionario(void) {
+    char* cpf;
+
+    cpf = (char*) malloc(12*sizeof(char));
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       ----- RECUPERAR -----                     ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf("         CPF do Funcionario: \n");
+        printf("         => ");
+        scanf("%[^\n]", cpf);
+        getchar();
+    } while (!valida_cpf(cpf));
+    printf("\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                     Funcionario recuperado!                     ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar();
     return cpf;
 }
 

@@ -38,3 +38,4 @@ void tela_editar_id_atividade(Atividade*);
 
 // util
 char* gerar_id_atv(void);
+int verifica_data_pjt(char *, char *);

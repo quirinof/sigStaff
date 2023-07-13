@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "string.h"
 #include "atividades.h"
+#include "projetos.h"
 #include "relatorios.h"
 #include "validacoes.h"
 
@@ -168,7 +169,7 @@ Atividade* tela_adicionar_atividade(void) {
         printf("            => ");
         scanf("%[^\n]", atv->data_atv);
         getchar();
-    } while (!valida_data(atv->data_atv));
+    } while (!valida_data(atv->data_atv) || !verifica_data_pjt(atv->id_pjt, atv->data_atv));
 
     printf("\n");
     strcpy(atv->id, gerar_id_atv());
@@ -364,7 +365,7 @@ void tela_editar_data_atividade(Atividade* atv) {
         printf("         => ");
         scanf("%[^\n]", atv->data_atv);
         getchar();
-    } while (!valida_data(atv->data_atv));
+    } while (!valida_data(atv->data_atv) || !verifica_data_pjt(atv->id_pjt, atv->data_atv));
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -594,4 +595,26 @@ char* gerar_id_atv(void) {
     free(atv);
     fclose(fp);
     return id;
+}
+
+int verifica_data_pjt(char *id_pjt, char *data) {
+    FILE *fp;
+    Projeto *pjt;
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    fp = fopen("projetos.dat", "rb");
+    if(fp == NULL) {
+        tela_erro_pjt();
+    }
+    while (fread(pjt, sizeof(Projeto), 1, fp)) {
+        if(strcmp(pjt->id, id_pjt) == 0) {
+            if(strcmp(inv_data(pjt->data_entrega), inv_data(data)) < 0) {
+                fclose(fp);
+                free(pjt);
+                return 0;
+            }
+        } 
+    }
+    fclose(fp);
+    free(pjt);
+    return 1;
 }

@@ -31,6 +31,7 @@ void salvar_funcionario(Funcionario*);
 Funcionario* buscar_funcionario(char*);
 void exibir_funcionario(Funcionario*);
 void refazer_funcionario(Funcionario*);
+Funcionario* buscar_e_recuperar_fnc(char *);
 
 // as funções que editam apenas um campo específico da estrutura funcionário
 void tela_editar_funcionario(Funcionario*);

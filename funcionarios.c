@@ -113,8 +113,28 @@ void excluir_funcionario(void) {
 }
 
 void recuperar_funcionario(void) {
+    Funcionario *fnc;
     char *cpf;
+
     cpf = tela_recuperar_funcionario();
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = buscar_e_recuperar_fnc(cpf);
+    if(fnc == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+    	printf(" ||             >>>>>> Funcionario nao encontrado! <<<<<<           ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    }
+    else {
+        refazer_funcionario(fnc);
+        free(fnc);
+    }
     free(cpf);
     /// função em desenvolvimento
 }
@@ -529,6 +549,26 @@ Funcionario* buscar_funcionario(char* cpf) {
     }
     while (fread(fnc, sizeof(Funcionario), 1, fp)) {
         if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 1)) {
+            fclose(fp);
+            return fnc;
+        }
+    }   
+    fclose(fp);
+    return NULL;
+}
+
+Funcionario* buscar_e_recuperar_fnc(char *cpf) {
+    FILE *fp;
+    Funcionario *fnc;
+
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        tela_erro();
+    }
+    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+        if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 0)) {
+            fnc->status = 1;
             fclose(fp);
             return fnc;
         }

@@ -272,10 +272,9 @@ void tela_editar_funcionario(Funcionario *fnc) {
         printf(" ||                        ----- EDITAR -----                       ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||         [ 1 ] Nome                                              ||\n");
-        printf(" ||         [ 2 ] CPF                                               ||\n");
-        printf(" ||         [ 3 ] Email                                             ||\n");
-        printf(" ||         [ 4 ] Celular                                           ||\n");
-        printf(" ||         [ 5 ] Cargo                                             ||\n");
+        printf(" ||         [ 2 ] Email                                             ||\n");
+        printf(" ||         [ 3 ] Celular                                           ||\n");
+        printf(" ||         [ 4 ] Cargo                                             ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||         [ 0 ] Sair                                              ||\n");
         printf(" ||                                                                 ||\n");
@@ -288,13 +287,11 @@ void tela_editar_funcionario(Funcionario *fnc) {
         switch (editar) {
             case '1': tela_editar_nome(fnc);
                       break;
-            case '2': tela_editar_cpf(fnc);
+            case '2': tela_editar_email(fnc);
                       break;
-            case '3': tela_editar_email(fnc);
+            case '3': tela_editar_cel(fnc);
                       break;
-            case '4': tela_editar_cel(fnc);
-                      break;
-            case '5': tela_editar_cargo(fnc);
+            case '4': tela_editar_cargo(fnc);
                       break;
         }
     } while (editar != '0');
@@ -328,34 +325,6 @@ void tela_editar_nome(Funcionario* fnc) {
     getchar();
 }
 
-
-void tela_editar_cpf(Funcionario* fnc) {
-    system("cls||clear");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                 >>>>>     FUNCIONARIOS     <<<<<                ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                        ----- EDITAR -----                       ||\n");
-    printf(" ||                                                                 ||\n");
-    do {
-        printf("         Novo CPF do Funcionario: \n");
-        printf("         => ");
-        scanf("%[^\n]", fnc->cpf);
-        getchar();
-    } while (!valida_cpf(fnc->cpf));
-    printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Informacao atualizada ......               ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-}
 
 void tela_editar_cel(Funcionario* fnc) {
     system("cls||clear");

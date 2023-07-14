@@ -18,7 +18,9 @@ void modulo_projetos(void) {
                       break;
             case '4': excluir_projeto();
                       break;
-            case '5': listar_projetos();
+            case '5': recuperar_projeto();
+                      break;
+            case '6': listar_projetos();
                       break;
         }
     } while (opcao != '0');
@@ -77,7 +79,7 @@ void excluir_projeto(void) {
     pjt = (Projeto*) malloc(sizeof(Projeto));
     pjt = buscar_projeto(id);
     if (pjt == NULL) {
-        printf(" ||             >>>>>> Projeto não encontrado! <<<<<<               ||\n");
+        printf(" ||             >>>>>> Projeto nao encontrado! <<<<<<               ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
@@ -85,6 +87,44 @@ void excluir_projeto(void) {
     else {
         pjt->status = 0;
         refazer_projeto(pjt);
+        free(pjt);
+    }
+    free(id);
+}
+
+void recuperar_projeto(void) {
+    Projeto *pjt;
+    char *id;
+
+    id = tela_recuperar_projeto();
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    pjt = buscar_e_recuperar_pjt(id);
+    if(pjt == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+    	printf(" ||               >>>>>> Projeto nao encontrado! <<<<<<             ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
+    }
+    else {
+        refazer_projeto(pjt);
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                 ...... Projeto recuperado ......                ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
         free(pjt);
     }
     free(id);
@@ -107,7 +147,8 @@ char tela_projetos(void) {
     printf(" ||         [ 2 ] Pesquisar por projeto existente                   ||\n");
     printf(" ||         [ 3 ] Atualizar um projeto em andamento                 ||\n");
     printf(" ||         [ 4 ] Excluir projeto                                   ||\n");
-    printf(" ||         [ 5 ] Listar todos os projetos                          ||\n");
+    printf(" ||         [ 5 ] Recuperar projeto excluido                        ||\n");
+    printf(" ||         [ 6 ] Listar todos os projetos                          ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -190,9 +231,6 @@ char* tela_pesquisar_projeto(void) {
         getchar();
     } while (!valida_id(id, 5));
     printf("\n");
-    printf(" ||               ------- Enter para continuar! --------            ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
 
     return id;
 }
@@ -239,8 +277,7 @@ void tela_editar_projeto(Projeto* pjt) {
         printf(" ||                           __ EDITAR __                          ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||         [ 1 ] Titulo                                            ||\n");
-        printf(" ||         [ 2 ] ID                                                ||\n");
-        printf(" ||         [ 3 ] Data para entrega                                 ||\n");
+        printf(" ||         [ 2 ] Data para entrega                                 ||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||         [ 0 ] Retornar ao menu de Projetos                      ||\n");
         printf(" ||                                                                 ||\n");
@@ -253,9 +290,7 @@ void tela_editar_projeto(Projeto* pjt) {
         switch (editar) {
             case '1': tela_editar_titulo_projeto(pjt);
                       break;
-            case '2': tela_editar_id_projeto(pjt);
-                      break;
-            case '3': tela_editar_data_projeto(pjt);
+            case '2': tela_editar_data_projeto(pjt);
                       break;
         }
     } while (editar != '0');
@@ -280,31 +315,6 @@ void tela_editar_titulo_projeto(Projeto* pjt) {
         scanf("%[^\n]", pjt->nome);
         getchar();
     } while (!valida_nome(pjt->nome));
-    printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Informacao atualizada ......              ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar(); 
-}
-
-void tela_editar_id_projeto(Projeto* pjt) {
-    system("cls||clear");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                           __ EDITAR __                          ||\n");
-    printf(" ||                                                                 ||\n");
-    strcpy(pjt->id, gerar_id());
-    printf("            Novo ID do Projeto: \n");
-    printf(" ||           => %s\n", pjt->id);
     printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -372,6 +382,32 @@ char* tela_excluir_projeto(void) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
+
+    return id;
+}
+
+char* tela_recuperar_projeto(void) {
+    char* id;
+
+    id = (char*) malloc(6*sizeof(char));
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                   >>>>>     PROJETOS     <<<<<                  ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       ----- RECUPERAR -----                     ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf("         ID do Projeto: \n");
+        printf("         => ");
+        scanf("%[^\n]", id);
+        getchar();
+    } while (!valida_id(id, 5));
+    printf("\n");
 
     return id;
 }
@@ -477,8 +513,28 @@ void refazer_projeto(Projeto *pjt) {
             fwrite(pjt, sizeof(Projeto), 1, fp);
         }
     }
-    free(pjt_lido);
     fclose(fp);
+    free(pjt_lido);
+}
+
+Projeto* buscar_e_recuperar_pjt(char *id) {
+    FILE *fp;
+    Projeto *pjt;
+
+    pjt = (Projeto*) malloc(sizeof(Projeto));
+    fp = fopen("projetos.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_pjt();
+    }
+    while (fread(pjt, sizeof(Projeto), 1, fp)) {
+        if ((strcmp(pjt->id, id) == 0) && (pjt->status == 0)) {
+            pjt->status = 1;
+            fclose(fp);
+            return pjt;
+        }
+    }   
+    fclose(fp);
+    return NULL;
 }
 
 

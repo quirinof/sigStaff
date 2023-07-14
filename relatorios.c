@@ -17,8 +17,7 @@ void excluir_lista_fnc(Funcionario **);
 void excluir_lista_pjt(Projeto **);
 void excluir_lista_atv(Atividade **);
 
-
-
+/// Função mae que coordena todas as funcionalidades do módulo
 void modulo_relatorios(void) {
     char opcao;
     do {
@@ -42,7 +41,7 @@ void modulo_relatorios(void) {
     } while (opcao != '0');
 }
 
-
+/// Manipula a listagem ordenada de todos os funcionários
 void modulo_lista_ordenada_funcionarios(void) {
     Funcionario *lista;
     lista = NULL;
@@ -51,6 +50,7 @@ void modulo_lista_ordenada_funcionarios(void) {
     excluir_lista_fnc(&lista);
 }
 
+/// Manipula a listagem ordenada de todos os projetos
 void modulo_lista_ordenada_projetos(void) {
     Projeto *lista;
     lista = NULL;
@@ -59,6 +59,7 @@ void modulo_lista_ordenada_projetos(void) {
     excluir_lista_pjt(&lista);
 }
 
+/// Manipula a listagem ordenada de todas as atividades
 void modulo_lista_ordenada_atividades(void) {
     Atividade *lista;
     lista = NULL;
@@ -67,6 +68,7 @@ void modulo_lista_ordenada_atividades(void) {
     excluir_lista_atv(&lista);
 }
 
+/// Manipula a listagem de atividades anexadas a um único funcionário
 void atividades_por_funcionario(void) {
     char *cpf;
 
@@ -76,6 +78,7 @@ void atividades_por_funcionario(void) {
     free(cpf);
 }
 
+/// Manipula a listagem de atividades atribuídas a um único projeto
 void atividades_por_projeto(void) {
     char *id_pjt;
 
@@ -85,6 +88,7 @@ void atividades_por_projeto(void) {
     free(id_pjt);
 }
 
+/// Manipula a listagem de funcionários existentes em um único projeto
 void funcionarios_por_projeto(void) {
     char *id_pjt;
 
@@ -94,6 +98,7 @@ void funcionarios_por_projeto(void) {
     free(id_pjt);
 }
 
+/// Manipula a listagem de atividades em uma data específica 
 void atividades_por_data(void) {
     char *data;
 
@@ -103,7 +108,7 @@ void atividades_por_data(void) {
     free(data);
 }
 
-
+/// Menu de relatórios
 char tela_relatorios(void) {
     char escolha;
 
@@ -140,7 +145,7 @@ char tela_relatorios(void) {
     return escolha;
 }
 
-
+/// Retorna cpf digitado pelo usuário
 char* tela_atividades_por_funcionario(void) {
     char *cpf;
     cpf = (char*) malloc(12*sizeof(char));
@@ -169,6 +174,7 @@ char* tela_atividades_por_funcionario(void) {
     return cpf;
 }
 
+/// Retorna ID digitado pelo usuário
 char* tela_atividades_por_projeto(void) {
     char *id_pjt;
     id_pjt = (char*) malloc(6*sizeof(char));
@@ -197,6 +203,7 @@ char* tela_atividades_por_projeto(void) {
     return id_pjt;
 }
 
+/// Retorna ID digitado pelo usuário
 char* tela_funcionarios_por_projeto(void) {
     char *id_pjt;
     id_pjt = (char*) malloc(6*sizeof(char));
@@ -225,6 +232,7 @@ char* tela_funcionarios_por_projeto(void) {
     return id_pjt;
 }
 
+/// Retorna Data digitada pelo usuário
 char* tela_atividades_por_data(void) {
     char *data_atv;
     data_atv = (char*) malloc(11*sizeof(char));
@@ -253,6 +261,7 @@ char* tela_atividades_por_data(void) {
     return data_atv;
 }
 
+/// Recebe a data para listar as atividades relacionadas a ela
 void relatorio_atv_por_data(char *data_atv) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -275,6 +284,7 @@ void relatorio_atv_por_data(char *data_atv) {
     getchar();
 }
 
+/// Recebe o CPF para listar as atividades relacionadas a um funcionário
 void relatorio_atv_por_fnc (char *cpf) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -297,6 +307,7 @@ void relatorio_atv_por_fnc (char *cpf) {
     getchar();
 }
 
+/// Recebe o ID para listar as atividades relacionadas a um projeto
 void relatorio_atv_por_pjt(char *id_pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -319,6 +330,7 @@ void relatorio_atv_por_pjt(char *id_pjt) {
     getchar();
 }
 
+/// Recebe um ID para listar os funcionários atribuídos àquele projeto
 void relatorio_fnc_por_pjt(char* id_pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -344,7 +356,7 @@ void relatorio_fnc_por_pjt(char* id_pjt) {
 
 /////// FUNCOES DE ARQUIVAMENTO /////////////////
 
-/// RELATORIOS COMPLETOS SIMPLES ///
+/// Abre o arquivo e exibe cada um dos funcionários.
 void listar_funcionarios(void) {
     FILE *fp;
     Funcionario *fnc;
@@ -360,6 +372,7 @@ void listar_funcionarios(void) {
     free(fnc);
 }
 
+/// Abre o arquivo e exibe cada um dos projetos.
 void listar_projetos(void) {
     FILE *fp;
     Projeto *pjt;
@@ -375,6 +388,7 @@ void listar_projetos(void) {
     fclose(fp);
 }
 
+/// Abre o arquivo e exibe cada uma das atividades.
 void listar_atividades(void) {
     FILE *fp;
     Atividade *atv;
@@ -390,7 +404,7 @@ void listar_atividades(void) {
     fclose(fp);
 }
 
-/// RELATORIOS FILTRADOS/ESPECIFICOS ///
+/// Abre o arquivo e exibe alguns campos das atividades.
 void listar_atv_filtrada(char *id) {
     FILE *fp;
     Atividade *atv; 
@@ -408,6 +422,7 @@ void listar_atv_filtrada(char *id) {
     free(atv);
 }
 
+/// Abre o arquivo e exibe alguns campos dos funcionários.
 void listar_fnc_filtrado(char *cpf) {
     FILE *fp;
     Funcionario *fnc; 
@@ -425,7 +440,7 @@ void listar_fnc_filtrado(char *cpf) {
     free(fnc);
 }
 
-/// RELATORIOS USANDO MAIS DE UM ARQUIVO ///
+/// Abre arquivo de funcionários e exibe as atividades dele.
 void listar_atividades_por_fnc(char *cpf) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
@@ -438,6 +453,7 @@ void listar_atividades_por_fnc(char *cpf) {
     free(fnc);
 }
 
+/// Abre o arquivo de projetos e exibe as atividades dele.
 void listar_atividades_por_pjt(char* id_pjt) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
@@ -450,6 +466,7 @@ void listar_atividades_por_pjt(char* id_pjt) {
     free(pjt);
 }
 
+/// Abre os arquivos de atividades e projetos, e exibe os funcionários relacionados a um projeto
 void listar_fnc_por_pjt(char *id_pjt) {
     FILE *fp;
     Projeto *pjt;
@@ -478,6 +495,7 @@ void listar_fnc_por_pjt(char *id_pjt) {
 }
 
 
+/// Abre arquivo de funcionários e ordena alfabeticamente todos.
 void relatorio_ordenado_fnc(Funcionario **lista) {
     FILE *fp;
     Funcionario *fnc;
@@ -512,7 +530,7 @@ void relatorio_ordenado_fnc(Funcionario **lista) {
     }
 } // by: @FlaviusGorgonio
 
-
+/// Exibe a lista ordenada de funcionários
 void exibir_lista_fnc(Funcionario *aux) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -533,6 +551,8 @@ void exibir_lista_fnc(Funcionario *aux) {
         aux = aux->prox;
 	}
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
     printf(" ||                     --- Fim da lista ---                        ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -543,6 +563,7 @@ void exibir_lista_fnc(Funcionario *aux) {
     getchar();
 }
 
+/// Libera a memória alocada para lista
 void excluir_lista_fnc(Funcionario **lista) {
     Funcionario *fnc; 
     while (*lista != NULL) {
@@ -553,6 +574,7 @@ void excluir_lista_fnc(Funcionario **lista) {
 }
 
 
+/// Abre arquivo de projetos e ordena alfabeticamente todos.
 void relatorio_ordenado_pjt(Projeto **lista) {
     FILE *fp;
     Projeto *pjt;
@@ -587,6 +609,7 @@ void relatorio_ordenado_pjt(Projeto **lista) {
     }
 }
 
+/// Exibe a lista ordenada de projeto
 void exibir_lista_pjt(Projeto *aux) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -607,6 +630,8 @@ void exibir_lista_pjt(Projeto *aux) {
         aux = aux->prox;
 	}
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
     printf(" ||                       --- Fim da lista ---                      ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -617,6 +642,7 @@ void exibir_lista_pjt(Projeto *aux) {
     getchar();
 }
 
+/// Libera a memória alocada para lista
 void excluir_lista_pjt(Projeto **lista) {
     Projeto *pjt; 
     while (*lista != NULL) {
@@ -626,6 +652,8 @@ void excluir_lista_pjt(Projeto **lista) {
     }
 }
 
+
+/// Abre arquivo de atividades e ordena alfabeticamente todas.
 void relatorio_ordenado_atv(Atividade **lista) {
     FILE *fp;
     Atividade *atv;
@@ -660,6 +688,7 @@ void relatorio_ordenado_atv(Atividade **lista) {
     }
 }
 
+/// Exibe a lista ordenada de atividades
 void exibir_lista_atv(Atividade *aux) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -680,6 +709,8 @@ void exibir_lista_atv(Atividade *aux) {
         aux = aux->prox;
 	}
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
     printf(" ||                       --- Fim da lista ---                      ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -690,6 +721,7 @@ void exibir_lista_atv(Atividade *aux) {
     getchar();
 }
 
+/// Libera a memória alocada para lista
 void excluir_lista_atv(Atividade **lista) {
     Atividade *atv;
     while (*lista != NULL) {

@@ -5,6 +5,7 @@
 #include "relatorios.h"
 #include "validacoes.h"
 
+/// Função mae que coordena todas as funcionalidades do módulo
 void modulo_funcionarios(void) {
     char opcao;
     do {
@@ -26,6 +27,7 @@ void modulo_funcionarios(void) {
     } while (opcao != '0');
 }
 
+/// Manipula o cadastro de um funcionario
 void adicionar_funcionario(void) {
     Funcionario *fnc;
 
@@ -35,6 +37,7 @@ void adicionar_funcionario(void) {
     free(fnc);
 }
 
+/// Manipula a pesquisa de um funcionario
 void pesquisar_funcionario(void) {
     Funcionario *fnc;
     char *cpf;
@@ -47,6 +50,7 @@ void pesquisar_funcionario(void) {
     free(cpf);
 }
 
+/// Manipula a alteração de um funcionario
 void atualizar_funcionario(void) {
     Funcionario *fnc;
 	char *cpf;
@@ -74,6 +78,7 @@ void atualizar_funcionario(void) {
 	free(cpf);
 }
 
+/// Manipula a exclusão de um funcionario
 void excluir_funcionario(void) {
     Funcionario *fnc;
 	char *cpf;
@@ -113,6 +118,7 @@ void excluir_funcionario(void) {
 	free(cpf);
 }
 
+/// Manipula a recuperação de um funcionario
 void recuperar_funcionario(void) {
     Funcionario *fnc;
     char *cpf;

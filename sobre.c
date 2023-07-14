@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "sobre.h"
 
-
+/// Informacoes básica do sistema
 void tela_sobre(void) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -22,13 +22,15 @@ void tela_sobre(void) {
     printf(" ||  para nos(alunos) sermos avaliados mediante os conhecimentos    ||\n");
     printf(" ||  adquiridos durante o periodo. Contem um sistema para controle  ||\n");
     printf(" ||  de funcionarios de uma software house, simulando as            ||\n");
-    printf(" ||  funcionalides necessarias para tal sistema. Criado apenas      ||\n");
-    printf(" ||  para fins didaticos.                                           ||\n");
+    printf(" ||  funcionalides básicas necessarias para tal sistema.            ||\n");
+    printf(" ||             Criado apenas para fins didaticos.                  ||\n");
+    printf(" ||                                                                 ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 } // by: @flaviusgorgonio
 
+/// Créditos
 void tela_equipe(void) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");

@@ -3,6 +3,8 @@
 #include <string.h>
 #include "validacoes.h"
 
+
+/// Verifica se é digito numérico. Recebe o caracter
 int numero(char n) {
     if (n >= '0' && n <= '9') {
         return 1;
@@ -12,6 +14,7 @@ int numero(char n) {
     }
 }
 
+/// Vericica a quantidade de digitos. Recebe o valor e a condição
 int quantidade_digitos(char* v, int x) {
     int i;
     for (i = 0; i < x; i++) {
@@ -26,7 +29,8 @@ int quantidade_digitos(char* v, int x) {
         return 1;
     }
 }
-
+ 
+/// Limpa caracteres indesejáveis
 void limpa_caracteres(char* str) {
     int i, j = 0;
     for (i = 0; str[i] != '\0'; i++) {
@@ -38,6 +42,8 @@ void limpa_caracteres(char* str) {
     str[j] = '\0';
 }
 
+
+/// Verifica se é um número de telefone brasileiro válido. Recebe o número
 int valida_cel(char* cel) {
     // a função que limpa caracteres ja retorna apenas digitos numericos 
     limpa_caracteres(cel);
@@ -47,6 +53,7 @@ int valida_cel(char* cel) {
     return 1; 
 }
 
+/// Verifica se é um ID válido. Recebe o valor e a condição 
 int valida_id(char* id, int t) {
     //       o id em si, o tamanho do id para tornar uma função genérica
     int i;
@@ -67,8 +74,7 @@ int valida_id(char* id, int t) {
     return 1;
 }
 
-
-
+/// Verifica se é um CPF válido. Recebe o CPF
 int valida_cpf(char* cpf) {
     int i, j;
     int d1 = 0;
@@ -114,6 +120,7 @@ int valida_cpf(char* cpf) {
     return 1;
 }
 
+/// Verifica se é um ano bissexto. Recebe o ano
 int bissexto(int ano) {
     if ((ano % 4 == 0) && (ano % 100 != 0)) {
         return 1;
@@ -126,6 +133,7 @@ int bissexto(int ano) {
     }
 }
 
+/// Verifica se é uma data válida. Recebe dia, mes e ano
 int verifica_data(int dd, int mm, int aa) {
     int max;
     if (aa < 0 || mm < 1 || mm > 12 ) {
@@ -150,6 +158,7 @@ int verifica_data(int dd, int mm, int aa) {
     return 1;
 } // by: Flavius Gorgonio
 
+/// Verifica se a data foi digitada corretamente. Recebe a data completa
 int valida_data(char* data) {
     int dia, mes, ano;
     // verifica quantidade de digitos 
@@ -167,6 +176,7 @@ int valida_data(char* data) {
     return 1;
 }
 
+/// Verifica se é um caracter letra. Recebe o caracter
 int letra(char l) {
     // vai retornar 1 apenas se for letra
     if ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z')) {
@@ -177,6 +187,7 @@ int letra(char l) {
     }
 }
 
+/// Verifica se é um nome válido. Recebe o nome completo
 int valida_nome(char* nome) {
     int cont, tam = 0;
     tam = strlen(nome);
@@ -194,6 +205,7 @@ int valida_nome(char* nome) {
     return 1;
 }
 
+/// Verifica se é um caracter de email válido. Recebe o caracter
 int caracteres_email(char c) {
     if ((!letra(c)) && (!numero(c)) && (c != '@') && (c != '.') && (c != '_') && (c != '-')) {
         return 0;
@@ -203,6 +215,7 @@ int caracteres_email(char c) {
     }
 }
 
+/// Verifica se é um email válido. Recebe o email completo
 int valida_email(char* email) {
     int i;
     int a = 0, p = 0;
@@ -230,6 +243,7 @@ int valida_email(char* email) {
     return 1;
 }
 
+/// Inverte a data de padrão brasileiro. Recebe a data em padrão BR
 char* inv_data(char* data_ant) {
     char* data_atual;
     data_atual = (char*) malloc(11 * sizeof(char));

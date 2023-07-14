@@ -5,6 +5,7 @@
 #include "relatorios.h"
 #include "validacoes.h"
 
+/// Função mae que coordena todas as funcionalidades do módulo
 void modulo_projetos(void) {
     char opcao;
     do {
@@ -26,6 +27,7 @@ void modulo_projetos(void) {
     } while (opcao != '0');
 }
 
+/// Manipula a criação de um Projeto
 void adicionar_projeto(void) {
     Projeto *pjt;
     
@@ -35,6 +37,7 @@ void adicionar_projeto(void) {
     free(pjt);
 }
 
+/// Manipula a pesquisa de um Projeto
 void pesquisar_projeto(void) {
     Projeto *pjt;
     char *id;
@@ -47,6 +50,7 @@ void pesquisar_projeto(void) {
     free(id);
 }
 
+/// Manipula a alteração de um Projeto
 void atualizar_projeto(void) {
     Projeto *pjt;
     char *id;
@@ -74,6 +78,7 @@ void atualizar_projeto(void) {
     free(id);
 }
 
+/// Manipula a exclusão de um Projeto
 void excluir_projeto(void) {
     Projeto *pjt;
     char *id;
@@ -113,6 +118,7 @@ void excluir_projeto(void) {
     free(id);
 }
 
+/// Manipula a recuperação de um Projeto
 void recuperar_projeto(void) {
     Projeto *pjt;
     char *id;

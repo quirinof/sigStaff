@@ -6,7 +6,7 @@
 #include "relatorios.h"
 #include "validacoes.h"
 
-
+/// Função mae que coordena todas as funcionalidades do módulo
 void modulo_atividades(void) {
     char opcao;
     do {
@@ -28,7 +28,7 @@ void modulo_atividades(void) {
     } while (opcao != '0');
 }
 
-
+/// Manipula a criação de uma Atividade
 void adicionar_atividade(void) {
     Atividade *atv;
 
@@ -38,6 +38,7 @@ void adicionar_atividade(void) {
     free(atv);
 }
 
+/// Manipula a busca de uma Atividade
 void pesquisar_atividade(void) {
     Atividade *atv;
     char *id;
@@ -50,6 +51,7 @@ void pesquisar_atividade(void) {
     free(id);
 }
 
+/// Manipula a alteração de uma Atividade
 void atualizar_atividade(void) {
     Atividade *atv;
 	char *id;
@@ -77,6 +79,7 @@ void atualizar_atividade(void) {
 	free(id);
 }
 
+/// Manipula a exclusão de uma Atividade
 void excluir_atividade(void) {
     Atividade *atv;
 	char *id;
@@ -116,6 +119,7 @@ void excluir_atividade(void) {
 	free(id);
 }
 
+/// Manipula a recuperação de uma Atividade
 void recuperar_atividade(void) {
     Atividade *atv;
     char *id;

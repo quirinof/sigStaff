@@ -8,7 +8,6 @@
 
 char tela_principal(void);
 
-
 int main(void) {
     char opcao;
 
@@ -32,6 +31,7 @@ int main(void) {
     return 0;
 }
 
+/// Menu principal que é o centro da navegabilidade
 char tela_principal(void) {
     char escolha;
 

@@ -20,7 +20,9 @@ void modulo_atividades(void) {
                       break;
             case '4': excluir_atividade();
                       break;
-            case '5': listar_atividades();
+            case '5': recuperar_atividade();
+                      break;
+            case '6': listar_atividades();
                       break;
         }
     } while (opcao != '0');
@@ -55,6 +57,9 @@ void atualizar_atividade(void) {
 	id = tela_atualizar_atividade();
 	atv = buscar_atividade(id);
 	if (atv == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
     	printf(" ||               >>>>>> Atividade inexistente <<<<<<               ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -93,6 +98,44 @@ void excluir_atividade(void) {
 	free(id);
 }
 
+void recuperar_atividade(void) {
+    Atividade *atv;
+    char *id;
+
+    id = tela_recuperar_atv();
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    atv = buscar_e_recuperar_atv(id);
+    if(atv == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+    	printf(" ||              >>>>>> Atividade nao encontrada! <<<<<<            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
+    }
+    else {
+        refazer_atividade(atv);
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                ...... Atividade recuperada ......               ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
+        free(atv);
+    }
+    free(id);
+}
+
 
 char tela_atividades(void) {
     char escolha;
@@ -110,7 +153,8 @@ char tela_atividades(void) {
     printf(" ||         [ 2 ] Pesquisar atividade existente                     ||\n");
     printf(" ||         [ 3 ] Atualizar uma atividade em andamento              ||\n");
     printf(" ||         [ 4 ] Excluir atividade                                 ||\n");
-    printf(" ||         [ 5 ] Listar todas as Atividades                        ||\n");
+    printf(" ||         [ 5 ] Recuperar atividade excluída                      ||\n");
+    printf(" ||         [ 6 ] Listar todas as Atividades                        ||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||         [ 0 ] Voltar ao Menu Principal                          ||\n");
     printf(" ||                                                                 ||\n");
@@ -212,14 +256,9 @@ char* tela_pesquisar_atividade(void) {
         getchar();
     } while (!valida_id(id, 5));
     printf("\n");
-    printf(" ||               ------- Enter para continuar! --------            ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-	getchar();
 
     return id;
 }
-
 
 char* tela_atualizar_atividade(void) {
     char* id;
@@ -466,6 +505,32 @@ char* tela_excluir_atividade(void) {
     return id;
 }
 
+char* tela_recuperar_atv(void) {
+    char* id;
+
+    id = (char*) malloc(6*sizeof(char));
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                  >>>>>     ATIVIDADES     <<<<<                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                       ----- RECUPERAR -----                     ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf("         ID da Atividade: \n");
+        printf("         => ");
+        scanf("%[^\n]", id);
+        getchar();
+    } while (!valida_id(id, 5));
+    printf("\n");
+
+    return id;
+}
+
 void tela_erro_atv(void) {
 	system("cls || clear");
 	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -574,6 +639,26 @@ void refazer_atividade(Atividade* atv) {
 	}
     free(atv_lido);
 	fclose(fp);
+}
+
+Atividade* buscar_e_recuperar_atv(char *id) {
+    FILE *fp;
+    Atividade *atv;
+
+    atv = (Atividade*) malloc(sizeof(Atividade));
+    fp = fopen("atividades.dat", "rb");
+    if (fp == NULL) {
+        tela_erro_atv();
+    }
+    while (fread(atv, sizeof(Atividade), 1, fp)) {
+        if ((strcmp(atv->id, id) == 0) && (atv->status == 0)) {
+            atv->status = 1;
+            fclose(fp);
+            return atv;
+        }
+    }   
+    fclose(fp);
+    return NULL;
 }
 
 //////// UTEIS

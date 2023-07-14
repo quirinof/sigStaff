@@ -130,6 +130,7 @@ void recuperar_funcionario(void) {
 	    printf(" ||               ------- Enter para continuar! --------            ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
     }
     else {
         refazer_funcionario(fnc);

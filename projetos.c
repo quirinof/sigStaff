@@ -54,7 +54,10 @@ void atualizar_projeto(void) {
     id = tela_atualizar_projeto();
     pjt = buscar_projeto(id);
     if (pjt == NULL) {
-        printf(" ||               >>>>>> Projeto inexistente <<<<<<                 ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+    	printf(" ||                 >>>>>> Projeto inexistente <<<<<<               ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
@@ -79,7 +82,14 @@ void excluir_projeto(void) {
     pjt = (Projeto*) malloc(sizeof(Projeto));
     pjt = buscar_projeto(id);
     if (pjt == NULL) {
-        printf(" ||             >>>>>> Projeto nao encontrado! <<<<<<               ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+    	printf(" ||               >>>>>> Projeto nao encontrado! <<<<<<             ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         getchar();
@@ -87,6 +97,17 @@ void excluir_projeto(void) {
     else {
         pjt->status = 0;
         refazer_projeto(pjt);
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                  ...... Projeto excluido ......                 ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+	    printf(" ||               ------- Enter para continuar! --------            ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        getchar();
         free(pjt);
     }
     free(id);
@@ -130,7 +151,7 @@ void recuperar_projeto(void) {
     free(id);
 }
 
-
+/// Menu de Projetos
 char tela_projetos(void) {
     char escolha;
 
@@ -161,6 +182,7 @@ char tela_projetos(void) {
     return escolha;
 }
 
+/// Preenche os dados e retorna o objeto preenchido
 Projeto* tela_adicionar_projeto(void) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
@@ -197,10 +219,13 @@ Projeto* tela_adicionar_projeto(void) {
 
     pjt->status = 1;
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                 ...... Projeto cadastrado ......                ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                ...... Projeto cadastrado ......                 ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -209,6 +234,7 @@ Projeto* tela_adicionar_projeto(void) {
     return pjt;
 }
 
+/// Retorna ID digitado pelo usuário
 char* tela_pesquisar_projeto(void) {
     char* id;
 
@@ -235,6 +261,7 @@ char* tela_pesquisar_projeto(void) {
     return id;
 }
 
+/// Retorna ID digitado pelo usuário
 char* tela_atualizar_projeto(void) {
     char *id;
 
@@ -261,6 +288,7 @@ char* tela_atualizar_projeto(void) {
     return id;
 }
 
+/// Menu de escolha do atributo a ser editado. Recebe o objeto
 void tela_editar_projeto(Projeto* pjt) {
     char editar;
 
@@ -294,9 +322,9 @@ void tela_editar_projeto(Projeto* pjt) {
                       break;
         }
     } while (editar != '0');
-    pjt->status = 1;
 }
 
+/// Altera o atributo Nome do objeto recebido
 void tela_editar_titulo_projeto(Projeto* pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -316,15 +344,19 @@ void tela_editar_titulo_projeto(Projeto* pjt) {
         getchar();
     } while (!valida_nome(pjt->nome));
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
 
+/// Altera o atributo Data do objeto recebido
 void tela_editar_data_projeto(Projeto* pjt) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -344,15 +376,19 @@ void tela_editar_data_projeto(Projeto* pjt) {
         getchar();
     } while (!valida_data(pjt->data_entrega));    
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
 
+/// Retorna ID digitado pelo usuário
 char* tela_excluir_projeto(void) {
     char *id;
 
@@ -374,18 +410,12 @@ char* tela_excluir_projeto(void) {
         scanf("%[^\n]", id);
         getchar();
     } while (!valida_id(id, 5));
-    printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" ||                  ...... Projeto excluido ......                 ||\n");
-    printf(" ||                                                                 ||\n");
-    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
-    getchar();
+    printf("\n");
 
     return id;
 }
 
+/// Retorna ID digitado pelo usuário
 char* tela_recuperar_projeto(void) {
     char* id;
 
@@ -412,8 +442,8 @@ char* tela_recuperar_projeto(void) {
     return id;
 }
 
+/// Erro de acesso ao arquivo
 void tela_erro_pjt(void) {
-
 	system("cls || clear");
 	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -434,8 +464,9 @@ void tela_erro_pjt(void) {
 }
 
 
+////////// FUNÇÕES DE ARQUIVAMENTO //////////////
 
-//////////// FUNCOES DE ARQUIVAMENTO //////////////
+/// Salva o objeto no arquivo. Recebe o objeto como parâmetro
 void salvar_projeto(Projeto* pjt) {
     FILE *fp;
     fp = fopen("projetos.dat", "ab");
@@ -446,6 +477,7 @@ void salvar_projeto(Projeto* pjt) {
     fclose(fp);
 }
 
+/// Busca objeto no arquivo e retorna ele ou NULL. Recebe o ID como parâmetro 
 Projeto* buscar_projeto(char* id) {
     FILE *fp;
     Projeto *pjt;
@@ -464,8 +496,12 @@ Projeto* buscar_projeto(char* id) {
     return NULL;
 }
 
+/// Exibe os dados do objeto. Recebe o objeto como parâmetro
 void exibir_projeto(Projeto* pjt) {
     if (pjt == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
 		printf(" ||               >>>>>> Projeto Inexistente <<<<<<                 ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -495,6 +531,7 @@ void exibir_projeto(Projeto* pjt) {
 	getchar();
 }
 
+/// Regrava o objeto no arquivo. Recebe o objeto como parâmetro
 void refazer_projeto(Projeto *pjt) {
     int achou;
     FILE *fp;
@@ -517,6 +554,7 @@ void refazer_projeto(Projeto *pjt) {
     free(pjt_lido);
 }
 
+/// Busca objeto no arquivo para trocar status e retornar ele mesmo ou NULL. Recebe o ID como parâmetro  
 Projeto* buscar_e_recuperar_pjt(char *id) {
     FILE *fp;
     Projeto *pjt;
@@ -537,8 +575,7 @@ Projeto* buscar_e_recuperar_pjt(char *id) {
     return NULL;
 }
 
-
-//////// UTEIS
+/// Gera um ID automático e sequencial com base no arquivo. Retorna o ID
 char* gerar_id(void) {
     FILE *fp;
     Projeto *pjt;

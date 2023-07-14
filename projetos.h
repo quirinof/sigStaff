@@ -1,3 +1,4 @@
+/// Classe projeto
 typedef struct projeto Projeto;
 struct projeto {
     char nome[71];

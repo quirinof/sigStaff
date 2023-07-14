@@ -1,3 +1,4 @@
+/// Classe funcionário
 typedef struct funcionario Funcionario;
 struct funcionario {
     char nome[71];

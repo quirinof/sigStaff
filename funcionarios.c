@@ -97,6 +97,7 @@ void excluir_funcionario(void) {
     else {
 		fnc->status = 0;
 		refazer_funcionario(fnc);
+        printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf(" ||                                                                 ||\n");
         printf(" ||                ...... Funcionario excluido ......               ||\n");
@@ -150,7 +151,7 @@ void recuperar_funcionario(void) {
     free(cpf);
 }
 
-
+/// Menu de funcionarios
 char tela_funcionarios(void) {
     char escolha;
 
@@ -181,6 +182,7 @@ char tela_funcionarios(void) {
     return escolha;
 }
 
+/// Preenche os dados e retorna a estrutura preenchida
 Funcionario* tela_adicionar_funcionario(void) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
@@ -234,10 +236,13 @@ Funcionario* tela_adicionar_funcionario(void) {
     fnc->status = 1;
     printf("\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||                     Funcionario cadastrado!                     ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
@@ -245,7 +250,7 @@ Funcionario* tela_adicionar_funcionario(void) {
     return fnc;
 }
 
-
+/// Retorna cpf digitado pelo usuário
 char* tela_pesquisar_funcionario(void) {
     char *cpf;
     system("cls||clear");  
@@ -271,7 +276,7 @@ char* tela_pesquisar_funcionario(void) {
     return cpf;
 }
 
-
+/// Retorna cpf digitado
 char* tela_atualizar_funcionario(void) {
     char* cpf;
     
@@ -298,6 +303,7 @@ char* tela_atualizar_funcionario(void) {
     return cpf;
 }
 
+/// Menu de escolha do atributo a ser editado. Recebe o objeto
 void tela_editar_funcionario(Funcionario *fnc) {
     char editar;
     do {
@@ -338,6 +344,7 @@ void tela_editar_funcionario(Funcionario *fnc) {
     } while (editar != '0');
 }
 
+/// Altera o atributo Nome do objeto recebido
 void tela_editar_nome(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -357,16 +364,19 @@ void tela_editar_nome(Funcionario* fnc) {
         getchar();
     } while(!valida_nome(fnc->nome));
     printf(" ||                                                                 ||\n");
-    printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||               ...... Informacao atualizada ......               ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
-
+/// Altera o atributo Celular do objeto recebido
 void tela_editar_cel(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -386,17 +396,20 @@ void tela_editar_cel(Funcionario* fnc) {
         getchar();
     } while(!valida_cel(fnc->celular));
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Informacao atualizada ......               ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
+/// Altera o atributo Email do objeto recebido
 void tela_editar_email(Funcionario* fnc) {
-
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -415,15 +428,19 @@ void tela_editar_email(Funcionario* fnc) {
         getchar();
     } while (!valida_email(fnc->email));
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Informacao atualizada ......               ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
+/// Altera o atributo Cargo do objeto recebido
 void tela_editar_cargo(Funcionario* fnc) {
     system("cls||clear");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -443,16 +460,19 @@ void tela_editar_cargo(Funcionario* fnc) {
         getchar();
     }  while(!valida_nome(fnc->cargo));
     printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||               ...... Informacao atualizada ......               ||\n");
+	printf(" ||               ------- Enter para continuar! --------            ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 }
 
-
+/// Retorna cpf digitado
 char* tela_excluir_funcionario(void) {
     char* cpf;
 
@@ -479,6 +499,7 @@ char* tela_excluir_funcionario(void) {
     return cpf;
 }
 
+/// Retorna cpf digitado
 char* tela_recuperar_funcionario(void) {
     char* cpf;
 
@@ -505,7 +526,7 @@ char* tela_recuperar_funcionario(void) {
     return cpf;
 }
 
-
+/// Erro de acesso ao arquivo
 void tela_erro(void) {
 	system("cls||clear");
 	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -527,7 +548,9 @@ void tela_erro(void) {
 }
 
 
-/////////// FUNÇOES DE ARQUIVAMENTO ///////////
+////////// FUNÇÕES DE ARQUIVAMENTO //////////////
+
+/// Salva o objeto no arquivo. Recebe o objeto como parâmetro
 void salvar_funcionario(Funcionario* fnc) {
     FILE *fp;
     fp = fopen("funcionarios.dat", "ab");
@@ -538,6 +561,7 @@ void salvar_funcionario(Funcionario* fnc) {
     fclose(fp);
 }
 
+/// Busca objeto no arquivo e retorna ele ou NULL. Recebe o cpf como parâmetro 
 Funcionario* buscar_funcionario(char* cpf) {
     FILE *fp;
     Funcionario* fnc;
@@ -557,6 +581,7 @@ Funcionario* buscar_funcionario(char* cpf) {
     return NULL;
 }
 
+/// Busca objeto no arquivo para trocar status e retornar ele mesmo ou NULL. Recebe o cpf como parâmetro  
 Funcionario* buscar_e_recuperar_fnc(char *cpf) {
     FILE *fp;
     Funcionario *fnc;
@@ -577,8 +602,12 @@ Funcionario* buscar_e_recuperar_fnc(char *cpf) {
     return NULL;
 }
 
+/// Exibe os dados do objeto. Recebe o objeto como parâmetro
 void exibir_funcionario(Funcionario* fnc) {
 	if (fnc == NULL) {
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
 		printf(" ||               >>>>>> Funcionario Inexistente <<<<<<             ||\n");
         printf(" ||                                                                 ||\n");
         printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -610,6 +639,8 @@ void exibir_funcionario(Funcionario* fnc) {
 	getchar();
 }
 
+
+/// Regrava o objeto no arquivo. Recebe o objeto como parâmetro
 void refazer_funcionario(Funcionario* fnc) {
 	int achou;
 	FILE* fp;
@@ -632,6 +663,7 @@ void refazer_funcionario(Funcionario* fnc) {
 	fclose(fp);
 }
 
+/// Verifica se existe algum objeto no arquivo com o mesmo cpf. Recebe o cpf como parâmetro
 int verifica_cpf_cadastrado(char *cpf) {
     FILE *fp;
     Funcionario *fnc;

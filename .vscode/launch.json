@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "c:/Users/mathe/OneDrive/Área de Trabalho/Sig-Staff",
-      "program": "c:/Users/mathe/OneDrive/Área de Trabalho/Sig-Staff/build/Debug/outDebug",
+      "externalConsole": false,
+      "cwd": "/home/quirino/Documentos/Sig-Staff",
+      "program": "/home/quirino/Documentos/Sig-Staff/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

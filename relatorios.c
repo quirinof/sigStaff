@@ -46,7 +46,9 @@ void modulo_lista_ordenada_funcionarios(void) {
     Funcionario *lista;
     lista = NULL;
     relatorio_ordenado_fnc(&lista);
-    exibir_lista_fnc(lista);
+    if (lista != NULL) {
+        exibir_lista_fnc(lista);
+    }
     excluir_lista_fnc(&lista);
 }
 
@@ -55,7 +57,9 @@ void modulo_lista_ordenada_projetos(void) {
     Projeto *lista;
     lista = NULL;
     relatorio_ordenado_pjt(&lista);
-    exibir_lista_pjt(lista);
+    if (lista != NULL) {
+        exibir_lista_pjt(lista);
+    }
     excluir_lista_pjt(&lista);
 }
 
@@ -64,7 +68,9 @@ void modulo_lista_ordenada_atividades(void) {
     Atividade *lista;
     lista = NULL;
     relatorio_ordenado_atv(&lista);
-    exibir_lista_atv(lista);
+    if (lista != NULL) {
+        exibir_lista_atv(lista);
+    }
     excluir_lista_atv(&lista);
 }
 

@@ -358,17 +358,19 @@ void relatorio_fnc_por_pjt(char* id_pjt) {
 
 /// Abre o arquivo e exibe cada um dos funcionários.
 void listar_funcionarios(void) {
-    FILE *fp;
     Funcionario *fnc;
+    FILE *fp;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
+    if (fp != NULL) {
+        while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+            exibir_funcionario(fnc);
+        }
+        fclose(fp);
+    }
+    else {
         tela_erro();
     }
-    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
-        exibir_funcionario(fnc);
-    }
-    fclose(fp);
     free(fnc);
 }
 
@@ -378,14 +380,16 @@ void listar_projetos(void) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "rb");
-    if (fp == NULL) {
+    if (fp != NULL) {
+        while (fread(pjt, sizeof(Projeto), 1, fp)) {
+            exibir_projeto(pjt);
+        }
+        fclose(fp);
+    }
+    else {
         tela_erro_pjt();
     }
-    while (fread(pjt, sizeof(Projeto), 1, fp)) {
-        exibir_projeto(pjt);
-    }
     free(pjt);
-    fclose(fp);
 }
 
 /// Abre o arquivo e exibe cada uma das atividades.
@@ -394,14 +398,16 @@ void listar_atividades(void) {
     Atividade *atv;
     atv = (Atividade*) malloc(sizeof(Atividade));
     fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
+    if (fp != NULL) {
+        while (fread(atv, sizeof(Atividade), 1, fp)) {
+            exibir_atividade(atv);
+        }
+        fclose(fp);
+    }
+    else {
         tela_erro_atv();
     }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        exibir_atividade(atv);
-    }
     free(atv);
-    fclose(fp);
 }
 
 /// Abre o arquivo e exibe alguns campos das atividades.
@@ -410,15 +416,17 @@ void listar_atv_filtrada(char *id) {
     Atividade *atv; 
     atv = (Atividade*) malloc(sizeof(Atividade));
     fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
+    if (fp != NULL) {
+        while(fread(atv, sizeof(Atividade), 1, fp)) {
+            if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
+                printf(" ||       %s             %s             %s\n", atv->id, atv->nome_atv, atv->data_atv);
+            }
+        }
+        fclose(fp);
+    }
+    else {
         tela_erro_atv();
     }
-    while(fread(atv, sizeof(Atividade), 1, fp)) {
-        if(strcmp(atv->id_pjt, id) == 0 || strcmp(atv->cpf, id) == 0 || strcmp(atv->data_atv, id) == 0) {
-            printf(" ||       %s             %s             %s\n", atv->id, atv->nome_atv, atv->data_atv);
-        }
-    }
-    fclose(fp);
     free(atv);
 }
 
@@ -428,15 +436,17 @@ void listar_fnc_filtrado(char *cpf) {
     Funcionario *fnc; 
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
-        tela_erro();
-    }
-    while(fread(fnc, sizeof(Funcionario), 1, fp)) {
-        if(strcmp(fnc->cpf, cpf) == 0) {
-            printf(" ||    %s         %s          %s\n", fnc->cpf, fnc->nome, fnc->cargo);
+    if (fp != NULL) {
+        while(fread(fnc, sizeof(Funcionario), 1, fp)) {
+            if(strcmp(fnc->cpf, cpf) == 0) {
+                printf(" ||    %s         %s          %s\n", fnc->cpf, fnc->nome, fnc->cargo);
+            }
         }
+        fclose(fp);
     }
-    fclose(fp);
+    else {
+        tela_erro();
+    } 
     free(fnc);
 }
 
@@ -445,11 +455,16 @@ void listar_atividades_por_fnc(char *cpf) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fnc = buscar_funcionario(cpf);
-    printf(" ||         Funcionario: %s \n", fnc->nome);
-    printf(" ||                                                                 ||\n");
-    printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
-    printf(" ||   -----------------------------------------------------------   ||\n");
-    listar_atv_filtrada(cpf);
+    if (fnc != NULL) {
+        printf(" ||         Funcionario: %s \n", fnc->nome);
+        printf(" ||                                                                 ||\n");
+        printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
+        printf(" ||   -----------------------------------------------------------   ||\n");
+        listar_atv_filtrada(cpf);
+    }
+    else {
+        tela_erro();
+    }
     free(fnc);
 }
 
@@ -458,11 +473,16 @@ void listar_atividades_por_pjt(char* id_pjt) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
     pjt = buscar_projeto(id_pjt);
-    printf(" ||         Projeto: %s \n", pjt->nome);
-    printf(" ||                                                                 ||\n");
-    printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
-    printf(" ||   -----------------------------------------------------------   ||\n");
-    listar_atv_filtrada(id_pjt);
+    if (pjt != NULL) {
+        printf(" ||         Projeto: %s \n", pjt->nome);
+        printf(" ||                                                                 ||\n");
+        printf(" ||  <<    ID     |            Nome             |    Entrega    >>  ||\n");
+        printf(" ||   -----------------------------------------------------------   ||\n");
+        listar_atv_filtrada(id_pjt);
+    }
+    else {
+        tela_erro_pjt();
+    }
     free(pjt);
 }
 
@@ -475,25 +495,31 @@ void listar_fnc_por_pjt(char *id_pjt) {
     atv = (Atividade*) malloc(sizeof(Atividade));
     pjt = (Projeto*) malloc(sizeof(Projeto));
     pjt = buscar_projeto(id_pjt);
-    printf(" ||         Projeto: %s \n", pjt->nome);
-    printf(" ||                                                                 ||\n");
-    printf(" ||   <<    CPF     |            Nome             |    Cargo    >>  ||\n");
-    printf(" ||   -----------------------------------------------------------   ||\n");
-    fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while(fread(atv, sizeof(Atividade), 1, fp)) {
-        if(strcmp(atv->id_pjt, id_pjt) == 0) {
-            cpf_fnc = atv->cpf;
-            listar_fnc_filtrado(cpf_fnc);
+    if (pjt != NULL) {
+        printf(" ||         Projeto: %s \n", pjt->nome);
+        printf(" ||                                                                 ||\n");
+        printf(" ||   <<    CPF     |            Nome             |    Cargo    >>  ||\n");
+        printf(" ||   -----------------------------------------------------------   ||\n");
+        fp = fopen("atividades.dat", "rb");
+        if (fp != NULL) {
+            while(fread(atv, sizeof(Atividade), 1, fp)) {
+                if(strcmp(atv->id_pjt, id_pjt) == 0) {
+                    cpf_fnc = atv->cpf;
+                    listar_fnc_filtrado(cpf_fnc);
+                }
+            }
+            fclose(fp);
         }
+        else {
+            tela_erro_atv();
+        } 
     }
-    fclose(fp);
+    else {
+        tela_erro_pjt();
+    }  
     free(pjt);
     free(atv);
 }
-
 
 /// Abre arquivo de funcionários e ordena alfabeticamente todos.
 void relatorio_ordenado_fnc(Funcionario **lista) {
@@ -553,7 +579,7 @@ void exibir_lista_fnc(Funcionario *aux) {
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
-    printf(" ||                     --- Fim da lista ---                        ||\n");
+    printf(" ||                       --- Fim da lista ---                      ||\n");
     printf(" ||                                                                 ||\n");
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
@@ -704,8 +730,8 @@ void exibir_lista_atv(Atividade *aux) {
     printf(" ||              Data             |             Nome                ||\n");
     printf("\n");
     while (aux != NULL) {
-        printf(" ||         %s ", aux->data_atv);
-        printf("               %s  \n", aux->nome_atv);
+        printf(" ||           %s ", aux->data_atv);
+        printf("                 %s  \n", aux->nome_atv);
         aux = aux->prox;
 	}
     printf(" ||                                                                 ||\n");

@@ -564,14 +564,14 @@ void tela_erro_atv(void) {
 /// Salva o objeto no arquivo. Recebe o objeto como parâmetro
 void salvar_atividade(Atividade* atv) {
     FILE *fp;
-
     fp = fopen("atividades.dat", "ab");
-    if (fp == NULL) {
+    if (fp != NULL) {
+        fwrite(atv, sizeof(Atividade), 1, fp);
+        fclose(fp);
+    }
+    else {
         tela_erro_atv();
     }
-    fwrite(atv, sizeof(Atividade), 1, fp);
-
-    fclose(fp);
 }
 
 /// Busca objeto no arquivo e retorna ele ou NULL. Recebe o ID como parâmetro 
@@ -581,16 +581,14 @@ Atividade* buscar_atividade(char* id) {
     
     atv = (Atividade*) malloc(sizeof(Atividade));
     fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
-    }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        if ((strcmp(id, atv->id) == 0) && (atv->status == 1)) {
-            fclose(fp);
-            return atv;
+    if (fp != NULL) {
+        while (fread(atv, sizeof(Atividade), 1, fp)) {
+            if ((strcmp(id, atv->id) == 0) && (atv->status == 1)) {
+                fclose(fp);
+                return atv;
+            }
         }
     }
-    fclose(fp);
     return NULL;
 }
 
@@ -639,19 +637,21 @@ void refazer_atividade(Atividade* atv) {
 
 	atv_lido = (Atividade*) malloc(sizeof(Atividade));
 	fp = fopen("atividades.dat", "r+b");
-	if (fp == NULL) {
-		tela_erro_atv();
+	if (fp != NULL) {
+		achou = 0;
+        while (fread(atv_lido, sizeof(Atividade), 1, fp) && !achou) {
+            if (strcmp(atv_lido->id, atv->id) == 0) {
+                achou = 1;
+                fseek(fp, -1*sizeof(Atividade), SEEK_CUR);
+                fwrite(atv, sizeof(Atividade), 1, fp);
+            }
+        }
+        fclose(fp);
 	}
-	achou = 0;
-	while (fread(atv_lido, sizeof(Atividade), 1, fp) && !achou) {
-		if (strcmp(atv_lido->id, atv->id) == 0) {
-			achou = 1;
-			fseek(fp, -1*sizeof(Atividade), SEEK_CUR);
-        	fwrite(atv, sizeof(Atividade), 1, fp);
-		}
-	}
+    else {
+        tela_erro_atv();
+    }
     free(atv_lido);
-	fclose(fp);
 }
 
 /// Busca objeto no arquivo para trocar status e retornar ele mesmo ou NULL. Recebe o ID como parâmetro  
@@ -661,17 +661,15 @@ Atividade* buscar_e_recuperar_atv(char *id) {
 
     atv = (Atividade*) malloc(sizeof(Atividade));
     fp = fopen("atividades.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_atv();
+    if (fp != NULL) {
+        while (fread(atv, sizeof(Atividade), 1, fp)) {
+            if ((strcmp(atv->id, id) == 0) && (atv->status == 0)) {
+                atv->status = 1;
+                fclose(fp);
+                return atv;
+            }
+        }   
     }
-    while (fread(atv, sizeof(Atividade), 1, fp)) {
-        if ((strcmp(atv->id, id) == 0) && (atv->status == 0)) {
-            atv->status = 1;
-            fclose(fp);
-            return atv;
-        }
-    }   
-    fclose(fp);
     return NULL;
 }
 
@@ -688,11 +686,10 @@ char* gerar_id_atv(void) {
         while(fread(atv, sizeof(Atividade), 1, fp) == 1) {
             id_gerado++;
         }
+        fclose(fp);
     }
-    
     sprintf(id, "%05d", id_gerado);
     free(atv);
-    fclose(fp);
     return id;
 }
 
@@ -702,19 +699,17 @@ int verifica_data_pjt(char *id_pjt, char *data) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "rb");
-    if(fp == NULL) {
-        tela_erro_pjt();
+    if(fp != NULL) {
+        while (fread(pjt, sizeof(Projeto), 1, fp)) {
+            if(strcmp(pjt->id, id_pjt) == 0) {
+                if(strcmp(inv_data(pjt->data_entrega), inv_data(data)) < 0) {
+                    fclose(fp);
+                    free(pjt);
+                    return 0;
+                }
+            } 
+        }
     }
-    while (fread(pjt, sizeof(Projeto), 1, fp)) {
-        if(strcmp(pjt->id, id_pjt) == 0) {
-            if(strcmp(inv_data(pjt->data_entrega), inv_data(data)) < 0) {
-                fclose(fp);
-                free(pjt);
-                return 0;
-            }
-        } 
-    }
-    fclose(fp);
     free(pjt);
     return 1;
 }

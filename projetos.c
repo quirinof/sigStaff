@@ -476,11 +476,13 @@ void tela_erro_pjt(void) {
 void salvar_projeto(Projeto* pjt) {
     FILE *fp;
     fp = fopen("projetos.dat", "ab");
-    if(fp == NULL) {
+    if(fp != NULL) {
+        fwrite(pjt, sizeof(Projeto), 1, fp);
+        fclose(fp);
+    }
+    else {
         tela_erro_pjt(); 
     }
-    fwrite(pjt, sizeof(Projeto), 1, fp);
-    fclose(fp);
 }
 
 /// Busca objeto no arquivo e retorna ele ou NULL. Recebe o ID como parâmetro 
@@ -489,16 +491,14 @@ Projeto* buscar_projeto(char* id) {
     Projeto *pjt;
     pjt = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "rb");
-    if(fp == NULL) {
-        tela_erro_pjt();
-    }
-    while (fread(pjt, sizeof(Projeto), 1, fp)) {
-        if ((strcmp(id, pjt->id) == 0) && (pjt->status == 1)) {
-            fclose(fp);
-            return pjt;
+    if(fp != NULL) {
+        while (fread(pjt, sizeof(Projeto), 1, fp)) {
+            if ((strcmp(id, pjt->id) == 0) && (pjt->status == 1)) {
+                fclose(fp);
+                return pjt;
+            }
         }
     }
-    fclose(fp);
     return NULL;
 }
 
@@ -545,18 +545,20 @@ void refazer_projeto(Projeto *pjt) {
 
     pjt_lido = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "r+b");
-    if(fp == NULL) {
+    if(fp != NULL) {
+        achou = 0;
+        while(fread(pjt_lido, sizeof(Projeto), 1, fp) && !achou) {
+            if (strcmp(pjt_lido->id, pjt->id) == 0) {
+                achou = 1;
+                fseek(fp, -1*sizeof(Projeto), SEEK_CUR);
+                fwrite(pjt, sizeof(Projeto), 1, fp);
+            }
+        }
+        fclose(fp);
+    }
+    else {
         tela_erro_pjt();
     }
-    achou = 0;
-    while(fread(pjt_lido, sizeof(Projeto), 1, fp) && !achou) {
-        if (strcmp(pjt_lido->id, pjt->id) == 0) {
-            achou = 1;
-            fseek(fp, -1*sizeof(Projeto), SEEK_CUR);
-            fwrite(pjt, sizeof(Projeto), 1, fp);
-        }
-    }
-    fclose(fp);
     free(pjt_lido);
 }
 
@@ -567,17 +569,15 @@ Projeto* buscar_e_recuperar_pjt(char *id) {
 
     pjt = (Projeto*) malloc(sizeof(Projeto));
     fp = fopen("projetos.dat", "rb");
-    if (fp == NULL) {
-        tela_erro_pjt();
-    }
-    while (fread(pjt, sizeof(Projeto), 1, fp)) {
-        if ((strcmp(pjt->id, id) == 0) && (pjt->status == 0)) {
-            pjt->status = 1;
-            fclose(fp);
-            return pjt;
+    if (fp != NULL) {
+        while (fread(pjt, sizeof(Projeto), 1, fp)) {
+            if ((strcmp(pjt->id, id) == 0) && (pjt->status == 0)) {
+                pjt->status = 1;
+                fclose(fp);
+                return pjt;
+            }
         }
-    }   
-    fclose(fp);
+    }
     return NULL;
 }
 
@@ -594,9 +594,9 @@ char* gerar_id(void) {
         while(fread(pjt, sizeof(Projeto), 1, fp) == 1) {
             id_gerado++;
         }
+        fclose(fp);
     }
     sprintf(id, "%05d", id_gerado);
     free(pjt);
-    fclose(fp);
     return id;
 }

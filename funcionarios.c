@@ -534,7 +534,7 @@ char* tela_recuperar_funcionario(void) {
 
 /// Erro de acesso ao arquivo
 void tela_erro(void) {
-	system("cls||clear");
+	system("cls || clear");
 	printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     printf(" ||                                                                 ||\n");
     printf(" ||       <<<<<<<<<<<       SOFTHOUSE CAICO       >>>>>>>>>>>       ||\n");
@@ -560,11 +560,13 @@ void tela_erro(void) {
 void salvar_funcionario(Funcionario* fnc) {
     FILE *fp;
     fp = fopen("funcionarios.dat", "ab");
-    if (fp == NULL) {
+    if (fp != NULL) {
+        fwrite(fnc, sizeof(Funcionario), 1, fp);
+        fclose(fp);
+    }
+    else {
         tela_erro();
     }
-    fwrite(fnc, sizeof(Funcionario), 1, fp);
-    fclose(fp);
 }
 
 /// Busca objeto no arquivo e retorna ele ou NULL. Recebe o cpf como parâmetro 
@@ -574,16 +576,14 @@ Funcionario* buscar_funcionario(char* cpf) {
 
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
-        tela_erro();
-    }
-    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
-        if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 1)) {
-            fclose(fp);
-            return fnc;
+    if (fp != NULL) {
+        while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+            if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 1)) {
+                fclose(fp);
+                return fnc;
+            }
         }
-    }   
-    fclose(fp);
+    }
     return NULL;
 }
 
@@ -594,17 +594,15 @@ Funcionario* buscar_e_recuperar_fnc(char *cpf) {
 
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
-        tela_erro();
+    if (fp != NULL) {
+        while (fread(fnc, sizeof(Funcionario), 1, fp)) {
+            if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 0)) {
+                fnc->status = 1;
+                fclose(fp);
+                return fnc;
+            }
+        }  
     }
-    while (fread(fnc, sizeof(Funcionario), 1, fp)) {
-        if ((strcmp(fnc->cpf, cpf) == 0) && (fnc->status == 0)) {
-            fnc->status = 1;
-            fclose(fp);
-            return fnc;
-        }
-    }   
-    fclose(fp);
     return NULL;
 }
 
@@ -654,19 +652,21 @@ void refazer_funcionario(Funcionario* fnc) {
 
 	fnc_lido = (Funcionario*) malloc(sizeof(Funcionario));
 	fp = fopen("funcionarios.dat", "r+b");
-	if (fp == NULL) {
-		tela_erro();
+	if (fp != NULL) {
+		achou = 0;
+        while (fread(fnc_lido, sizeof(Funcionario), 1, fp) && !achou) {
+            if (strcmp(fnc_lido->cpf, fnc->cpf) == 0) {
+                achou = 1;
+                fseek(fp, -1*sizeof(Funcionario), SEEK_CUR);
+                fwrite(fnc, sizeof(Funcionario), 1, fp);
+            }
+        }
+        fclose(fp);
 	}
-	achou = 0;
-	while (fread(fnc_lido, sizeof(Funcionario), 1, fp) && !achou) {
-		if (strcmp(fnc_lido->cpf, fnc->cpf) == 0) {
-			achou = 1;
-			fseek(fp, -1*sizeof(Funcionario), SEEK_CUR);
-        	fwrite(fnc, sizeof(Funcionario), 1, fp);
-		}
-	}
+    else {
+        tela_erro();
+    }  
     free(fnc_lido);
-	fclose(fp);
 }
 
 /// Verifica se existe algum objeto no arquivo com o mesmo cpf. Recebe o cpf como parâmetro
@@ -675,10 +675,13 @@ int verifica_cpf_cadastrado(char *cpf) {
     Funcionario *fnc;
     fnc = (Funcionario*) malloc(sizeof(Funcionario));
     fp = fopen("funcionarios.dat", "rb");
-    while(fread(fnc, sizeof(Funcionario), 1, fp)) {
-        if(strcmp(fnc->cpf, cpf) == 0) {
-            free(fnc);
-            return 0;
+    if (fp != NULL) {
+        while(fread(fnc, sizeof(Funcionario), 1, fp)) {
+            if(strcmp(fnc->cpf, cpf) == 0) {
+                fclose(fp);
+                free(fnc);
+                return 0;
+            }
         }
     }
     free(fnc);
